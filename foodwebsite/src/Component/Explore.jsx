@@ -1,7 +1,7 @@
 import React from 'react';
 import { menu_list } from '../assets/assets';
 
-const Explore = () => {
+const ExploreMenu = () => {
   return (
     <div className="container py-10 text-left">
       {/* Heading */}
@@ -35,4 +35,4 @@ const Explore = () => {
   );
 };
 
-export default Explore;
+export default ExploreMenu;

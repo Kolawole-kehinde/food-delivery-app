@@ -1,6 +1,6 @@
 import React from 'react'
 import Showcase from '../Showcase';
-import Explore from '../Explore';
+import ExploreMenu from '../Explore';
 
 
 const HomePage = () => {
@@ -8,7 +8,7 @@ const HomePage = () => {
   return (
     <div>
         <Showcase/>
-      <Explore/>
+      <ExploreMenu/>
     </div>
   )
 }

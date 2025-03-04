@@ -7,15 +7,15 @@ export const NavRoutes =[
     {
        id: 2,
        name: "Menu",
-       path: "/menu",
+       path: "menu",
     },
     {
-       id: 1,
+       id: 3,
        name: "Mobile-app",
-       path: "/mobileapp",
+       path: "mobileapp",
     },
     {
-       id: 1,
+       id: 4,
        name: "Contact us",
        path: "Contact",
     },

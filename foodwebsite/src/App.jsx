@@ -2,9 +2,9 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import NavBar from './Component/layout/NavBar'
 import HomePage from './Component/Pages/Home'
-import MenuPage from './Component/Pages/MenuPage'
 import MobileAppPage from './Component/Pages/MobileApp'
 import ContactPage from './Component/Pages/Contact'
+import MenuPage from './Component/Pages/Menu'
 
 
 const App = () => {

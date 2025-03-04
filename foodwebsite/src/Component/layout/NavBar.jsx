@@ -1,46 +1,51 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
-import { NavRoutes } from '../constant/NavRoutes'
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
+import { NavRoutes } from "../constant/NavRoutes";
+import NavRight from "./NavRight";
+import { IoMenu, IoClose } from "react-icons/io5";
+import Logo from "./Logo";
+import Menu from "./Menu";
 
 const NavBar = () => {
-    const active =(isActive) => {
-        return isActive ? "text-orange-500" : "text-[#49557e]";
-      }
+ 
+    const [openMenu, setOpenMenu] = useState(false);
+
+    const toggleMenu = () => {
+      return setOpenMenu((prev) => !prev);
+    };
+
+  
   return (
     <header>
-    <nav className='container flex items-center justify-between'>
-      <div>
-      <img src="/images/logo2.png" alt="Logo"  className='w-[100px]'/>
-      </div>
+      <nav className="container flex items-center justify-between">
+        {/* lOGO */}
+        <Logo />
+        <button onClick={toggleMenu}>
+          <IoMenu fontSize={35} />
+        </button>
 
-     <menu className='flex items-center justify-center gap-5 text-[#49557e] text-2xl font-Primary capitalize'>
-        {
-            NavRoutes.map(({id, name, path}) => (
-                <li key={id}>
-                <NavLink
-                to={path}
-                className={({ isActive }) => active(isActive)}
-                >
-                  {name}
-                </NavLink>
-               
-                </li>
-            ))
+        <Menu menuStyle="hidden lg:flex items-center justify-center gap-5 text-[#49557e] text-2xl font-Primary capitalize"/>
 
-        }
-        </menu>
+        {/* NavRight Side */}
+        <NavRight />
 
-     <div className='flex items-center gap-6'>
-       <img src="/images/search_icon.png" alt="search_icon" />
-       <img src="/images/basket_icon.png" alt="basket_icon" /> 
-       <button className='bg-transparent text-xl text-[#49557e] border border-orange-500 py-1 px-4 rounded cursor-pointer'>
-          Sign in
-       </button>
-     </div>
-       
-    </nav>
-</header>
-  )
-}
+        {/* Mobile responsive */}
+      </nav>
 
-export default NavBar
+      {openMenu && (
+        <nav className="fixed inset-0 z-40 bg-orange-500 w-full h-[300px] text-white rounded-b-2xl">
+          <div className="flex justify-between items-center">
+            <Logo/>
+            <button onClick={toggleMenu}>
+              <IoClose fontSize={35} />
+            </button>
+          </div>
+
+         <Menu menuStyle="flex flex-col gap-4 text-2xl font-Primary capitalize px-6"/>
+        </nav>
+      )}
+    </header>
+  );
+};
+
+export default NavBar;
