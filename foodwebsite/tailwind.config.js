@@ -19,6 +19,9 @@ export default {
           "2xl": "6rem",
         },
       },
+      backgroundImage: {
+        'ShowcaseImg': "url('/images/header_img.png')",
+      }
     },
   },
   plugins: [],
