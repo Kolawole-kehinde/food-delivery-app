@@ -1,6 +1,11 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
+import { NavRoutes } from '../constant/NavRoutes'
 
 const NavBar = () => {
+    const active =(isActive) => {
+        return isActive ? "text-orange-500" : "text-[#49557e]";
+      }
   return (
     <header>
     <nav className='container flex items-center justify-between'>
@@ -9,11 +14,21 @@ const NavBar = () => {
       </div>
 
      <menu className='flex items-center justify-center gap-5 text-[#49557e] text-2xl font-Primary capitalize'>
-        <li>Home</li>
-        <li>Menu</li>
-        <li>Mobile-App</li>
-        <li>Contact Us</li>
-     </menu>
+        {
+            NavRoutes.map(({id, name, path}) => (
+                <li key={id}>
+                <NavLink
+                to={path}
+                className={({ isActive }) => active(isActive)}
+                >
+                  {name}
+                </NavLink>
+               
+                </li>
+            ))
+
+        }
+        </menu>
 
      <div className='flex items-center gap-6'>
        <img src="/images/search_icon.png" alt="search_icon" />

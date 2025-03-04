@@ -60,6 +60,7 @@ import logout_icon from './logout_icon.png'
 import parcel_icon from './parcel_icon.png'
 
 export const assets = {
+
     header_img,
     rating_starts,
     add_icon_green,
@@ -83,10 +84,7 @@ export const menu_list = [
         menu_name: "Salad",
         menu_image: menu_1
     },
-    {
-        menu_name: "pasta1",
-        menu_image: food_001
-    },
+  
     {
         menu_name: "Rolls",
         menu_image: menu_2
