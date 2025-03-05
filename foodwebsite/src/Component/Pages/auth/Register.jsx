@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { RegisterLists } from "../../constant/auth";
 import CustomInput from "../../CustomInput";
+import CustomButton from "../../CustomButton";
 
 const RegisterPage = () => {
   return (
@@ -22,12 +23,9 @@ const RegisterPage = () => {
                 
                 ))}
          
-          <button
-            type="submit"
-            className="w-full bg-orange-500 text-white p-2 rounded hover:bg-orange-600"
-          >
+          <CustomButton>
             Register
-          </button>
+          </CustomButton>
         </form>
         <p className="text-center mt-4 text-sm">
           Already have an account?{" "}

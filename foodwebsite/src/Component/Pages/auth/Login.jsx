@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import CustomInput from '../../CustomInput'
 import { LoginLists } from '../../constant/auth'
+import CustomButton from '../../CustomButton'
 
 const LoginPage = () => {
   return (
@@ -21,12 +22,10 @@ const LoginPage = () => {
                  </div>
                )) 
             }
-             <button
-               type="submit"
-               className="w-full bg-orange-500 text-white p-2 rounded hover:bg-orange-600"
-             >
+           <CustomButton>
                Login
-             </button>
+           </CustomButton>
+             
            </form>
            <p className="text-center mt-4 text-sm">
              Don't have an account?{" "}
