@@ -2,7 +2,7 @@
 import { NavRoutes } from '../constant/NavRoutes'
 import { NavLink } from 'react-router-dom'
 
-const Menu = ({menuStyle,}) => {
+const Menu = ({menuStyle, toggleMenu}) => {
     const active = (isActive) => {
         return isActive ? "text-orange-500" : "text-[#49557e]";
       };
@@ -14,11 +14,13 @@ const Menu = ({menuStyle,}) => {
                 <NavLink
                   to={path}
                   className={({ isActive }) => active(isActive)}
-                //   onClick={toggleMenu}
+                  onClick={toggleMenu}
                 >
                   {name}
                 </NavLink>
+                
               </li>
+              
             ))}
           </menu>
     </>

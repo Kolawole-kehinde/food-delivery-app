@@ -10,7 +10,7 @@ const Showcase = () => {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-snug md:leading-tight">
             Order your <br /> favourite food here
           </h2>
-          <p className="text-base md:text-lg leading-relaxed opacity-80">
+          <p className="text-base md:text-lg leading-relaxed opacity-100">
             Choose from a diverse menu, fresh ingredients, and expertly made 
             meals. Savor the best dishes from around the world.
           </p>

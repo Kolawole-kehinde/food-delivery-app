@@ -5,6 +5,8 @@ import HomePage from './Component/Pages/Home'
 import MobileAppPage from './Component/Pages/MobileApp'
 import ContactPage from './Component/Pages/Contact'
 import MenuPage from './Component/Pages/Menu'
+import LoginPage from './Component/Pages/auth/Login'
+import RegisterPage from './Component/Pages/auth/Register'
 
 
 const App = () => {
@@ -17,6 +19,11 @@ const App = () => {
         <Route path='menu' element={<MenuPage/>}/>
         <Route path='mobileapp' element={<MobileAppPage/>}/>
         <Route path='contact' element={<ContactPage/>}/>
+
+
+        <Route path='auth'/>
+        <Route path='login' element={<LoginPage/>}/>
+        <Route path='register' element={<RegisterPage/>}/>
       </Routes>
   
     </div>

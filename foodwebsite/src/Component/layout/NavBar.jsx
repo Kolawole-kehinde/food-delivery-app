@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
-import { NavRoutes } from "../constant/NavRoutes";
 import NavRight from "./NavRight";
 import { IoMenu, IoClose } from "react-icons/io5";
 import Logo from "./Logo";
 import Menu from "./Menu";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
  
@@ -16,11 +15,11 @@ const NavBar = () => {
 
   
   return (
-    <header>
+    <header className="font-Primary">
       <nav className="container flex items-center justify-between">
         {/* lOGO */}
         <Logo />
-        <button onClick={toggleMenu}>
+        <button onClick={toggleMenu} className="flex lg:hidden">
           <IoMenu fontSize={35} />
         </button>
 
@@ -33,15 +32,25 @@ const NavBar = () => {
       </nav>
 
       {openMenu && (
-        <nav className="fixed inset-0 z-40 bg-orange-500 w-full h-[300px] text-white rounded-b-2xl">
+        <nav className="fixed inset-0 z-40 bg-white w-full h-[350px] text-black rounded-b-2xl">
           <div className="flex justify-between items-center">
-            <Logo/>
+            <Logo toggleMenu={toggleMenu}/>
             <button onClick={toggleMenu}>
               <IoClose fontSize={35} />
             </button>
           </div>
 
-         <Menu menuStyle="flex flex-col gap-4 text-2xl font-Primary capitalize px-6"/>
+         <Menu menuStyle="flex flex-col gap-4 text-2xl font-Primary capitalize px-6" toggleMenu={toggleMenu}
+         
+         />
+         <div className="px-6 pt-4">
+        <Link to="register" onClick={toggleMenu}>
+        <button className='w-full text-xl  text-white bg-orange-500 border border-[#49557e] py-1 px-4 rounded cursor-pointer'>
+          Sign in
+       </button> 
+        </Link>
+         </div>
+          
         </nav>
       )}
     </header>
