@@ -3,7 +3,7 @@ import { menu_list } from '../assets/assets';
 
 const ExploreMenu = () => {
   return (
-    <div className="container py-10 text-left">
+    <div className="container mx-auto py-10 text-left">
       {/* Heading */}
       <h1 className="text-2xl md:text-3xl text-[#262626] font-medium ">
         Explore Our Menu
@@ -25,7 +25,7 @@ const ExploreMenu = () => {
               alt={item.menu_name} 
               className="w-[80px] md:w-[100px] min-w-[70px] md:min-w-[80px] cursor-pointer rounded-full transition duration-200"
             />
-            <p className="mt-2">{item.menu_name}</p>
+            <p className="mt-2 text-base md:text-xl">{item.menu_name}</p>
           </div>
         ))}
       </div>

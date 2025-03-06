@@ -4,9 +4,4 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
-  .scrollbar-hidden::-webkit-scrollbar {
-    display: none;
-  }
 
-}

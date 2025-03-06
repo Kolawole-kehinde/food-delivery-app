@@ -13,7 +13,10 @@ export const RegisterLists = [
         type: "select",
         name: "gender",
         placeholder: "Select Gender",
-        options: ["Male", "Female", "Other"]
+        options: [
+            { value: "Male", label: "Male" },
+            { value: "Female", label: "Female" },
+          ]
     },
     {
         type: "password",

@@ -12,9 +12,9 @@ export const RegisterSchema = z
       .email("Invalid email format")
       .trim(),
 
-    gender: z
-      .string()
-      .nonempty("Please select a gender"),
+      gender: z.enum(["Male", "Female"], {
+        message: "Gender can either be Male or Female",
+      }),
 
     password: z
       .string()

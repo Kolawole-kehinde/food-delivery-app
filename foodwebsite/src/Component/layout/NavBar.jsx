@@ -44,7 +44,7 @@ const NavBar = () => {
          
          />
          <div className="px-6 pt-4">
-        <Link to="register" onClick={toggleMenu}>
+        <Link to="login" onClick={toggleMenu}>
         <button className='w-full text-xl  text-white bg-orange-500 border border-[#49557e] py-1 px-4 rounded cursor-pointer'>
           Sign in
        </button> 

@@ -7,35 +7,43 @@ const CustomInput = ({
   placeholder,
   register,
   error,
-  options = [],  // ✅ Added options for select inputs
-  className = "w-full p-2 mb-3 border rounded",
+  options = [],
+  className = "w-full p-2 border rounded",
+  ...props
 }) => {
   return (
-    <div>
-      {label && <label htmlFor={name} className="block mb-1">{label}</label>}
-{/*       
-      {type === "select" ? (
+    <div className="space-y-3">
+        
+      {label && <label htmlFor={name}>{label}</label>}
+      
+<div className="space-y-2">
+{type === "select" ? (
         <select id={name}
-        {...register} 
+        {...register}
         className={className}>
-        <option value="">Select {label}</option>
-        {options.map((option) => (
+          <option value=""> {placeholder || "Select"}</option>
+          {options.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}
             </option>
           ))}
         </select>
-      ) : ( */}
+      ) : (
         <input
           type={type}
           id={name}
           placeholder={placeholder}
           {...register}
+          {...props}
           className={className}
         />
+      )}
+      {error && <p className="text-red-500 text-sm">{error.message}</p>}
+</div>
+
       
 
-      {error && <span className="text-red-500 text-sm">{error.message}</span>}
+      
     </div>
   );
 };

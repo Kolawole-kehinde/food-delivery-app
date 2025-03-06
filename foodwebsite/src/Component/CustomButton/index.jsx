@@ -13,3 +13,9 @@ const CustomButton = ({ children, type, ...rest }) => {
 };
 
 export default CustomButton;
+
+
+// disabled={disabled}
+// className={`w-full text-white py-2 px-4 mt-5 rounded-md 
+//   ${disabled ? "bg-blue-300 cursor-not-allowed" : "bg-blue-500 hover:bg-blue-600"} 
+//   ${className}`} 
