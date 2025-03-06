@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Link } from 'react-router-dom';
 import CustomInput from '../../CustomInput';
 import { LoginLists } from '../../constant/auth';
@@ -9,6 +9,9 @@ import toast, { Toaster } from 'react-hot-toast';
 import { LoginSchema } from '../../utils/Shchema/Schema';
 
 const LoginPage = () => {
+
+ 
+
   const {
     register,
     handleSubmit,
@@ -25,6 +28,8 @@ const LoginPage = () => {
     reset();
   };
 
+
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 font-Primary px-4 lg:px-0">
       <div className="bg-white p-8 rounded-lg shadow-md w-96 space-y-5">
@@ -33,7 +38,7 @@ const LoginPage = () => {
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           {LoginLists.map(({ name, type, placeholder }) => (
-            <div key={name}>
+            <div key={name} className='relative'>
               <CustomInput
                 name={name}
                 type={type}
@@ -41,6 +46,7 @@ const LoginPage = () => {
                 register={register(name)}
                 error={errors[name]}
               />
+              
             </div>
           ))}
 
