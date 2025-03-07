@@ -9,12 +9,21 @@ import toast, { Toaster } from "react-hot-toast";
 import { RegisterSchema } from "../../utils/Shchema/Schema";
 
 const RegisterPage = () => {
+  const initialState = {
+   username: "",
+   email: "",
+   gender: "",
+   password: "",
+   confirmPassword: "",
+
+  };
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm({
+    defaultValues: initialState,
     resolver: zodResolver(RegisterSchema),
   });
 

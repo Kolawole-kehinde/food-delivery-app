@@ -10,7 +10,6 @@ const CustomInput = ({
   error,
   options = [],
   className = "w-full p-2 border rounded",
-  ...props
 }) => {
   const [openPassword, setOpenPassword] = useState(false);
 
@@ -39,7 +38,6 @@ const CustomInput = ({
               id={name}
               placeholder={placeholder}
               {...register}
-              {...props}
               className={`${className} pr-10`} // Ensure space for the icon
             />
             {type === "password" && (
