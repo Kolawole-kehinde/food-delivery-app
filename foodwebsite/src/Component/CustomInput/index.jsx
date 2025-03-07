@@ -38,6 +38,7 @@ const CustomInput = ({
               id={name}
               placeholder={placeholder}
               {...register}
+           
               className={`${className} pr-10`} // Ensure space for the icon
             />
             {type === "password" && (
