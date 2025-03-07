@@ -9,24 +9,21 @@ import toast, { Toaster } from 'react-hot-toast';
 import { LoginSchema } from '../../utils/Shchema/Schema';
 
 const LoginPage = () => {
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   reset,
+  //   formState: { errors, }, 
+  // } = useForm({
+  //   resolver: zodResolver(LoginSchema),
+  //   mode: "onChange",
+  // });
 
- 
-
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors, }, 
-  } = useForm({
-    resolver: zodResolver(LoginSchema),
-    mode: "onChange",
-  });
-
-  const onSubmit = (data) => {
-    console.log(data);
-    toast.success("Login successful! 🎉");
-    reset();
-  };
+  // const onSubmit = (data) => {
+  //   console.log(data);
+  //   toast.success("Login successful! 🎉");
+  //   reset();
+  // };
 
 
 
