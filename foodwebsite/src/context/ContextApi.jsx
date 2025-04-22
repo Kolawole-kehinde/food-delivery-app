@@ -1,15 +1,13 @@
-import { createContext,} from "react";
+import { createContext } from "react";
 import { food_list } from "../assets/assets";
 
-export const AppContext = createContext(null);
+export const AppContext = createContext();
 
 const AppContextProvider = ({ children }) => {
-  const contextValue = {
-    food_list
-  }
-
   return (
-    <AppContext.Provider value={{ user, setUser }}>
+    <AppContext.Provider value={{ 
+        food_list 
+        }}>
       {children}
     </AppContext.Provider>
   );

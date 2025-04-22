@@ -11,7 +11,7 @@ import RegisterPage from './Pages/auth/Register'
 
 const App = () => {
   return (
-    <div className='app'>
+    <div className=''>
        <NavBar/>
       <Routes>
         <Route path='/'/>
