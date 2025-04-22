@@ -31,11 +31,15 @@ export const RegisterSchema = z
 export const LoginSchema = z.object({
   username: z
     .string()
-    .min(3, "Username must be at least 3 characters long")
+    .min(3,{
+      message: "Username must be at least 3 characters long"
+    })
     .trim(),
 
   password: z
     .string()
-    .min(6, "Password must be at least 6 characters long")
+    .min(6, {
+      message: "Password must be at least 6 characters long"
+    })
     .trim(),
 });

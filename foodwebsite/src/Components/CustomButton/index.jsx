@@ -1,6 +1,7 @@
 import React from "react";
 
 const CustomButton = ({ children, type, ...rest }) => {
+
   return (
     <button
       type={type || "submit"}

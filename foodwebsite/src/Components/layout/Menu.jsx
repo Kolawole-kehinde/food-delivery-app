@@ -1,5 +1,5 @@
 
-import { NavRoutes } from '../constant/NavRoutes'
+import { NavRoutes } from '../../constant/NavRoutes'
 import { NavLink } from 'react-router-dom'
 
 const Menu = ({menuStyle, toggleMenu}) => {

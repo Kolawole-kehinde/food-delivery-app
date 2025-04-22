@@ -1,10 +1,8 @@
 import { Link } from "react-router-dom";
-import CustomInput from "../../CustomInput";
-import { LoginLists } from "../../constant/auth";
-import CustomButton from "../../CustomButton";
 import toast, { Toaster } from "react-hot-toast";
-import useFormValidate from "../../../hooks/useFormValidate";
 import { LoginSchema } from "../../utils/Shchema/Schema";
+import CustomInput from "../../Components/CustomInput";
+import useFormValidate from "../../hooks/useFormValidate";
 
 const initialState = {
   username: "",
@@ -24,6 +22,7 @@ const LoginPage = () => {
     toast.success("Login successful! 🎉");
     reset();
   };
+  console.log(errors)
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 font-Primary px-4 lg:px-0">

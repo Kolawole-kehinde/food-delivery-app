@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { forwardRef, useState } from "react";
 import { FaRegEye, FaEyeSlash } from "react-icons/fa";
 
-const CustomInput = ({
+const CustomInput =  forwardRef(({
   label,
   type = "text",
   name,
@@ -10,12 +10,14 @@ const CustomInput = ({
   error,
   options = [],
   className = "w-full p-2 border rounded",
-}) => {
+  ...props
+},ref) => {
   const [openPassword, setOpenPassword] = useState(false);
 
   const togglePassword = () => {
     setOpenPassword((prevState) => !prevState);
   };
+  console.log(ref)
 
   return (
     <div className="space-y-3">
@@ -23,11 +25,12 @@ const CustomInput = ({
 
       <div className="relative">
         {type === "select" ? (
-          <select id={name} {...register} className={className}>
+          <select id={name}  className={className} ref={ref} {...props} {...register(name)} >
             <option value="">{placeholder || "Select"}</option>
             {options.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
+                
               </option>
             ))}
           </select>
@@ -37,9 +40,11 @@ const CustomInput = ({
                type={openPassword && type === "password" ? "text" : type}
               id={name}
               placeholder={placeholder}
-              {...register}
-           
-              className={`${className} pr-10`} // Ensure space for the icon
+              
+              className={`${className} pr-10`}
+              ref={ref}
+              {...props}
+              {...register(name)}
             />
             {type === "password" && (
               <div
@@ -56,6 +61,6 @@ const CustomInput = ({
       {error && <p className="text-red-500 text-sm">{error.message}</p>}
     </div>
   );
-};
+});
 
 export default CustomInput;

@@ -1,13 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { RegisterLists } from "../../constant/auth";
-import CustomInput from "../../CustomInput";
-import CustomButton from "../../CustomButton";
 import toast, { Toaster } from "react-hot-toast";
-import useFormValidate from "../../../hooks/useFormValidate";
 import { RegisterSchema } from "../../utils/Shchema/Schema";
+import CustomInput from "../../Components/CustomInput";
+import CustomButton from "../../Components/CustomButton";
+import useFormValidate from "../../hooks/useFormValidate";
 
-// Initial state moved outside the component to optimize performance
 const initialState = {
   username: "",
   email: "",
@@ -21,17 +19,13 @@ const RegisterPage = () => {
     register,
     handleSubmit,
     reset,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useFormValidate(initialState, RegisterSchema);
 
   const onSubmit = async (data) => {
-    try {
-      console.log(data);
-      toast.success("Registration successful! 🎉");
-      reset();
-    } catch (error) {
-      toast.error("Something went wrong. Please try again.");
-    }
+    console.log(data);
+    toast.success("Registration successful! 🎉");
+    reset();
   };
 
   return (
@@ -46,21 +40,21 @@ const RegisterPage = () => {
               name={name}
               type={type}
               placeholder={placeholder}
-              register={register(name)}
+              register={register}
               error={errors[name]}
               options={options}
             />
           ))}
 
           {/* Submit Button */}
-          <CustomButton disabled={isSubmitting}>
-            {isSubmitting ? "Registering..." : "Register"}
-          </CustomButton>
+          <CustomButton>Register</CustomButton>
         </form>
 
         <p className="text-center text-sm">
           Already have an account?{" "}
-          <Link to="/login" className="text-orange-500 font-medium">Login</Link>
+          <Link to="/login" className="text-orange-500 font-medium">
+            Login
+          </Link>
         </p>
       </div>
     </div>

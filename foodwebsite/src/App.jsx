@@ -1,12 +1,12 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
-import NavBar from './Component/layout/NavBar'
-import HomePage from './Component/Pages/Home'
-import MobileAppPage from './Component/Pages/MobileApp'
-import ContactPage from './Component/Pages/Contact'
-import MenuPage from './Component/Pages/Menu'
-import LoginPage from './Component/Pages/auth/Login'
-import RegisterPage from './Component/Pages/auth/Register'
+import NavBar from './Components/layout/NavBar'
+import HomePage from './Pages/Home'
+import MobileAppPage from './Pages/MobileApp'
+import ContactPage from './Pages/Contact'
+import MenuPage from './Pages/Menu'
+import LoginPage from './Pages/auth/Login'
+import RegisterPage from './Pages/auth/Register'
 
 
 const App = () => {
