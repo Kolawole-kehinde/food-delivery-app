@@ -4,4 +4,8 @@
 @tailwind components;
 @tailwind utilities;
 
+/* .wrapper{
+    @apply container w-full max-w-[1228.8px] mx-auto
+  } */
+
 

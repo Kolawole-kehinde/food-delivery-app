@@ -1,11 +1,8 @@
-import { useState, useCallback } from "react";
+import { useContext } from "react";
+import { AppContext } from "../context/ContextApi";
 
-const FoodItems = ({ name, price, image, description }) => {
-  const [itemCount, setItemCount] = useState(0);
-
-//   const handleAdd = useCallback(() => setItemCount(1), []);
-//   const increment = useCallback(() => setItemCount(prev => prev + 1), []);
-//   const decrement = useCallback(() => setItemCount(prev => Math.max(prev - 1, 0)), []);
+const FoodItems = ({id, name, price, image, description }) => {
+  const {cartItems, addToCart, removeFromCart}  = useContext(AppContext);
 
   return (
     <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition">
@@ -16,9 +13,9 @@ const FoodItems = ({ name, price, image, description }) => {
           className="w-full h-48 object-cover rounded-t-xl"
         />
 
-        {!itemCount ? (
+        {!cartItems[id] ? (
           <img
-            onClick={() => setItemCount(prev=> prev + 1)}
+            onClick={() => addToCart(id)}
             src="/images/add_icon_white.png"
             alt="Add to cart"
             aria-label="Add item"
@@ -27,15 +24,16 @@ const FoodItems = ({ name, price, image, description }) => {
         ) : (
           <div className="absolute bottom-4 right-4 flex items-center gap-2 bg-white p-2 rounded-full shadow-md">
             <img
-              onClick={() => setItemCount(prev => (prev-1))}
+              onClick={() => removeFromCart(id)}
               src="/images/remove_icon_red.png"
               alt="Remove item"
               aria-label="Remove one item"
               className="w-7 cursor-pointer"
             />
-            <p className="text-sm font-medium">{itemCount}</p>
+         <p className="text-sm font-medium">{cartItems[id]}</p>
+
             <img
-              onClick={() => setItemCount(prev => (prev+1))}
+              onClick={() => addToCart(id)}
               src="/images/add_icon_green.png"
               alt="Add item"
               aria-label="Add one more"
