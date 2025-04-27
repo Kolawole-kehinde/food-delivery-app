@@ -16,12 +16,12 @@ const Navbar = () => {
 
   return (
  <header>
-        <nav className="bg-[#e5ebf1] py-6">
+        <nav className="bg-[#e5ebf1] py-6 mb-8 md:mb-16">
       <div className="container mx-auto flex items-center justify-between">
         
         {/* Logo */}
-        <div className="flex items-center space-x-2 text-2xl font-bold text-green-700">
-          EM<span className="text-blue-700">X</span>
+        <div className="flex items-center space-x-2 text-2xl font-bold text-black">
+        <h2 className="text-2xl font-bold mb-3">FD<span className="text-primary">A</span></h2>
         </div>
 
         {/* Search bar */}
@@ -42,7 +42,7 @@ const Navbar = () => {
           {/* Language */}
           <div className="flex items-center space-x-1 cursor-pointer">
             <span>EN</span>
-            <MdKeyboardArrowDown />
+            <MdKeyboardArrowDown fontSize={20} className='bg-[#E6E8E6] rounded-md' />
           </div>
 
           {/* Messages */}
@@ -99,31 +99,31 @@ const Navbar = () => {
         <div className="md:hidden flex flex-col mt-4 space-y-4 text-gray-700 text-sm bg-[#e5ebf1] p-4 rounded-md shadow-md">
           <div className="flex items-center space-x-1 cursor-pointer">
             <span>EN</span>
-            <MdKeyboardArrowDown />
+            <MdKeyboardArrowDown fontSize={20} className='bg-[#E6E8E6] rounded-md' />
           </div>
 
           <div className="flex items-center space-x-2 cursor-pointer">
-            <FaEnvelope className="text-xl" />
+          <LuMessageSquareText fontSize={20} />
             <span>My Messages</span>
           </div>
 
           <div className="flex items-center space-x-2 cursor-pointer">
-            <FaShoppingBag className="text-xl" />
+          <HiOutlineShoppingBag fontSize={20} />
             <span>My Orders</span>
           </div>
 
           <div className="flex items-center space-x-2 cursor-pointer">
-            <FaShoppingCart className="text-xl" />
+          <IoCartOutline fontSize={20} />
             <span>Cart</span>
           </div>
 
           <div className="flex items-center space-x-2 cursor-pointer">
-            <FaBell className="text-xl" />
+          <IoIosNotificationsOutline fontSize={20} />
             <span>Notifications</span>
           </div>
 
           <div className="flex items-center space-x-2 cursor-pointer">
-            <FaUserCircle className="text-xl" />
+          <FiUser fontSize={20} />
             <span>Profile</span>
           </div>
         </div>
