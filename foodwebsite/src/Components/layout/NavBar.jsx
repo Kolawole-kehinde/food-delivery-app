@@ -1,60 +1,136 @@
-import React, { useState } from "react";
-import NavRight from "./NavRight";
-import { IoMenu, IoClose } from "react-icons/io5";
-import Logo from "./Logo";
-import Menu from "./Menu";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { FaSearch, FaEnvelope, FaShoppingBag, FaShoppingCart, FaBell, FaUserCircle, FaBars, FaTimes } from 'react-icons/fa';
+import { FiUser } from 'react-icons/fi';
+import { HiOutlineShoppingBag } from 'react-icons/hi';
+import { IoIosNotificationsOutline } from 'react-icons/io';
+import { IoCartOutline } from 'react-icons/io5';
+import { LuMessageSquareText } from 'react-icons/lu';
+import { MdKeyboardArrowDown } from 'react-icons/md';
 
-const NavBar = () => {
- 
-    const [openMenu, setOpenMenu] = useState(false);
+const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    const toggleMenu = () => {
-      return setOpenMenu((prev) => !prev);
-    };
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
-  
   return (
-    <header className="font-Primary">
-      <nav className="container flex items-center justify-between">
-        {/* lOGO */}
-        <Logo />
-        <button onClick={toggleMenu} className="flex lg:hidden">
-          <IoMenu fontSize={35} />
-        </button>
+ <header>
+        <nav className="bg-[#e5ebf1] py-6">
+      <div className="container mx-auto flex items-center justify-between">
+        
+        {/* Logo */}
+        <div className="flex items-center space-x-2 text-2xl font-bold text-green-700">
+          EM<span className="text-blue-700">X</span>
+        </div>
 
-        <Menu menuStyle="hidden lg:flex items-center justify-center gap-5 text-[#49557e] text-2xl font-Primary capitalize"/>
+        {/* Search bar */}
+        <div className="flex-1 mx-6 hidden md:flex">
+          <div className="relative w-full">
+            <input
+              type="text"
+              placeholder="What would you love to buy today?"
+              className="w-full px-4 py-2 pl-10 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <FaSearch className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-400" />
+          </div>
+        </div>
 
-        {/* NavRight Side */}
-        <NavRight />
-
-        {/* Mobile responsive */}
-      </nav>
-
-      {openMenu && (
-        <nav className="fixed inset-0 z-40 bg-white w-full h-[350px] text-black rounded-b-2xl">
-          <div className="flex justify-between items-center">
-            <Logo toggleMenu={toggleMenu}/>
-            <button onClick={toggleMenu}>
-              <IoClose fontSize={35} />
-            </button>
+        {/* Desktop Right icons */}
+        <div className="hidden md:flex items-center space-x-4 text-gray-700 text-sm">
+          
+          {/* Language */}
+          <div className="flex items-center space-x-1 cursor-pointer">
+            <span>EN</span>
+            <MdKeyboardArrowDown />
           </div>
 
-         <Menu menuStyle="flex flex-col gap-4 text-2xl font-Primary capitalize px-6" toggleMenu={toggleMenu}
-         
-         />
-         <div className="px-6 pt-4">
-        <Link to="login" onClick={toggleMenu}>
-        <button className='w-full text-xl  text-white bg-orange-500 border border-[#49557e] py-1 px-4 rounded cursor-pointer'>
-          Sign in
-       </button> 
-        </Link>
-         </div>
-          
-        </nav>
+          {/* Messages */}
+          <div className="flex items-center text-center space-x-1 cursor-pointer">
+          <LuMessageSquareText fontSize={20} />
+            <span>My Messages</span>
+          </div>
+
+          {/* Orders */}
+          <div className="flex items-center space-x-1 cursor-pointer">
+          <HiOutlineShoppingBag fontSize={20} />
+            <span>My Orders</span>
+          </div>
+
+          {/* Cart */}
+          <div className="flex items-center space-x-1 cursor-pointer">
+          <IoCartOutline fontSize={20} />
+            <span>Cart</span>
+          </div>
+
+          {/* Notification */}
+          <div className="cursor-pointer">
+          <IoIosNotificationsOutline fontSize={20} />
+          </div>
+
+          {/* Profile */}
+          <div className="cursor-pointer">
+          <FiUser fontSize={20} />
+          </div>
+        </div>
+
+        {/* Hamburger Icon */}
+        <div className="md:hidden">
+          <button onClick={toggleMenu} className="text-2xl">
+            {isMenuOpen ? <FaTimes /> : <FaBars />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Search bar */}
+      <div className="flex md:hidden mt-2 px-4 lg:px-0">
+        <div className="relative w-full">
+          <input
+            type="text"
+            placeholder="What would you love to buy today?"
+            className="w-full px-4 py-2 pl-10 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <FaSearch className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-400" />
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="md:hidden flex flex-col mt-4 space-y-4 text-gray-700 text-sm bg-[#e5ebf1] p-4 rounded-md shadow-md">
+          <div className="flex items-center space-x-1 cursor-pointer">
+            <span>EN</span>
+            <MdKeyboardArrowDown />
+          </div>
+
+          <div className="flex items-center space-x-2 cursor-pointer">
+            <FaEnvelope className="text-xl" />
+            <span>My Messages</span>
+          </div>
+
+          <div className="flex items-center space-x-2 cursor-pointer">
+            <FaShoppingBag className="text-xl" />
+            <span>My Orders</span>
+          </div>
+
+          <div className="flex items-center space-x-2 cursor-pointer">
+            <FaShoppingCart className="text-xl" />
+            <span>Cart</span>
+          </div>
+
+          <div className="flex items-center space-x-2 cursor-pointer">
+            <FaBell className="text-xl" />
+            <span>Notifications</span>
+          </div>
+
+          <div className="flex items-center space-x-2 cursor-pointer">
+            <FaUserCircle className="text-xl" />
+            <span>Profile</span>
+          </div>
+        </div>
       )}
-    </header>
+    </nav>
+ </header>
   );
 };
 
-export default NavBar;
+export default Navbar;
