@@ -5,7 +5,9 @@ const Logo = ({toggleMenu}) => {
   return (
     <>
         <NavLink to="/" onClick={toggleMenu}>
-      <img src="/images/logo2.png" alt="Logo"  className='w-[75px] lg:w-[100px]'/>
+      <div className="flex items-center space-x-2 text-2xl font-bold text-black">
+        <h2 className="text-2xl font-bold mb-3">FD<span className="text-primary">A</span></h2>
+        </div>
       </NavLink>
     </>
   )

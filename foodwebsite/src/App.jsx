@@ -2,12 +2,14 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import NavBar from './Components/layout/NavBar'
 import HomePage from './Pages/Home'
-import MobileAppPage from './Pages/MobileApp'
-import ContactPage from './Pages/Contact'
-import MenuPage from './Pages/Menu'
 import LoginPage from './Pages/auth/Login'
 import RegisterPage from './Pages/auth/Register'
 import Footer from './Components/layout/Footer'
+import MyMessage from './Pages/MyMessage'
+import OrderPage from './Pages/Order'
+import CartPage from './Pages/Cart'
+import NotificationPage from './Pages/Notification'
+import ProfilePage from './Pages/Profile'
 
 
 const App = () => {
@@ -18,9 +20,11 @@ const App = () => {
         <Route path='/' >
        
         <Route index element={<HomePage />} />
-        <Route path='menu' element={<MenuPage/>}/>
-        <Route path='mobileapp' element={<MobileAppPage/>}/>
-        <Route path='contact' element={<ContactPage/>}/>
+        <Route path='messages' element={<MyMessage/>}/>
+        <Route path='orders' element={<OrderPage/>}/>
+        <Route path='cart' element={<CartPage/>}/>
+        <Route path='notifications' element={<NotificationPage/>}/>
+        <Route path='profile' element={<ProfilePage/>}/>
 
 
         <Route path='auth'>
