@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
-    <footer className="bg-black text-white text-sm px-16 mt-10">
+    <footer className="bg-black text-white text-sm lg:px-16 mt-10">
       {/* Top Section */}
       <div className="container mx-auto px-4 flex items-start justify-between py-8 flex-col sm:flex-row gap-8">
         {/* Left Section */}
@@ -90,9 +90,9 @@ const Footer = () => {
 
       {/* Bottom Bar */}
       <div className="py-4 border-t border-white/10">
-        <div className="container mx-auto px-4 flex flex-col sm:flex-row justify-between items-center text-xs gap-2">
+        <div className="container mx-auto flex flex-col sm:flex-row justify-between items-center text-xs gap-2">
           <p className="text-gray-400 text-center sm:text-left">
-            © 2024 Fresh Market Exchange (FMX) Inc. Copyright and rights reserved
+            © 2024 Fresh Market Exchange (FDA) Inc. Copyright and rights reserved
           </p>
           <div className="flex justify-center gap-4 text-gray-400">
             <Link to="/terms" className="hover:underline">Terms and Conditions</Link>
