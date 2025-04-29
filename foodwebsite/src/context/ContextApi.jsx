@@ -8,6 +8,7 @@ export const AppContext = createContext({
   cartItems: {},
   addToCart: () => {},
   removeFromCart: () => {},
+  handleLogout: () => {},
   food_list: [],
 });
 
@@ -27,6 +28,22 @@ useEffect(() => {
     setItem("auth", user);
   }
 }, [user, setItem]);
+
+  // Handle Logout
+  const handleLogout = async () => {
+    setLoading(true);
+    try {
+      let { error } = await supabase.auth.signOut();
+      if (error) throw error;
+      setUser(null);
+      clear();
+      navigate("/auth/login");
+    } catch (error) {
+      toast.error(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
 
   const addToCart = (itemId) => {
@@ -56,6 +73,7 @@ useEffect(() => {
         cartItems,
         addToCart,
         removeFromCart,
+        handleLogout: () => {},
       }}
     >
       {children}

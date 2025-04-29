@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { FiUser } from "react-icons/fi";
 import Logo from "./Logo";
-import ProfileDropdown from "./ProfileDropdown";
+import ProfileDropdown from "./AuthMenu";
 import SearchBar from "../SearchButton";
 import NavMenu from "./NavMenu";
 
