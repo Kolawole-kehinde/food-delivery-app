@@ -10,6 +10,7 @@ import OrderPage from './Pages/Order'
 import CartPage from './Pages/Cart'
 import NotificationPage from './Pages/Notification'
 import ProfilePage from './Pages/Profile'
+import { Dashboard } from './Pages/dashboard'
 
 
 const App = () => {
@@ -25,6 +26,7 @@ const App = () => {
         <Route path='cart' element={<CartPage/>}/>
         <Route path='notifications' element={<NotificationPage/>}/>
         <Route path='profile' element={<ProfilePage/>}/>
+        <Route path='dashboard' element={<Dashboard/>}/>
 
 
         <Route path='auth'>

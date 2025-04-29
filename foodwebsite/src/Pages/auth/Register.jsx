@@ -41,7 +41,7 @@ const RegisterPage = () => {
       toast.success("User registered successfully!");
       setUser(res);
       reset();
-      navigate("/auth/profile");
+      navigate("/dashboard");
     } catch (error) {
       toast.error(error.message);
     } finally {

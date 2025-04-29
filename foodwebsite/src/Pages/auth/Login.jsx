@@ -36,7 +36,7 @@ const LoginPage = () => {
       setUser(res);
       reset(); 
 
-      navigate("/auth/profile"); 
+      navigate("/dashboard"); 
     } catch (error) {
       console.error("Login error:", error.message);
       toast.error(error?.message || "Login failed, please try again.");
