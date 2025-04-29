@@ -13,17 +13,25 @@ export const signUp = async (payload) => {
     throw new Error(signUpError.message);
   }
 
-  const { user } = signUpData;
+  // Ensure you have user data after sign-up
+  const user = signUpData.user;
 
   if (!user) {
     throw new Error("User signup failed. Please try again.");
   }
 
-  // Step 2: Insert into 'user' table with user_id
+  // Step 2: Insert user profile into 'users' table
   const { data: userData, error: insertError } = await supabase
-    .from('users')
-    .insert([{user_id: user.id, name, email, gender,}])
-    .select('*')
+    .from("users")
+    .insert([
+      {
+        user_id: user.id, // Get the user ID from the 'user' object
+        name,
+        email,
+        gender,
+      },
+    ])
+    .select("*")
     .single();
 
   if (insertError) {
@@ -32,5 +40,3 @@ export const signUp = async (payload) => {
 
   return userData;
 };
-
- 

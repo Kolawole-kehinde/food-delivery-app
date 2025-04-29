@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
-import toast, { Toaster } from "react-hot-toast";
 import { LoginSchema } from "../../Shchema/Schema";
-import CustomInput from "../../Components/CustomInput";
 import useFormValidate from "../../hooks/useFormValidate";
+import toast from "react-hot-toast";
+import { LoginLists } from "../../constant/auth";
+import CustomInput from "../../Components/CustomInput";
+import CustomButton from "../../Components/CustomButton";
 
 const initialState = {
   username: "",
@@ -25,8 +27,8 @@ const LoginPage = () => {
   console.log(errors)
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100 font-Primary px-4 lg:px-0">
-      <div className="bg-white p-8 rounded-lg shadow-md w-96 space-y-5">
+    <div className="flex items-center justify-center min-h-screen bg-white font-Primary px-4 lg:px-0">
+      <div className="bg-white p-8 rounded-lg shadow-md w-[500px] space-y-5">
         <h1 className="text-2xl font-semibold">Login Page</h1>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -48,7 +50,7 @@ const LoginPage = () => {
 
         <p className="text-center mt-4 text-sm">
           Don't have an account?{" "}
-          <Link to="/register" className="text-orange-500">
+          <Link to="/auth/register" className="text-orange-500">
             Register
           </Link>
         </p>
