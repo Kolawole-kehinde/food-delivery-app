@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
-import { LoginSchema } from "../../utils/Shchema/Schema";
+import { LoginSchema } from "../../Shchema/Schema";
 import CustomInput from "../../Components/CustomInput";
 import useFormValidate from "../../hooks/useFormValidate";
 

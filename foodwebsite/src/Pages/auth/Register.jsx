@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
-import { RegisterSchema } from "../../utils/Shchema/Schema";
+import { RegisterSchema } from "../../Shchema/Schema";
 import CustomInput from "../../Components/CustomInput";
 import CustomButton from "../../Components/CustomButton";
 import useFormValidate from "../../hooks/useFormValidate";
