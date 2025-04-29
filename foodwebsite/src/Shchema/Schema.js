@@ -29,12 +29,10 @@ export const RegisterSchema = z
   });
 
 export const LoginSchema = z.object({
-  username: z
-    .string()
-    .min(3,{
-      message: "Username must be at least 3 characters long"
-    })
-    .trim(),
+  email: z
+  .string()
+  .email("Invalid email format")
+  .trim(),
 
   password: z
     .string()

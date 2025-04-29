@@ -32,9 +32,9 @@ export const RegisterLists = [
 
 export const LoginLists = [
     {
-        type: "text",
-        name: "username",
-        placeholder: "Username"
+        type: "email",
+        name: "email",
+        placeholder: "Email"
     },
     {
         type: "password",

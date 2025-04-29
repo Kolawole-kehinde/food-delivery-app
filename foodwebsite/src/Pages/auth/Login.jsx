@@ -1,17 +1,23 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { LoginSchema } from "../../Shchema/Schema";
 import useFormValidate from "../../hooks/useFormValidate";
 import toast from "react-hot-toast";
 import { LoginLists } from "../../constant/auth";
 import CustomInput from "../../Components/CustomInput";
 import CustomButton from "../../Components/CustomButton";
+import { signInApi } from "../../services/auth";
+import { useAuth } from "../../hooks/useAuth";
+import { useState } from "react";
 
 const initialState = {
-  username: "",
+  email: "",
   password: "",
 };
 
 const LoginPage = () => {
+  const [loading, setLoading] = useState(false);
+  const { setUser } = useAuth(); 
+ const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -19,12 +25,25 @@ const LoginPage = () => {
     formState: { errors },
   } = useFormValidate(initialState, LoginSchema);
 
-  const onSubmit = (data) => {
-    console.log(data);
-    toast.success("Login successful! 🎉");
-    reset();
+  const onSubmit = async (data) => {
+    setLoading(true);
+
+    try {
+      const res = await signInApi(data);
+      console.log("User logged in:", res);
+
+      toast.success("User logged in successfully!");
+      setUser(res);
+      reset(); 
+
+      navigate("/auth/profile"); 
+    } catch (error) {
+      console.error("Login error:", error.message);
+      toast.error(error?.message || "Login failed, please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
-  console.log(errors)
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-white font-Primary px-4 lg:px-0">
