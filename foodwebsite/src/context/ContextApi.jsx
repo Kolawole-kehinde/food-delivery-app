@@ -1,6 +1,9 @@
 import { createContext, useEffect, useState } from "react";
 import { food_list } from "../assets/assets";
 import LocalStorageService from "../utils/HandleLocalStorage";
+import { supabase } from "../libs/supabase";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export const AppContext = createContext({
   user: null,
@@ -16,12 +19,13 @@ const AppContextProvider = ({ children }) => {
  
   const [cartItems, setCartItems] = useState({});
   const { getItem, setItem, clear } = LocalStorageService;
+  const [loading, setLoading] = useState(false)
 
 
 // Handle User
 const getUser = getItem("auth");
 const [user, setUser] = useState(getUser ? getUser : null);
-// const navigate = useNavigate();
+const navigate = useNavigate();
 
 useEffect(() => {
   if (user) {
@@ -73,7 +77,7 @@ useEffect(() => {
         cartItems,
         addToCart,
         removeFromCart,
-        handleLogout: () => {},
+        handleLogout,
       }}
     >
       {children}

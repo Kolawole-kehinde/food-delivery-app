@@ -1,17 +1,15 @@
+// Navbar.js
 import React, { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { FiUser } from "react-icons/fi";
 import Logo from "./Logo";
-import ProfileDropdown from "./AuthMenu";
 import SearchBar from "../SearchButton";
 import NavMenu from "./NavMenu";
+import AuthButton from "./AuthButton"; // Import AuthButton
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-  const toggleProfile = () => setIsProfileOpen(!isProfileOpen);
 
   return (
     <header>
@@ -30,13 +28,8 @@ const Navbar = () => {
             {/* Actions */}
             <NavMenu />
 
-            {/* Profile */}
-            <div className="relative">
-              <button onClick={toggleProfile} className="cursor-pointer">
-                <FiUser fontSize={20} />
-              </button>
-              {isProfileOpen && <ProfileDropdown />}
-            </div>
+            {/* Profile Button */}
+            <AuthButton />
           </div>
 
           {/* Hamburger Icon */}
@@ -60,11 +53,10 @@ const Navbar = () => {
 
             {/* Profile */}
             <div className="flex items-center space-x-2 cursor-pointer">
-              <FiUser fontSize={20} />
-              <span onClick={toggleProfile}>Profile</span>
+              <span>Profile</span>
             </div>
 
-            {isProfileOpen && <ProfileDropdown />}
+            <AuthButton />
           </div>
         )}
       </nav>
