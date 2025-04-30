@@ -1,6 +1,7 @@
 import React from 'react';
 import { FiCheckCircle } from 'react-icons/fi';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
+
 
 
 const PasswordSuccessPage = () => {

@@ -63,7 +63,7 @@ const LoginPage = () => {
             </div>
           ))}
              <p className="text-sm  text-right">
-        <Link to="/auth/forgot-password" className="text-primary text-base hover:underline">
+        <Link to="/auth/forget-password" className="text-primary text-base hover:underline">
           Forgot Password?
         </Link>
       </p>
