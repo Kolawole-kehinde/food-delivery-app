@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { FiUser } from 'react-icons/fi';
 import AuthMenu from './AuthMenu'; // Import the AuthMenu
-import { useAuth } from '../../hooks/useAuth'; // Import the custom hook to get user info
+import { useAuth } from '../../hooks/useAuth';
 
 const AuthButton = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { user } = useAuth(); // Get the user state from context
+  const { user } = useAuth(); 
 
-  // Close the menu automatically when the user logs in or logs out
+ 
   useEffect(() => {
     if (user) {
       setIsMenuOpen(false);  // Close the menu if the user logs in
@@ -29,7 +29,7 @@ const AuthButton = () => {
       </button>
 
       {/* Dropdown Menu */}
-      {isMenuOpen && <AuthMenu />}
+      {isMenuOpen && <AuthMenu  />}
     </div>
   );
 };

@@ -53,10 +53,12 @@ const Navbar = () => {
 
             {/* Profile */}
             <div className="flex items-center space-x-2 cursor-pointer">
+            <AuthButton toggleMenu={toggleMenu} />
               <span>Profile</span>
+              
             </div>
 
-            <AuthButton />
+           
           </div>
         )}
       </nav>

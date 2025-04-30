@@ -10,10 +10,12 @@ import OrderPage from './Pages/Order'
 import CartPage from './Pages/Cart'
 import NotificationPage from './Pages/Notification'
 import ProfilePage from './Pages/Profile'
-import { Dashboard } from './Pages/dashboard'
+
 import ForgotPasswordPage from './Pages/auth/ForgotPassword'
 import ResetPasswordPage from './Pages/auth/ResetPassword'
 import PasswordSuccessPage from './Pages/auth/PasswordSuccess'
+import Dashboard from './Pages/dashboard'
+import AccountSettings from './Pages/AccountSettings'
 
 
 const App = () => {
@@ -30,6 +32,7 @@ const App = () => {
         <Route path='notifications' element={<NotificationPage/>}/>
         <Route path='profile' element={<ProfilePage/>}/>
         <Route path='dashboard' element={<Dashboard/>}/>
+        <Route path='settings' element={<AccountSettings/>}/>
 
 
         <Route path='auth'>

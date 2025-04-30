@@ -12,7 +12,7 @@ const Footer = () => {
         <div className='w-full max-w-[507px]'>
           <h2 className="text-2xl font-bold mb-3">FD<span className="text-primary">A</span></h2>
           <p className="mb-4 text-lg leading-[30px] text-gray-300 font-normal font-poppins w-full max-w-[450px]"> 
-            Food Delivery App (FDP) Online Ordering Platform is your premier destination for wholesale foods.
+           FoodieApp (FDP) Online Ordering Platform is your premier destination for wholesale foods.
             We’re committed to your wholesale trading success and also giving you the best online shopping experience. Cheers!
           </p>
         </div>
