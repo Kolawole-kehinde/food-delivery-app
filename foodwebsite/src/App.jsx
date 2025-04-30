@@ -12,6 +12,7 @@ import NotificationPage from './Pages/Notification'
 import ProfilePage from './Pages/Profile'
 import { Dashboard } from './Pages/dashboard'
 import ForgotPasswordPage from './Pages/auth/ForgotPassword'
+import ResetPasswordPage from './Pages/auth/ResetPassword'
 
 
 const App = () => {
@@ -34,6 +35,7 @@ const App = () => {
         <Route path='login' element={<LoginPage/>}/>
         <Route path='register' element={<RegisterPage/>}/>
         <Route path='forget-password' element={<ForgotPasswordPage/>}/>
+        <Route path='reset-password' element={<ResetPasswordPage/>}/>
         </Route>
         </Route>
       </Routes>
