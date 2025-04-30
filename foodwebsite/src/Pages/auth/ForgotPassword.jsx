@@ -17,8 +17,23 @@ const ForgotPasswordPage = () => {
     });
 
     const onSubmit = async ({ email }) => {
-        console.log(error)
-    }
+        setLoading(true);
+        try {
+          const { error } = await supabase.auth.resetPasswordForEmail(email, {
+            redirectTo: `${window.location.origin}/auth/reset-password`,
+          });
+      
+          if (error) {
+            toast.error("Failed to send reset link. Please try again.");
+          } else {
+            toast.success("Password reset link sent to your email.");
+          }
+        } catch (err) {
+          toast.error("Something went wrong.");
+        } finally {
+          setLoading(false);
+        }
+      };
 
       
   return (
