@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { z } from 'zod';
+import { supabase } from '../../libs/supabase';
 
 // Define the validation schema using Zod
 const ForgotPasswordSchema = z.object({
