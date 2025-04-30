@@ -1,69 +1,83 @@
 import React, { useState } from "react";
-import toast from "react-hot-toast";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 import { supabase } from "../../libs/supabase";
-import CustomButton from "../../Components/CustomButton";
 import CustomInput from "../../Components/CustomInput";
+import CustomButton from "../../Components/CustomButton";
+
+// 1. Define Zod schema
+const schema = z
+  .object({
+    password: z.string().min(6, "Password must be at least 6 characters"),
+    confirmPassword: z.string().min(6, "Confirm Password is required"),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords do not match",
+    path: ["confirmPassword"],
+  });
 
 const ResetPasswordPage = () => {
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handlePasswordReset = async () => {
-    if (!password || !confirmPassword) {
-      toast.error("Please fill in all fields.");
-      return;
-    }
-    if (password !== confirmPassword) {
-      toast.error("Passwords do not match.");
-      return;
-    }
-    if (password.length < 5) {
-      toast.error("Password must be at least 6 characters long.");
-      return;
-    }
+  // 2. Setup react-hook-form with zod
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(schema),
+  });
+
+  // 3. Handle form submit
+  const onSubmit = async (data) => {
     setLoading(true);
     try {
-      const { error } = await supabase.auth.updateUser({ password });
-      if (error) {
-        throw error;
-      }
+      const { error } = await supabase.auth.updateUser({
+        password: data.password,
+      });
+      if (error) throw error;
       toast.success("Password updated successfully!");
       navigate("/auth/password-success");
     } catch (error) {
       toast.error(error.message || "Failed to update password");
+    } finally {
+      setLoading(false);
     }
   };
+
   return (
     <div className="max-w-md mx-auto mt-20 p-6 bg-white shadow-lg rounded-lg space-y-4">
       <h2 className="text-xl font-semibold text-center">Reset Password</h2>
 
-      <CustomInput
-        type="password"
-        placeholder="New Password"
-        className="w-full p-2 border rounded"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <CustomInput
+          type="password"
+          name="password"
+          placeholder="New Password"
+          register={register}
+          error={errors.password}
+        />
 
-      <CustomInput
-        type="password"
-        placeholder="Confirm Password"
-        className="w-full p-2 border rounded"
-        value={confirmPassword}
-        onChange={(e) => setConfirmPassword(e.target.value)}
-      />
+        <CustomInput
+          type="password"
+          name="confirmPassword"
+          placeholder="Confirm Password"
+          register={register}
+          error={errors.confirmPassword}
+        />
 
-      <CustomButton
-        onClick={handlePasswordReset}
-        disabled={loading}
-        type="submit"
-        className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition duration-300"
-      >
-        {loading ? "Loading..." : "Reset Password"}
-      </CustomButton>
+        <CustomButton
+          type="submit"
+          disabled={loading}
+          className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition duration-300"
+        >
+          {loading ? "Loading..." : "Reset Password"}
+        </CustomButton>
+      </form>
     </div>
   );
 };
