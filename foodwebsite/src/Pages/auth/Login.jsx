@@ -62,6 +62,11 @@ const LoginPage = () => {
               />
             </div>
           ))}
+             <p className="text-sm  text-right">
+        <Link to="/auth/forgot-password" className="text-primary text-base hover:underline">
+          Forgot Password?
+        </Link>
+      </p>
 
           {/* Submit Button */}
           <CustomButton>Login</CustomButton>
@@ -69,7 +74,7 @@ const LoginPage = () => {
 
         <p className="text-center mt-4 text-sm">
           Don't have an account?{" "}
-          <Link to="/auth/register" className="text-orange-500">
+          <Link to="/auth/register" className="text-primary">
             Register
           </Link>
         </p>

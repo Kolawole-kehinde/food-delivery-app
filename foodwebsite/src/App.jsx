@@ -11,6 +11,7 @@ import CartPage from './Pages/Cart'
 import NotificationPage from './Pages/Notification'
 import ProfilePage from './Pages/Profile'
 import { Dashboard } from './Pages/dashboard'
+import ForgotPasswordPage from './Pages/auth/ForgotPassword'
 
 
 const App = () => {
@@ -32,6 +33,7 @@ const App = () => {
         <Route path='auth'>
         <Route path='login' element={<LoginPage/>}/>
         <Route path='register' element={<RegisterPage/>}/>
+        <Route path='forget-password' element={<ForgotPasswordPage/>}/>
         </Route>
         </Route>
       </Routes>
