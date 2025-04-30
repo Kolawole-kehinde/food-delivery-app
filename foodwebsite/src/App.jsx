@@ -13,6 +13,7 @@ import ProfilePage from './Pages/Profile'
 import { Dashboard } from './Pages/dashboard'
 import ForgotPasswordPage from './Pages/auth/ForgotPassword'
 import ResetPasswordPage from './Pages/auth/ResetPassword'
+import PasswordSuccessPage from './Pages/auth/PasswordSuccess'
 
 
 const App = () => {
@@ -36,6 +37,7 @@ const App = () => {
         <Route path='register' element={<RegisterPage/>}/>
         <Route path='forget-password' element={<ForgotPasswordPage/>}/>
         <Route path='reset-password' element={<ResetPasswordPage/>}/>
+        <Route path='password-success' element={<PasswordSuccessPage/>}/>
         </Route>
         </Route>
       </Routes>
