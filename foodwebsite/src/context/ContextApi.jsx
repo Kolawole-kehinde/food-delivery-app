@@ -1,9 +1,8 @@
 import { createContext, useEffect, useState } from "react";
-import { food_list } from "../assets/assets";
 import LocalStorageService from "../utils/HandleLocalStorage";
-import { supabase } from "../libs/supabase";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { supabase } from "../libs/supabase";
 
 export const AppContext = createContext({
   user: null,
@@ -12,28 +11,43 @@ export const AppContext = createContext({
   addToCart: () => {},
   removeFromCart: () => {},
   handleLogout: () => {},
-  food_list: [],
+  products: [], // replace food_list with products
 });
 
 const AppContextProvider = ({ children }) => {
- 
   const [cartItems, setCartItems] = useState({});
+  const [products, setProducts] = useState([]); // NEW state for Supabase products
+  const [loading, setLoading] = useState(false);
+
   const { getItem, setItem, clear } = LocalStorageService;
-  const [loading, setLoading] = useState(false)
+  const getUser = getItem("auth");
+  const [user, setUser] = useState(getUser ? getUser : null);
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    if (user) {
+      setItem("auth", user);
+    }
+  }, [user, setItem]);
 
-// Handle User
-const getUser = getItem("auth");
-const [user, setUser] = useState(getUser ? getUser : null);
-const navigate = useNavigate();
+  // 🔄 Fetch products from Supabase
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const { data, error } = await supabase.from("products").select("*");
 
-useEffect(() => {
-  if (user) {
-    setItem("auth", user);
-  }
-}, [user, setItem]);
+      if (error) {
+        if (error) {
+          console.error("Supabase error:", error);
+          toast.error("Failed to load products.");
+        }
+      } else {
+        setProducts(data);
+      }
+    };
 
-  // Handle Logout
+    fetchProducts();
+  }, []);
+
   const handleLogout = async () => {
     setLoading(true);
     try {
@@ -49,7 +63,6 @@ useEffect(() => {
     }
   };
 
-
   const addToCart = (itemId) => {
     setCartItems((prev) => ({
       ...prev,
@@ -64,16 +77,12 @@ useEffect(() => {
     }));
   };
 
-  useEffect(() => {
-    console.log("Cart Items Updated:", cartItems);
-  }, [cartItems]);
-
   return (
     <AppContext.Provider
       value={{
         user,
         setUser,
-        food_list,
+        products,
         cartItems,
         addToCart,
         removeFromCart,

@@ -5,12 +5,12 @@ import { Link } from "react-router-dom";
 
 
 const TopDishes = ({ category = "All", title = "Top Dishes", start = 0, end = 8 }) => {
-  const { food_list } = useContext(AppContext);
+  const { products } = useContext(AppContext);
 
   // Filter by category
   const filteredList = category === "All"
-    ? food_list
-    : food_list.filter(item => item.category === category);
+    ? products
+    : products.filter(item => item.category === category);
 
   return (
     <div className="container mx-auto px-4 md:px-20 py-6">

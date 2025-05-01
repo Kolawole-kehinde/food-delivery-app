@@ -2,14 +2,14 @@ import { useContext } from "react";
 import { AppContext } from "../context/ContextApi";
 import { FaHeart, FaPlus } from "react-icons/fa";
 
-const FoodItems = ({ id, name, price, image, description }) => {
+const FoodItems = ({ id, name, price, image_url, description }) => {
   const { cartItems, addToCart, removeFromCart } = useContext(AppContext);
 
   return (
     <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition">
       <div className="relative">
         <img
-          src={image}
+          src={image_url}
           alt={`Food item - ${name}`}
           className="w-full h-48 object-cover rounded-t-xl"
         />
