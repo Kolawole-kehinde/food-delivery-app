@@ -1,8 +1,9 @@
 import { useContext } from "react";
 import { AppContext } from "../context/ContextApi";
+import { FaHeart, FaPlus } from "react-icons/fa";
 
-const FoodItems = ({id, name, price, image, description }) => {
-  const {cartItems, addToCart, removeFromCart}  = useContext(AppContext);
+const FoodItems = ({ id, name, price, image, description }) => {
+  const { cartItems, addToCart, removeFromCart } = useContext(AppContext);
 
   return (
     <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition">
@@ -14,29 +15,31 @@ const FoodItems = ({id, name, price, image, description }) => {
         />
 
         {!cartItems[id] ? (
-          <img
-            onClick={() => addToCart(id)}
-            src="/images/add_icon_white.png"
-            alt="Add to cart"
-            aria-label="Add item"
-            className="w-9 absolute bottom-4 right-4 cursor-pointer rounded-full"
-          />
+          <div className="absolute bottom-4 left-4 right-4 flex justify-between items-center px-2">
+            <FaHeart
+              className="text-red-500 text-xl cursor-pointer hover:text-red-600 transition"
+              title="Add to favorites"
+            />
+
+            <FaPlus
+              onClick={() => addToCart(id)}
+              className="text-primary text-xl cursor-pointer bg-white rounded-full p-1 hover:scale-110 transition"
+              title="Add to cart"
+            />
+          </div>
         ) : (
           <div className="absolute bottom-4 right-4 flex items-center gap-2 bg-white p-2 rounded-full shadow-md">
             <img
               onClick={() => removeFromCart(id)}
               src="/images/remove_icon_red.png"
               alt="Remove item"
-              aria-label="Remove one item"
               className="w-7 cursor-pointer"
             />
-         <p className="text-sm font-medium">{cartItems[id]}</p>
-
+            <p className="text-sm font-medium">{cartItems[id]}</p>
             <img
               onClick={() => addToCart(id)}
               src="/images/add_icon_green.png"
               alt="Add item"
-              aria-label="Add one more"
               className="w-7 cursor-pointer"
             />
           </div>
