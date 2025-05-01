@@ -2,7 +2,9 @@ import React from 'react'
 import { useState } from 'react';
 import Showcase from '../Components/Showcase';
 import ExploreMenu from '../Components/Explore';
-import FoodDisplay from '../Components/FoodDisplay';
+import TopDishes from '../Components/TopDishes';
+import { RecommendedDishes } from '../Components/RecommendedDishes';
+
 
 
 const HomePage = () => {
@@ -12,7 +14,8 @@ const HomePage = () => {
     <div>
         <Showcase/>
       <ExploreMenu category={category} setCategory={setCategory}/>
-      <FoodDisplay category={category}/>
+      <TopDishes category={category}/>
+      <RecommendedDishes/>
     </div>
   )
 }

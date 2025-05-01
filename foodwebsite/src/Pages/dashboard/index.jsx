@@ -1,6 +1,7 @@
 import React from "react";
 import { FaHome, FaUtensils, FaHeart, FaCog, FaSignOutAlt, FaBell } from "react-icons/fa";
 import { useAuth } from "../../hooks/useAuth";
+import Sidebar from "../../Components/features/dashboard/SideBar";
 
 const Dashboard = () => {
   // Dashboard data
@@ -24,28 +25,9 @@ const Dashboard = () => {
   return (
     <div className="flex min-h-screen bg-gray-100">
       {/* Sidebar */}
-      <aside className="w-64 bg-white shadow-md hidden md:block">
-        <div className="p-6 font-bold text-lg text-primary">🍽️ FoodieApp</div>
-        <nav className="flex flex-col gap-4 p-4 text-gray-700">
-          <a href="#" className="flex items-center gap-2 hover:text-primary">
-            <FaHome /> Dashboard
-          </a>
-          <a href="#" className="flex items-center gap-2 hover:text-primary">
-            <FaUtensils /> Orders
-          </a>
-          <a href="#" className="flex items-center gap-2 hover:text-primary">
-            <FaHeart /> Favorites
-          </a>
-          <a href="#" className="flex items-center gap-2 hover:text-primary">
-            <FaCog /> Settings
-          </a>
-          <a href="#" className="flex items-center gap-2 hover:text-primary mt-auto text-red-500">
-            <FaSignOutAlt /> Logout
-          </a>
-        </nav>
-      </aside>
+      <Sidebar/>
 
-      {/* Main Content */}
+      {/* Main Content */}c
       <div className="flex-1">
         {/* Topbar */}
         <header className="bg-white shadow-sm p-4 flex flex-col lg:justify-between lg:flex-row items-center gap-4 px-4 lg:px-0">
