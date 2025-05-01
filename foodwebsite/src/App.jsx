@@ -16,6 +16,7 @@ import ResetPasswordPage from './Pages/auth/ResetPassword'
 import PasswordSuccessPage from './Pages/auth/PasswordSuccess'
 import Dashboard from './Pages/dashboard'
 import AccountSettings from './Pages/AccountSettings'
+import AllDishes from './Pages/AllDishes'
 
 
 const App = () => {
@@ -33,6 +34,7 @@ const App = () => {
         <Route path='profile' element={<ProfilePage/>}/>
         <Route path='dashboard' element={<Dashboard/>}/>
         <Route path='settings' element={<AccountSettings/>}/>
+        <Route path='all-dishes' element={<AllDishes/>}/>
 
 
         <Route path='auth'>

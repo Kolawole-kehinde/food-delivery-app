@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { AppContext } from "../context/ContextApi";
 import FoodItems from "./FoodItems";
-
+import { Link } from "react-router-dom";
 
 
 const TopDishes = ({ category = "All", title = "Top Dishes", start = 0, end = 8 }) => {
@@ -24,10 +24,15 @@ const TopDishes = ({ category = "All", title = "Top Dishes", start = 0, end = 8 
           ))
         )}
       </div>
+      <div className="text-center mt-6">
+        <Link to="/all-dishes">
+          <button className="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600">
+            More Dishes
+          </button>
+        </Link>
+      </div>
     </div>
   );
 };
 
 export default TopDishes;
-
-
