@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useProduct } from '../hooks/useProduct';
-import { FaStar, FaChevronLeft, FaComments } from 'react-icons/fa';
+import { FaStar, FaChevronLeft, FaComments, FaCheck, FaArrowAltCircleLeft } from 'react-icons/fa';
 import ProductTabs from '../components/ProductTabs';
 
-const ProductDetailsPage = () => {
+const ProductDetails = () => {
   const { id } = useParams();
   const { data: product, isLoading, isError, error } = useProduct(id);
   const [quantity, setQuantity] = useState(1);
+  const navigate = useNavigate();
 
   const handleQuantityChange = (val) => {
     setQuantity((prev) => Math.max(1, prev + val));
@@ -26,7 +27,7 @@ const ProductDetailsPage = () => {
       {/* Header */}
       <div className="flex justify-between items-center mb-6">
         <div className="flex items-center gap-2 text-gray-700 font-medium">
-          <FaChevronLeft className="w-4 h-4" />
+        <FaArrowAltCircleLeft onClick={() => navigate(-1)} className="w-4 h-4" />
           <h2 className="text-base">Product Details</h2>
         </div>
         <button className="border border-gray-300 text-sm px-4 py-1 rounded-md flex items-center gap-2 hover:bg-gray-100">
@@ -49,6 +50,10 @@ const ProductDetailsPage = () => {
         <div className="flex flex-col justify-between space-y-6">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">{product.name}</h1>
+
+            {/* Price */}
+            <p className="text-2xl font-semibold text-[#FF3D00] mb-4">${product.price}</p>
+
             <div className="flex items-center mt-2 text-yellow-500">
               {[...Array(5)].map((_, idx) => (
                 <FaStar key={idx} className="w-5 h-5" />
@@ -56,7 +61,7 @@ const ProductDetailsPage = () => {
               <span className="ml-2 text-sm text-gray-500">(120 reviews)</span>
             </div>
 
-            <p className="text-lg text-gray-700 mt-4">{product.description}</p>
+            <p className="text-base text-gray-700 mt-4">{product.description}</p>
 
             {/* Availability and Prep Info */}
             <div className="mt-6 flex items-center gap-4 text-sm text-gray-600">
@@ -65,18 +70,25 @@ const ProductDetailsPage = () => {
             </div>
 
             {/* Feature List */}
-            <ul className="mt-6 space-y-2 text-gray-600 list-disc list-inside text-sm">
-              <li>Freshly prepared with natural ingredients</li>
-              <li>No artificial preservatives</li>
-              <li>Eco-friendly packaging</li>
+            <ul className="mt-4 space-y-2 text-gray-600 list-none text-sm">
+              <li className="flex items-center gap-2">
+                <FaCheck className="text-green-500" />
+                Freshly prepared with natural ingredients
+              </li>
+              <li className="flex items-center gap-2">
+                <FaCheck className="text-green-500" />
+                No artificial preservatives
+              </li>
+              <li className="flex items-center gap-2">
+              <FaCheck className="text-green-500" />
+                Eco-friendly packaging
+              </li>
             </ul>
           </div>
 
           <div>
-            <p className="text-2xl font-semibold text-[#FF3D00] mb-4">${product.price}</p>
-
             {/* Quantity Selector */}
-            <div className="flex items-center gap-4 mb-6">
+            <div className="flex items-center gap-4 mb-2">
               <span className="text-gray-600">Quantity:</span>
               <div className="flex items-center border border-gray-300 rounded-lg">
                 <button
@@ -95,12 +107,21 @@ const ProductDetailsPage = () => {
               </div>
             </div>
 
-            {/* Add to Cart Button */}
-            <button
-              className="bg-[#FF3D00] hover:bg-orange-700 transition-colors text-white font-semibold px-6 py-3 rounded-xl shadow-md w-full"
-            >
-              Add to Cart
-            </button>
+            {/* Buttons for Add to Cart and Checkout */}
+            <div className="flex gap-4 mt-4">
+              <button
+                className="bg-orange-500 hover:bg-orange-600 transition-colors text-white font-semibold px-6 py-2 rounded-md shadow-md "
+              >
+                Add to Cart
+              </button>
+
+              <button
+                className="bg-green-500 hover:bg-green-600 transition-colors text-white font-semibold px-4 py-2 rounded-md shadow-md"
+                onClick={() => navigate('/checkout')}
+              >
+                Proceed to Checkout
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -111,4 +132,4 @@ const ProductDetailsPage = () => {
   );
 };
 
-export default ProductDetailsPage;
+export default ProductDetails;
