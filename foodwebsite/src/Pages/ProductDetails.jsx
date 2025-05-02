@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useProduct } from '../hooks/useProduct';
-import { FaStar } from 'react-icons/fa';
+import { FaStar, FaChevronLeft, FaComments } from 'react-icons/fa';
 import ProductTabs from '../components/ProductTabs';
 
-const ProductDetails = () => {
+const ProductDetailsPage = () => {
   const { id } = useParams();
   const { data: product, isLoading, isError, error } = useProduct(id);
   const [quantity, setQuantity] = useState(1);
@@ -23,6 +23,18 @@ const ProductDetails = () => {
 
   return (
     <div className="max-w-6xl mx-auto p-4 lg:p-8">
+      {/* Header */}
+      <div className="flex justify-between items-center mb-6">
+        <div className="flex items-center gap-2 text-gray-700 font-medium">
+          <FaChevronLeft className="w-4 h-4" />
+          <h2 className="text-base">Product Details</h2>
+        </div>
+        <button className="border border-gray-300 text-sm px-4 py-1 rounded-md flex items-center gap-2 hover:bg-gray-100">
+          <FaComments className="w-4 h-4" />
+          Chat Seller
+        </button>
+      </div>
+
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
         {/* Product Image */}
         <div>
@@ -45,7 +57,6 @@ const ProductDetails = () => {
             </div>
 
             <p className="text-lg text-gray-700 mt-4">{product.description}</p>
-            <p className="text-2xl font-semibold text-[#FF3D00] mb-4">${product.price}</p>
 
             {/* Availability and Prep Info */}
             <div className="mt-6 flex items-center gap-4 text-sm text-gray-600">
@@ -62,7 +73,7 @@ const ProductDetails = () => {
           </div>
 
           <div>
-           
+            <p className="text-2xl font-semibold text-[#FF3D00] mb-4">${product.price}</p>
 
             {/* Quantity Selector */}
             <div className="flex items-center gap-4 mb-6">
@@ -100,4 +111,4 @@ const ProductDetails = () => {
   );
 };
 
-export default ProductDetails;
+export default ProductDetailsPage;
