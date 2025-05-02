@@ -3,10 +3,11 @@ import { FaUtensils, FaArrowRight } from 'react-icons/fa';
 
 const Banner = () => {
   return (
-    <div className="relative px-4 md:px-20 bg-[#FFF4F0] rounded-xl p-6 md:p-10 shadow-md flex flex-col md:flex-row items-center justify-between gap-6">
+   <section className="bg-[#FFF4F0] px-4 lg:px-0 shadow-md">
+     <div className="relative wrapper rounded-xl py-6 md:py-10  flex flex-col md:flex-row items-center justify-between gap-6">
       {/* Text Content */}
       <div className="max-w-xl">
-        <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-2">
+        <h2 className="text-xl md:text-4xl font-bold text-gray-900 mb-2">
           Delicious Meals Delivered to You
         </h2>
         <p className="text-gray-600 text-sm md:text-base mb-4">
@@ -23,9 +24,10 @@ const Banner = () => {
       <img
         src="/images/food_22.png" // replace with your actual image path
         alt="Delicious food"
-        className="w-40 md:w-60 h-auto object-contain rounded-lg shadow-lg"
+        className="w-60 md:w-100 h-auto object-cover rounded-lg shadow-lg"
       />
     </div>
+   </section>
   );
 };
 

@@ -11,7 +11,7 @@ const TopDishes = ({ category = "All", title = "Top Dishes", start = 0, end = 8,
     : products.filter(item => item.category === category);
 
   return (
-    <div className="container mx-auto px-4 md:px-20 py-6">
+    <div className="wrapper px-4 lg:px-0 py-6">
       <h2 className="text-2xl font-bold mb-6 text-start">{title}</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {filteredList.length === 0 ? (

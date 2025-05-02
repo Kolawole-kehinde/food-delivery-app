@@ -4,7 +4,7 @@ import { useState } from "react";
 
 const ExploreMenu = ({ category, setCategory }) => {
   return (
-    <div className="container mx-auto py-10 text-left">
+    <div className="wrapper px-4 lg:px-0 py-10 text-left">
       {/* Heading */}
       <h1 className="text-2xl md:text-3xl text-[#262626] font-medium ">
         Explore Our Menu

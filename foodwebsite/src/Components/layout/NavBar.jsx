@@ -13,8 +13,8 @@ const Navbar = () => {
 
   return (
     <header>
-      <nav className="bg-[#e5ebf1] py-6 mb-8 md:mb-16">
-        <div className="container mx-auto flex items-center justify-between">
+      <nav className="bg-[#e5ebf1] py-6 mb-8 md:mb-16 px-4 lg:px-0">
+        <div className="wrapper flex items-center justify-between">
           {/* Logo */}
           <Logo />
 

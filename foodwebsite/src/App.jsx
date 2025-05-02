@@ -19,6 +19,7 @@ import AccountSettings from './Pages/AccountSettings'
 import AllDishes from './Pages/AllDishes'
 import ProductDetails from './Pages/ProductDetails'
 import Banner from './Components/Banner'
+import RelatedProducts from './Components/RelatedProducts'
 
 
 const App = () => {
@@ -37,6 +38,7 @@ const App = () => {
         <Route path='dashboard' element={<Dashboard/>}/>
         <Route path='settings' element={<AccountSettings/>}/>
         <Route path='all-dishes' element={<AllDishes/>}/>
+        <Route path='related-product' element={<RelatedProducts/>}/>
         <Route path="product-details/:id" element={<ProductDetails/>} />
 
 

@@ -2,7 +2,7 @@ import React from "react";
 
 const Showcase = () => {
   return (
-    <section className=" container">
+    <section className=" wrapper px-4 lg:px-0">
       <div className="w-full h-[300px] md:h-[400px] lg:h-[480px] bg-ShowcaseImg bg-center bg-cover bg-no-repeat rounded-2xl flex items-center">
         
         {/* Text Content */}

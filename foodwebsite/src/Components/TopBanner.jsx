@@ -21,12 +21,12 @@ const features = [
 
 const TopBanner = () => {
   return (
-    <div className="bg-white py-12 px-6 md:px-12 rounded-xl shadow-md border border-gray-100">
+    <div className="wrapper bg-white py-12 px-4 lg:px-0 rounded-xl shadow-md border border-gray-100 mb-6">
       <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-10">
         Why Choose Us?
       </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 place-items-center gap-8">
         {features.map((feature, idx) => (
           <div key={idx} className="flex items-start gap-4">
             <div className="bg-orange-50 p-3 rounded-full">

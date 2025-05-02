@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useProduct } from '../hooks/useProduct';
-import { FaStar, FaChevronLeft, FaComments, FaCheck, FaArrowAltCircleLeft } from 'react-icons/fa';
+import { FaStar, FaComments, FaCheck, FaArrowAltCircleLeft } from 'react-icons/fa';
 import ProductTabs from '../components/ProductTabs';
+import RelatedProducts from '../Components/RelatedProducts';
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -23,9 +24,10 @@ const ProductDetails = () => {
   }
 
   return (
-    <div className="max-w-6xl mx-auto p-4 lg:p-8">
+    <section className="">
+      <div className="wrapper px-4 lg:px-0">
       {/* Header */}
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex justify-between items-center mb-6 md:mb-16">
         <div className="flex items-center gap-2 text-gray-700 font-medium">
         <FaArrowAltCircleLeft onClick={() => navigate(-1)} className="w-4 h-4" />
           <h2 className="text-base">Back</h2>
@@ -36,13 +38,14 @@ const ProductDetails = () => {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+      <div className="flex flex-col md:flex-row items-center justify-center gap-5 md:gap-20">
         {/* Product Image */}
+        
         <div>
           <img
             src={product.image_url || '/images/placeholder.png'}
             alt={product.name}
-            className="w-full h-auto rounded-2xl shadow-md object-cover"
+            className="w-[500px] h-auto rounded-2xl shadow-md object-contain"
           />
         </div>
 
@@ -126,9 +129,15 @@ const ProductDetails = () => {
         </div>
       </div>
 
-      {/* Product Tabs */}
-      <ProductTabs description={product.description} />
+     
+          {/* Product Tabs */}
+     <ProductTabs description={product.description} />
+     <RelatedProducts category={product.category} excludeId={product.id} />
+
     </div>
+ 
+    
+    </section>
   );
 };
 

@@ -7,7 +7,6 @@ const AllDishes = () => {
   return (
     <section>
       <TopDishes title="All Dishes" start={0} end={32} showMoreButton = {false} />
-      <Banner/>
     </section>
   );
 };
