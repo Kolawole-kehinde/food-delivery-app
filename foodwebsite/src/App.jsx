@@ -18,6 +18,7 @@ import Dashboard from './Pages/dashboard'
 import AccountSettings from './Pages/AccountSettings'
 import AllDishes from './Pages/AllDishes'
 import ProductDetails from './Pages/ProductDetails'
+import Banner from './Components/Banner'
 
 
 const App = () => {
@@ -48,6 +49,7 @@ const App = () => {
         </Route>
         </Route>
       </Routes>
+      <Banner/>
       <Footer/>
   
     </div>
