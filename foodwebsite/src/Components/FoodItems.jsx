@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { AppContext } from "../context/ContextApi";
 import { FaHeart, FaPlus } from "react-icons/fa";
+import { Link } from "react-router-dom";
+
 
 const FoodItems = ({ id, name, price, image_url, description }) => {
   const { cartItems, addToCart, removeFromCart } = useContext(AppContext);
@@ -8,11 +10,13 @@ const FoodItems = ({ id, name, price, image_url, description }) => {
   return (
     <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition">
       <div className="relative">
-        <img
-          src={image_url}
-          alt={`Food item - ${name}`}
-          className="w-full h-48 object-cover rounded-t-xl"
-        />
+        <Link to={`/product-details/${id}`} className="block">
+          <img
+            src={image_url}
+            alt={`Food item - ${name}`}
+            className="w-full h-48 object-cover rounded-t-xl"
+          />
+        </Link>
 
         {!cartItems[id] ? (
           <div className="absolute bottom-4 left-4 right-4 flex justify-between items-center px-2">

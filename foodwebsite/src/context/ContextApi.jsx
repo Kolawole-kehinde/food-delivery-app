@@ -33,18 +33,18 @@ const AppContextProvider = ({ children }) => {
   // 🔄 Fetch products from Supabase
   useEffect(() => {
     const fetchProducts = async () => {
-      const { data, error } = await supabase.from("products").select("*");
-
+      const { data, error } = await supabase
+        .from("products")
+        .select("*");
+  
       if (error) {
-        if (error) {
-          console.error("Supabase error:", error);
-          toast.error("Failed to load products.");
-        }
+        console.error("Supabase error:", error.message);
       } else {
+        console.log("Fetched products:", data);
         setProducts(data);
       }
     };
-
+  
     fetchProducts();
   }, []);
 

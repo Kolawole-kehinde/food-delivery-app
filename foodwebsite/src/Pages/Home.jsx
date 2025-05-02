@@ -4,6 +4,7 @@ import Showcase from '../Components/Showcase';
 import ExploreMenu from '../Components/Explore';
 import TopDishes from '../Components/TopDishes';
 import { RecommendedDishes } from '../Components/RecommendedDishes';
+import ProductDetails from '../Components/pro';
 
 
 
@@ -16,6 +17,7 @@ const HomePage = () => {
       <ExploreMenu category={category} setCategory={setCategory}/>
       <TopDishes category={category}/>
       <RecommendedDishes/>
+      <ProductDetails/>
     </div>
   )
 }

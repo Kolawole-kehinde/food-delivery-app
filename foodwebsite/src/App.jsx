@@ -17,6 +17,7 @@ import PasswordSuccessPage from './Pages/auth/PasswordSuccess'
 import Dashboard from './Pages/dashboard'
 import AccountSettings from './Pages/AccountSettings'
 import AllDishes from './Pages/AllDishes'
+import ProductDetails from './Pages/ProductDetails'
 
 
 const App = () => {
@@ -35,6 +36,7 @@ const App = () => {
         <Route path='dashboard' element={<Dashboard/>}/>
         <Route path='settings' element={<AccountSettings/>}/>
         <Route path='all-dishes' element={<AllDishes/>}/>
+        <Route path="product-details/:id" element={<ProductDetails/>} />
 
 
         <Route path='auth'>
