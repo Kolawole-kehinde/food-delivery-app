@@ -28,7 +28,7 @@ const ProductDetails = () => {
       <div className="flex justify-between items-center mb-6">
         <div className="flex items-center gap-2 text-gray-700 font-medium">
         <FaArrowAltCircleLeft onClick={() => navigate(-1)} className="w-4 h-4" />
-          <h2 className="text-base">Product Details</h2>
+          <h2 className="text-base">Back</h2>
         </div>
         <button className="border border-gray-300 text-sm px-4 py-1 rounded-md flex items-center gap-2 hover:bg-gray-100">
           <FaComments className="w-4 h-4" />
