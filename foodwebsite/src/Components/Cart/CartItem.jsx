@@ -2,39 +2,53 @@ import React from 'react';
 
 const CartItem = ({ image, name, seller, price, quantity, onRemove }) => {
   return (
-    <div className="flex gap-4 p-4 border-b">
-      <img src={image} alt={name} className="w-32 h-32 object-cover rounded" />
+    <section className="border-b">
+    <div className="flex gap-4 py-4 px-6 border-b shadow-lg" >
+      <img src={image} alt={name} className="w-40 h-48 object-cover rounded" />
 
-      <div className="flex-1">
+      <div className="flex-1 shadow-md px-4 rounded-xl ">
+        <div className="flex justify-between items-center ">
+        <div className="flex flex-col gap-5">
         <h3 className="text-lg font-semibold">{name}</h3>
-        <p className="text-sm text-gray-500">Sold by <span className="text-green-600">{seller}</span></p>
-        
-        <div className="mt-2 flex flex-col md:flex-row gap-2">
-          <select className="border p-1 rounded text-sm">
-            <option>Payment Option</option>
+        <p className="text-sm text-gray-500">Sold by <span className="text-orange-600">{seller}</span></p>
+        </div>
+        <div className="text-right">
+        <p className="font-bold text-lg">${price}</p>
+        <p className="text-xs text-gray-500">$23.40 × {quantity} items</p>
+      </div>
+        </div>
+       
+         <div className="flex justify-between items-center mt-4">
+        <div className="mt-2 flex flex-col w-[200px] gap-2">
+          <select className="border-2 p-2 rounded text-base font-medium">
+            <option className="px-10">Payment Option</option>
           </select>
-          <select className="border p-1 rounded text-sm">
+          <select className="border-2 p-2 rounded text-base font-medium">
             <option>Select Packaging</option>
           </select>
         </div>
 
         <div className="flex items-center mt-3 gap-2">
-          <button onClick={onRemove} className="text-red-500 hover:underline">Remove</button>
+          <button onClick={onRemove} className="text-primary hover:underline">Remove</button>
 
-          <div className="flex items-center border rounded px-2 py-1">
-            <button className="px-2">-</button>
-            <span className="mx-2">{quantity}</span>
-            <button className="px-2">+</button>
+          <div className="flex items-center rounded w-48 h-auto">
+            <div className="border border-primary rounded px-4 py-2">
+            <button className="px-">-</button>
+            </div>
+             <div className="border-b border-t py-2 flex-1">
+             <span className="mx-2">{quantity}</span>
+             </div>
+            <div>
+            <button className="border border-primary rounded px-4 py-2">+</button>
+            </div>
           </div>
+          </div> 
         </div>
       </div>
 
-      <div className="text-right">
-        <p className="text-xs text-blue-500 mb-1">- $60 discount</p>
-        <p className="font-bold text-lg">${price}</p>
-        <p className="text-xs text-gray-500">$23.40 × {quantity} items</p>
-      </div>
+     
     </div>
+    </section>
   );
 };
 

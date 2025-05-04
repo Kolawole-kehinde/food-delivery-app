@@ -9,8 +9,8 @@ import { Link } from 'react-router-dom';
 
 const NavMenu = ({ isMobile = false }) => {
   const wrapperClass = isMobile
-    ? 'flex items-center space-x-2 cursor-pointer'
-    : 'flex items-center space-x-1 cursor-pointer';
+    ? 'flex items-center space-x-2 cursor-pointer hover:text-primary'
+    : 'flex items-center space-x-1 cursor-pointer hover:text-primary';
 
   return (
     <>
@@ -29,10 +29,10 @@ const NavMenu = ({ isMobile = false }) => {
         <span>My Orders</span>
       </div>
 
-      <div className={wrapperClass}>
+      <Link to="/cart" className={wrapperClass}>
         <IoCartOutline fontSize={20} />
         <span>Cart</span>
-      </div>
+      </Link>
 
       <div className={wrapperClass}>
         <IoIosNotificationsOutline fontSize={20} />

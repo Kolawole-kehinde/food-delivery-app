@@ -2,7 +2,8 @@
 import React from 'react';
 import { useAuth } from '../../hooks/useAuth';
 import { Link } from 'react-router-dom';
-import { FaUser, FaCog, FaQuestionCircle, FaSignOutAlt, FaSignInAlt, FaUserPlus } from 'react-icons/fa';
+import { FaUser, FaCog, FaQuestionCircle, FaSignOutAlt, FaSignInAlt, FaUserPlus, FaUtensils, FaHome } from 'react-icons/fa';
+import { RiDashboard2Line } from "react-icons/ri";
 
 
 
@@ -20,30 +21,34 @@ const AuthMenu = () => {
       <div className="px-4 py-2 text-gray-700 font-semibold">
         Hello, {user.name || 'User'}!
       </div>
-      <Link onClick={toggleMenu} to="/profile" className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100">
-        <FaUser className='text-primary' /> Profile
+      <Link onClick={toggleMenu} to="/profile" className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-primary">
+        <FaUser  /> Profile
       </Link>
-      <Link onClick={toggleMenu} to="/settings" className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100">
-        <FaCog className='text-primary' /> Account Settings
+      <Link onClick={toggleMenu} to="/dashboard" className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-primary">
+      <FaHome/> Dashboard
       </Link>
-      <Link onClick={toggleMenu} to="/help" className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100">
-        <FaQuestionCircle className='text-primary'/> Help Center
+      <Link onClick={toggleMenu} to="/settings" className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-primary">
+        <FaUtensils /> Orders
       </Link>
+      <Link onClick={toggleMenu} to="/help" className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-primary">
+        <FaQuestionCircle/> Help Center
+      </Link>
+     
       <button
         onClick={handleLogout}
-        className="flex items-center gap-2 w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
+        className="flex items-center gap-2 w-full text-left px-4 py-2 text-gray-700 hover:text-primary"
       >
-        <FaSignOutAlt className='text-primary'/>
+        <FaSignOutAlt />
         {loading ? 'Logging out...' : 'Logout'}
       </button>
     </>
   ) : (
     <>
-      <Link onClick={toggleMenu} to="/auth/login" className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100">
-        <FaSignInAlt className='text-primary'/> Login
+      <Link onClick={toggleMenu} to="/auth/login" className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-primary">
+        <FaSignInAlt/> Login
       </Link>
-      <Link onClick={toggleMenu} to="/auth/register" className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100">
-        <FaUserPlus className='text-primary'/> Register
+      <Link onClick={toggleMenu} to="/auth/register" className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-primary">
+        <FaUserPlus/> Register
       </Link>
     </>
   )}
