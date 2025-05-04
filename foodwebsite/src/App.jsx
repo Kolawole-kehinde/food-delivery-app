@@ -6,7 +6,6 @@ import LoginPage from './Pages/auth/Login'
 import RegisterPage from './Pages/auth/Register'
 import Footer from './Components/layout/Footer'
 import OrderPage from './Pages/Order'
-import CartPage from './Pages/Cart'
 import NotificationPage from './Pages/Notification'
 import ProfilePage from './Pages/Profile'
 import ForgotPasswordPage from './Pages/auth/ForgotPassword'
@@ -18,6 +17,7 @@ import AllDishes from './Pages/AllDishes'
 import ProductDetails from './Pages/ProductDetails'
 import Banner from './Components/Banner'
 import RelatedProducts from './Components/RelatedProducts'
+import CartPage from './Pages/Cart'
 
 
 const App = () => {
