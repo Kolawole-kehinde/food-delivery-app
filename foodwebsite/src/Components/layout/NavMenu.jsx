@@ -5,6 +5,7 @@ import { HiOutlineShoppingBag } from 'react-icons/hi';
 import { IoIosNotificationsOutline } from 'react-icons/io';
 import { IoCartOutline } from 'react-icons/io5';
 import { MdKeyboardArrowDown } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 
 const NavMenu = ({ isMobile = false }) => {
   const wrapperClass = isMobile
@@ -17,10 +18,11 @@ const NavMenu = ({ isMobile = false }) => {
         <span>EN</span>
         <MdKeyboardArrowDown fontSize={20} className="bg-[#E6E8E6] rounded-md" />
       </div>
-      <div className={wrapperClass}>
-        <LuMessageSquareText fontSize={20} />
+    
+      <Link to="/messages" className={wrapperClass}>
+      <LuMessageSquareText fontSize={20} />
         <span>My Messages</span>
-      </div>
+      </Link>
 
       <div className={wrapperClass}>
         <HiOutlineShoppingBag fontSize={20} />

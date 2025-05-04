@@ -9,6 +9,8 @@ import TopBanner from '../Components/TopBanner';
 
 
 
+
+
 const HomePage = () => {
   const [category, setCategory] = useState("All");
 
@@ -19,6 +21,7 @@ const HomePage = () => {
       <TopDishes category={category}/>
       <RecommendedDishes/>
       <TopBanner/>
+    
     
      
     </div>

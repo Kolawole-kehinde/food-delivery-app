@@ -5,12 +5,10 @@ import HomePage from './Pages/Home'
 import LoginPage from './Pages/auth/Login'
 import RegisterPage from './Pages/auth/Register'
 import Footer from './Components/layout/Footer'
-import MyMessage from './Pages/MyMessage'
 import OrderPage from './Pages/Order'
 import CartPage from './Pages/Cart'
 import NotificationPage from './Pages/Notification'
 import ProfilePage from './Pages/Profile'
-
 import ForgotPasswordPage from './Pages/auth/ForgotPassword'
 import ResetPasswordPage from './Pages/auth/ResetPassword'
 import PasswordSuccessPage from './Pages/auth/PasswordSuccess'
@@ -24,36 +22,33 @@ import RelatedProducts from './Components/RelatedProducts'
 
 const App = () => {
   return (
-    <div className=''>
-       <NavBar/>
+    <div>
+      <NavBar />
       <Routes>
         <Route path='/' >
-       
-        <Route index element={<HomePage />} />
-        <Route path='messages' element={<MyMessage/>}/>
-        <Route path='orders' element={<OrderPage/>}/>
-        <Route path='cart' element={<CartPage/>}/>
-        <Route path='notifications' element={<NotificationPage/>}/>
-        <Route path='profile' element={<ProfilePage/>}/>
-        <Route path='dashboard' element={<Dashboard/>}/>
-        <Route path='settings' element={<AccountSettings/>}/>
-        <Route path='all-dishes' element={<AllDishes/>}/>
-        <Route path='related-product' element={<RelatedProducts/>}/>
-        <Route path="product-details/:id" element={<ProductDetails/>} />
+          <Route index element={<HomePage />} />
+          {/* <Route path='messages' element={<MessagesPage />} /> */}
+          <Route path='orders' element={<OrderPage />} />
+          <Route path='cart' element={<CartPage />} />
+          <Route path='notifications' element={<NotificationPage />} />
+          <Route path='profile' element={<ProfilePage />} />
+          <Route path='dashboard' element={<Dashboard />} />
+          <Route path='settings' element={<AccountSettings />} />
+          <Route path='all-dishes' element={<AllDishes />} />
+          <Route path='related-product' element={<RelatedProducts />} />
+          <Route path="product-details/:id" element={<ProductDetails />} />
 
-
-        <Route path='auth'>
-        <Route path='login' element={<LoginPage/>}/>
-        <Route path='register' element={<RegisterPage/>}/>
-        <Route path='forget-password' element={<ForgotPasswordPage/>}/>
-        <Route path='reset-password' element={<ResetPasswordPage/>}/>
-        <Route path='password-success' element={<PasswordSuccessPage/>}/>
-        </Route>
+          <Route path='auth'>
+            <Route path='login' element={<LoginPage />} />
+            <Route path='register' element={<RegisterPage />} />
+            <Route path='forget-password' element={<ForgotPasswordPage />} />
+            <Route path='reset-password' element={<ResetPasswordPage />} />
+            <Route path='password-success' element={<PasswordSuccessPage />} />
+          </Route>
         </Route>
       </Routes>
-      <Banner/>
-      <Footer/>
-  
+      <Banner />
+      <Footer />
     </div>
   )
 }

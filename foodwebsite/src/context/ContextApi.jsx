@@ -47,6 +47,7 @@ const AppContextProvider = ({ children }) => {
   
     fetchProducts();
   }, []);
+  
 
   const handleLogout = async () => {
     setLoading(true);
