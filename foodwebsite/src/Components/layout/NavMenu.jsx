@@ -1,4 +1,3 @@
-// src/components/NavMenu.jsx
 import React, { useContext } from 'react';
 import { LuMessageSquareText } from 'react-icons/lu';
 import { HiOutlineShoppingBag } from 'react-icons/hi';

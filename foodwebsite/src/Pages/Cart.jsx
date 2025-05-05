@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import CartItem from '../Components/Cart/CartItem';
 import OrderSummary from '../Components/Cart/OrderSummary';
 import { AppContext } from '../context/ContextApi';
+import { Link } from 'react-router-dom';
 
 
 const CartPage = () => {
@@ -21,7 +22,7 @@ const CartPage = () => {
         <div className="flex-1 bg-white shadow-md rounded-xl">
           <div className="flex justify-between p-4 border-b">
             <h2 className="text-xl font-semibold">Shopping Cart ({cartProducts.length})</h2>
-            <a href="#" className="text-primary hover:underline">Continue Shopping</a>
+            <Link to="/" className="text-primary">Continue Shopping</Link>
           </div>
 
           {cartProducts.length > 0 ? (
