@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const OrderSummary = ({ subtotal }) => {
   const discount = 0;
@@ -35,9 +36,11 @@ const OrderSummary = ({ subtotal }) => {
       </div>
 
       <div className="p-6">
+        <Link to="/order">
         <button className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-lg text-sm font-semibold">
           Place Order Now →
         </button>
+        </Link>
       </div>
     </div>
   );
