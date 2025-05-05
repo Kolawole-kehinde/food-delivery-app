@@ -18,6 +18,8 @@ import Banner from './Components/Banner'
 import RelatedProducts from './Components/RelatedProducts'
 import CartPage from './Pages/Cart'
 import OrderPage from './Pages/Order'
+import OrderDetails from './Components/Cart/OrderDetails'
+
 
 
 const App = () => {
@@ -37,6 +39,7 @@ const App = () => {
           <Route path='all-dishes' element={<AllDishes />} />
           <Route path='related-product' element={<RelatedProducts />} />
           <Route path="product-details/:id" element={<ProductDetails />} />
+          <Route path="/orders/:orderId" element={<OrderDetails />} />
         
 
           <Route path='auth'>

@@ -1,7 +1,14 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const SuccessModal = ({ isOpen, onClose }) => {
+const SuccessModal = ({ isOpen, onClose, orderId }) => {
   if (!isOpen) return null;
+
+  const navigate = useNavigate();
+
+  const handleCheckOrder = () => {
+    navigate(`/orders/${orderId}`);
+  };
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
@@ -17,13 +24,13 @@ const SuccessModal = ({ isOpen, onClose }) => {
         <p className="text-gray-600 mb-6">Thank you for choosing FDA</p>
         <div className="flex justify-center gap-4">
           <button
-            onClick={onClose}
-            className="text-primary  text-sm font-medium"
+            onClick={() => navigate('/')}
+            className="text-primary text-sm font-medium"
           >
             Continue shopping
           </button>
           <button
-            onClick={onClose}
+            onClick={handleCheckOrder}
             className="bg-orange-500 text-white px-4 py-2 rounded-md text-sm hover:bg-orange-600"
           >
             Check Order
