@@ -11,12 +11,16 @@ export const AppContext = createContext({
   addToCart: () => {},
   removeFromCart: () => {},
   handleLogout: () => {},
-  products: [], // replace food_list with products
+  products: [],
 });
 
 const AppContextProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState({});
-  const [products, setProducts] = useState([]); // NEW state for Supabase products
+  const [cartItems, setCartItems] = useState(() => {
+    // Get cart items from localStorage if available
+    const savedCartItems = LocalStorageService.getItem("cartItems");
+    return savedCartItems ? JSON.parse(savedCartItems) : {};
+  });
+  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const { getItem, setItem, clear } = LocalStorageService;
@@ -30,13 +34,11 @@ const AppContextProvider = ({ children }) => {
     }
   }, [user, setItem]);
 
-  // 🔄 Fetch products from Supabase
+  // Fetch products from Supabase
   useEffect(() => {
     const fetchProducts = async () => {
-      const { data, error } = await supabase
-        .from("products")
-        .select("*");
-  
+      const { data, error } = await supabase.from("products").select("*");
+
       if (error) {
         console.error("Supabase error:", error.message);
       } else {
@@ -44,10 +46,9 @@ const AppContextProvider = ({ children }) => {
         setProducts(data);
       }
     };
-  
+
     fetchProducts();
   }, []);
-  
 
   const handleLogout = async () => {
     setLoading(true);
@@ -65,17 +66,27 @@ const AppContextProvider = ({ children }) => {
   };
 
   const addToCart = (itemId) => {
-    setCartItems((prev) => ({
-      ...prev,
-      [itemId]: prev[itemId] ? prev[itemId] + 1 : 1,
-    }));
+    setCartItems((prev) => {
+      const updatedCart = {
+        ...prev,
+        [itemId]: prev[itemId] ? prev[itemId] + 1 : 1,
+      };
+      // Save to localStorage
+      LocalStorageService.setItem("cartItems", JSON.stringify(updatedCart));
+      return updatedCart;
+    });
   };
 
   const removeFromCart = (itemId) => {
-    setCartItems((prev) => ({
-      ...prev,
-      [itemId]: Math.max((prev[itemId] || 0) - 1, 0),
-    }));
+    setCartItems((prev) => {
+      const updatedCart = {
+        ...prev,
+        [itemId]: Math.max((prev[itemId] || 0) - 1, 0),
+      };
+      // Save to localStorage
+      LocalStorageService.setItem("cartItems", JSON.stringify(updatedCart));
+      return updatedCart;
+    });
   };
 
   return (
