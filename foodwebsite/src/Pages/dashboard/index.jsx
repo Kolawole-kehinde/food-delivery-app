@@ -27,7 +27,7 @@ const Dashboard = () => {
       {/* Sidebar */}
       <Sidebar/>
 
-      {/* Main Content */}c
+      {/* Main Content */}
       <div className="flex-1">
         {/* Topbar */}
         <header className="bg-white shadow-sm p-4 flex flex-col lg:justify-between lg:flex-row items-center gap-4 px-4 lg:px-0">
