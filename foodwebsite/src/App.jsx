@@ -17,8 +17,9 @@ import ProductDetails from './Pages/ProductDetails'
 import Banner from './Components/Banner'
 import RelatedProducts from './Components/RelatedProducts'
 import CartPage from './Pages/Cart'
-import OrderPage from './Pages/Order'
-import OrderDetails from './Components/Cart/OrderDetails'
+import OrderPage from './Pages/CheckOutPage'
+import OrderDetails from './Pages/OrderDetails'
+import CheckOutPage from './Pages/CheckOutPage'
 
 
 
@@ -30,7 +31,7 @@ const App = () => {
         <Route path='/' >
           <Route index element={<HomePage />} />
           {/* <Route path='messages' element={<MessagesPage />} /> */}
-          <Route path='order' element={<OrderPage />} />
+          <Route path='checkout' element={<CheckOutPage />} />
           <Route path='cart' element={<CartPage />} />
           <Route path='notifications' element={<NotificationPage />} />
           <Route path='profile' element={<ProfilePage />} />

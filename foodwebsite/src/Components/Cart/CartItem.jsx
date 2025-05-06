@@ -18,7 +18,7 @@ const CartItem = ({ id, name, seller, price, quantity, image_url, onRemove, onIn
             </div>
           </div>
 
-          <div className="flex flex-col md:flex-row justify-between items-center mt-4">
+          <div className="flex flex-col md:flex-row justify-between items-center my-4">
             <div className="mt-4 w-[200px]">
               <select id={`payment-${id}`} className="w-full border-2 p-2 rounded mt-2 text-base font-medium">
                 <option value="">Payment Option</option>

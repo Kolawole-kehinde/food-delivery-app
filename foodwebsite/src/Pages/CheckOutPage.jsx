@@ -1,9 +1,14 @@
-import React from 'react';
-import OrderSummary from '../Components/Cart/OrderSummary';
+import React from "react";
+import { useCartContext } from "../context/CartContext";
+import OrderSummary from "../Components/Cart/OrderSummary";
 
+const CheckOutPage = () => {
+  const { cartItems } = useCartContext();
 
-const OrderPage = () => {
-  const subtotal = 150; // Example subtotal
+  const subtotal = cartItems.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
 
   return (
     <main className="min-h-screen bg-gray-50 py-10 px-4 md:px-12 lg:px-20">
@@ -66,7 +71,12 @@ const OrderPage = () => {
             <h2 className="text-xl font-bold mb-4">Payment Method</h2>
             <form className="space-y-4">
               <label className="flex items-center gap-3">
-                <input type="radio" name="payment" value="card" defaultChecked />
+                <input
+                  type="radio"
+                  name="payment"
+                  value="card"
+                  defaultChecked
+                />
                 <span>Credit / Debit Card</span>
               </label>
               <label className="flex items-center gap-3">
@@ -83,11 +93,15 @@ const OrderPage = () => {
 
         {/* Right: Order Summary */}
         <section className="lg:col-span-1">
-          <OrderSummary subtotal={subtotal} />
+          <OrderSummary
+            subtotal={subtotal}
+            buttonText="Checkout Now"
+            showModal={true}
+          />
         </section>
       </div>
     </main>
   );
 };
 
-export default OrderPage;
+export default CheckOutPage;

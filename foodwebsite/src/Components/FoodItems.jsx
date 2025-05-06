@@ -1,18 +1,19 @@
-import { useContext } from "react";
-import { AppContext } from "../context/ContextApi";
+import React from "react";
 import { FaHeart, FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useCartContext } from "../context/CartContext";
+
 
 const FoodItems = ({ id, name, price, image_url, description }) => {
-  const { cartItems, addToCart, removeFromCart } = useContext(AppContext);
+  const { cartItems, addToCart, removeFromCart } = useCartContext(); 
 
-  // Check if the item is in the cart and get its quantity
-  const quantityInCart = cartItems[id] || 0;
+  const quantityInCart = cartItems.find(item => item.id === id)?.quantity || 0;  
+
+  const product = { id, name, price, image_url, description }; 
 
   return (
     <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition">
       <div className="relative">
-        {/* Product Image */}
         <Link to={`/product-details/${id}`} className="block">
           <img
             src={image_url}
@@ -21,38 +22,29 @@ const FoodItems = ({ id, name, price, image_url, description }) => {
           />
         </Link>
 
-        {/* Conditional rendering for Add to Cart or Quantity Controls */}
         {quantityInCart === 0 ? (
           <div className="absolute bottom-4 left-4 right-4 flex justify-between items-center px-2">
-            {/* Add to Favorites Icon */}
             <FaHeart
               className="text-white text-xl cursor-pointer hover:text-red-600 transition"
               title="Add to favorites"
             />
-
-            {/* Add to Cart Icon */}
             <FaPlus
-              onClick={() => addToCart(id)}
+              onClick={() => addToCart(product)} 
               className="text-primary text-xl cursor-pointer bg-white rounded-full p-1 hover:scale-110 transition"
               title="Add to cart"
             />
           </div>
         ) : (
           <div className="absolute bottom-4 right-4 flex items-center gap-2 bg-white p-2 rounded-full shadow-md">
-            {/* Remove Item Icon */}
             <img
-              onClick={() => removeFromCart(id)}
+              onClick={() => removeFromCart(id)} 
               src="/images/remove_icon_red.png"
               alt="Remove item"
               className="w-7 cursor-pointer"
             />
-            
-            {/* Quantity Display */}
             <p className="text-sm font-medium">{quantityInCart}</p>
-
-            {/* Add Item Icon */}
             <img
-              onClick={() => addToCart(id)}
+              onClick={() => addToCart(product)}  
               src="/images/add_icon_green.png"
               alt="Add item"
               className="w-7 cursor-pointer"
@@ -61,7 +53,6 @@ const FoodItems = ({ id, name, price, image_url, description }) => {
         )}
       </div>
 
-      {/* Food Info */}
       <div className="p-4">
         <div className="flex justify-between items-center mb-2">
           <h3 className="font-semibold text-lg">{name}</h3>

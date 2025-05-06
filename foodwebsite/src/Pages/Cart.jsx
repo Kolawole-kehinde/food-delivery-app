@@ -1,38 +1,40 @@
-import React, { useContext } from 'react';
-import CartItem from '../Components/Cart/CartItem';
-import OrderSummary from '../Components/Cart/OrderSummary';
-import { AppContext } from '../context/ContextApi';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { useCartContext } from "../context/CartContext";
+import { Link, useNavigate } from "react-router-dom";
+import CartItem from "../Components/Cart/CartItem";
+import OrderSummary from "../Components/Cart/OrderSummary";
 
-
-const CartPage = () => {
-  const { products, cartItems, addToCart, removeFromCart } = useContext(AppContext);
-
-  // Get only the products in the cart
-  const cartProducts = products.filter(product => cartItems[product.id]);
-
-  const subtotal = cartProducts.reduce((acc, product) => {
-    const quantity = cartItems[product.id];
-    return acc + parseFloat(product.price) * quantity;
-  }, 0);
+const CartPage = ({subtotal}) => {
+  const {
+    cartItems,
+    addToCart,
+    removeFromCart,
+    updateQuantity,
+  } = useCartContext();
+  const navigate = useNavigate();
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-6">
         <div className="flex-1 bg-white shadow-md rounded-xl">
           <div className="flex justify-between p-4 border-b">
-            <h2 className="text-xl font-semibold">Shopping Cart ({cartProducts.length})</h2>
-            <Link to="/" className="text-primary">Continue Shopping</Link>
+            <h2 className="text-xl font-semibold">
+              Shopping Cart ({cartItems.length})
+            </h2>
+            <Link to="/" className="text-primary">
+              Continue Shopping
+            </Link>
           </div>
 
-          {cartProducts.length > 0 ? (
-            cartProducts.map(product => (
+          {cartItems.length > 0 ? (
+            cartItems.map((product) => (
               <CartItem
                 key={product.id}
                 {...product}
-                quantity={cartItems[product.id]}
-                onIncrease={() => addToCart(product.id)}
-                onDecrease={() => removeFromCart(product.id)}
+                onIncrease={() => addToCart(product, 1)}
+                onDecrease={() =>
+                  updateQuantity(product.id, product.quantity - 1)
+                }
                 onRemove={() => removeFromCart(product.id)}
               />
             ))
@@ -41,7 +43,11 @@ const CartPage = () => {
           )}
         </div>
 
-        <OrderSummary subtotal={subtotal} />
+        <OrderSummary
+          subtotal={subtotal}
+          buttonText="Proceed to Checkout"
+          onProceed={() => navigate("/checkout")}
+        />
       </div>
     </div>
   );

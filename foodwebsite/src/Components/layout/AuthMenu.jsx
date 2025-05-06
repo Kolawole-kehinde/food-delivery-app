@@ -2,8 +2,8 @@
 import React from 'react';
 import { useAuth } from '../../hooks/useAuth';
 import { Link } from 'react-router-dom';
-import { FaUser, FaCog, FaQuestionCircle, FaSignOutAlt, FaSignInAlt, FaUserPlus, FaUtensils, FaHome } from 'react-icons/fa';
-import { RiDashboard2Line } from "react-icons/ri";
+import { FaUser, FaQuestionCircle, FaSignOutAlt, FaSignInAlt, FaUserPlus, FaUtensils, FaHome } from 'react-icons/fa';
+
 
 
 
