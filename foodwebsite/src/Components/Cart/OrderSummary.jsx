@@ -30,7 +30,7 @@ const OrderSummary = ({
   const { cartItems, clearCart } = useCartContext();
   const { user } = useAuth();
 
-  const { placeOrder, isLoading, isSuccess } = usePlaceOrder({
+  const { placeOrder, isLoading, isSuccess, orderId } = usePlaceOrder({
     user,
     subtotal,
     cartItems,
@@ -72,7 +72,9 @@ const OrderSummary = ({
         </div>
       </div>
 
-      {showModal && isSuccess && <SuccessModal isOpen={true} onClose={() => {}} />}
+      {showModal && isSuccess && (
+  <SuccessModal isOpen={true} onClose={() => {}} orderId={orderId} />
+)}
     </>
   );
 };

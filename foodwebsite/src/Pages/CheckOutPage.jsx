@@ -1,21 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useCartContext } from '../context/CartContext';
 import OrderSummary from '../Components/Cart/OrderSummary';
 
+
+
 const CheckOutPage = () => {
-  const { cartItems, buyNowItem } = useCartContext();
+  const { cartItems, buyNowItem, clearCart } = useCartContext();
 
 
   const itemsToCheckout = buyNowItem ? [buyNowItem] : cartItems;
+  const subtotal = itemsToCheckout.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
 
-  const subtotal = itemsToCheckout.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const handleOrderSuccess = (newOrderId) => {
+    setOrderId(newOrderId);
+    setIsModalOpen(true);
+    clearCart();
+  };
 
   return (
     <main className="min-h-screen bg-gray-50 py-10 px-4 md:px-12 lg:px-20">
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Left: Shipping + Payment */}
         <section className="lg:col-span-2 space-y-8">
-          {/* Shipping Info */}
           <div className="bg-white p-6 rounded-2xl shadow-md">
             <h2 className="text-xl font-bold mb-4">Shipping Information</h2>
             <form className="space-y-4">
@@ -34,7 +43,6 @@ const CheckOutPage = () => {
             </form>
           </div>
 
-          {/* Payment Method */}
           <div className="bg-white p-6 rounded-2xl shadow-md">
             <h2 className="text-xl font-bold mb-4">Payment Method</h2>
             <form className="space-y-4">
@@ -60,10 +68,12 @@ const CheckOutPage = () => {
             subtotal={subtotal}
             items={itemsToCheckout}
             buttonText="Checkout Now"
-            showModal={true}
+            onSuccess={handleOrderSuccess}
           />
         </section>
       </div>
+
+   
     </main>
   );
 };
