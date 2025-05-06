@@ -4,7 +4,6 @@ import { useAuth } from '../../hooks/useAuth';
 import SuccessModal from './SuccessModal';
 import { usePlaceOrder } from '../../hooks/usePlaceOrder';
 
-// Inline SummaryRow component
 const SummaryRow = ({ label, value, isTotal = false }) => (
   <div
     className={`flex justify-between p-6 border-b-2 border-gray-200 ${isTotal ? 'font-semibold text-lg' : ''}`}
@@ -26,7 +25,7 @@ const OrderSummary = ({
   subtotal = 0,
   showModal = true,
   buttonText = 'Proceed to Checkout',
-  onProceed, // Optional handler for custom actions (e.g., navigation)
+  onProceed,
 }) => {
   const { cartItems, clearCart } = useCartContext();
   const { user } = useAuth();
@@ -38,15 +37,15 @@ const OrderSummary = ({
     clearCart,
   });
 
-  const discount = 0; // Replace with actual discount calculation logic if needed
-  const tax = 0; // Replace with actual tax calculation logic if needed
+  const discount = 0; 
+  const tax = 0;
   const total = subtotal - discount + tax;
 
   const handleClick = () => {
     if (onProceed) {
-      onProceed(); // External handler like navigation
+      onProceed();
     } else {
-      placeOrder(); // Default order placement
+      placeOrder();
     }
   };
 

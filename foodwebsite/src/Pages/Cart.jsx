@@ -8,10 +8,8 @@ const CartPage = () => {
   const { cartItems, addToCart, removeFromCart, updateQuantity } = useCartContext();
   const navigate = useNavigate();
 
-  // Calculate subtotal based on cart items
   const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
-  // Navigate to Checkout Page when "Proceed to Checkout" is clicked
   const handleCheckout = () => navigate('/checkout');
 
   return (
@@ -41,7 +39,7 @@ const CartPage = () => {
         <OrderSummary
           subtotal={subtotal}
           buttonText="Proceed to Checkout"
-          onProceed={handleCheckout} // Handle checkout button click
+          onProceed={handleCheckout} 
         />
       </div>
     </div>

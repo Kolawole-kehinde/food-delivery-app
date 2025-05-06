@@ -1,19 +1,34 @@
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../libs/supabase";
 import toast from "react-hot-toast";
-import { useMutation } from '@tanstack/react-query';
+import { useMutation } from "@tanstack/react-query";
 
-
-const placeOrderRequest = async ({ user, subtotal, cartItems }) => {
+// Function to handle the order placement request
+const placeOrderRequest = async (user, subtotal, cartItems) => {
   if (!user) throw new Error('User not logged in');
 
+  // Create an order record in the 'orders' table
   const { data: order, error: orderError } = await supabase
-    .from('orders')
-    .insert([{ user_id: user.id, total_price: subtotal, order_status: 'pending' }])
-    .select()
-    .single();
+  .from('orders')
+  .insert([
+    {
+      user_id: user.id,
+      total_price: subtotal,
+      order_status: 'pending',
+      payment_method: 'card',
+      shipping_info: JSON.stringify({
+        address: '123 Main St',
+        city: 'New York',
+        state: 'NY',
+        zip_code: '10001',
+      }),
+    },
+  ])
+  .select()
+  .single();
 
-  if (orderError) throw orderError;
+
+  if (orderError) throw new Error(`Failed to create order: ${orderError.message}`);
 
   const orderItems = cartItems.map((item) => ({
     order_id: order.id,
@@ -23,7 +38,7 @@ const placeOrderRequest = async ({ user, subtotal, cartItems }) => {
   }));
 
   const { error: itemsError } = await supabase.from('order_items').insert(orderItems);
-  if (itemsError) throw itemsError;
+  if (itemsError) throw new Error(`Failed to add order items: ${itemsError.message}`);
 
   return order.id;
 };
@@ -32,21 +47,21 @@ export const usePlaceOrder = ({ user, subtotal, cartItems, clearCart }) => {
   const navigate = useNavigate();
 
   const mutation = useMutation({
-    mutationFn: () => placeOrderRequest({ user, subtotal, cartItems }),
+    mutationFn: () => placeOrderRequest(user, subtotal, cartItems), 
     onSuccess: () => {
       toast.success('Order placed successfully!');
       clearCart();
-      navigate('/orders'); // or navigate('/') for home
+      navigate('/orders');
     },
     onError: (error) => {
-      console.error(error.message);
-      toast.error('Failed to place order.');
+      console.error(error);
+      toast.error(`Failed to place order: ${error.message}`);
     },
   });
 
   return {
     placeOrder: mutation.mutate,
-    isLoading: mutation.isPending,
+    isLoading: mutation.isLoading,
     isSuccess: mutation.isSuccess,
   };
 };

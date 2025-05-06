@@ -15,12 +15,12 @@ export const useProduct = (id) => {
 
       if (error) throw new Error(error.message);
 
-      // Handle the case where the product is not found
+  
       if (!data) throw new Error('Product not found');
       
       return data;
     },
-    // Optional: add `enabled` option to only fetch when `id` is available
-    enabled: !!id,
+
+
   });
 };

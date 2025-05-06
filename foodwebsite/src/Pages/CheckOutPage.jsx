@@ -5,10 +5,9 @@ import OrderSummary from '../Components/Cart/OrderSummary';
 const CheckOutPage = () => {
   const { cartItems, buyNowItem } = useCartContext();
 
-  // If there's a Buy Now item, prioritize it over cart items
+
   const itemsToCheckout = buyNowItem ? [buyNowItem] : cartItems;
 
-  // Calculate subtotal
   const subtotal = itemsToCheckout.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   return (
