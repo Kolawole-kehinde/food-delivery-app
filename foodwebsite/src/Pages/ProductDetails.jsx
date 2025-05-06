@@ -11,10 +11,15 @@ const ProductDetails = () => {
   const { data: product, isLoading, isError, error } = useProduct(id);
   const [quantity, setQuantity] = useState(1);
   const navigate = useNavigate();
-  const { addToCart } = useCartContext();
+  const { addToCart, buyNow, buyNowItem } = useCartContext();
 
   const handleQuantityChange = (val) => {
     setQuantity((prev) => Math.max(1, prev + val));
+  };
+
+  const handleBuyNow = () => {
+    buyNow(product, quantity); // This sets the buyNowItem
+    navigate('/checkout'); // Redirects to the checkout page immediately
   };
 
   if (isLoading) return <div className="p-6 text-center">Loading product...</div>;
@@ -88,10 +93,10 @@ const ProductDetails = () => {
                 </button>
 
                 <button
-                  onClick={() => navigate('/checkout')}
+                  onClick={handleBuyNow}
                   className="bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded-md shadow-md"
                 >
-                  Proceed to Checkout
+                  Buy Now
                 </button>
               </div>
             </div>

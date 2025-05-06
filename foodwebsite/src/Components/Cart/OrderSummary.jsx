@@ -4,20 +4,30 @@ import { useAuth } from '../../hooks/useAuth';
 import SuccessModal from './SuccessModal';
 import { usePlaceOrder } from '../../hooks/usePlaceOrder';
 
-
 // Inline SummaryRow component
 const SummaryRow = ({ label, value, isTotal = false }) => (
   <div
-    className={`flex justify-between p-6 border-b-2 border-gray-200 ${
-      isTotal ? 'font-semibold text-lg' : ''
-    }`}
+    className={`flex justify-between p-6 border-b-2 border-gray-200 ${isTotal ? 'font-semibold text-lg' : ''}`}
   >
     <span className="text-gray-600">{label}:</span>
     <span className="text-gray-800">{value}</span>
   </div>
 );
 
-const OrderSummary = ({ subtotal, showModal = true, buttonText = 'Proceed to Checkout' }) => {
+const formatCurrency = (value) => {
+  try {
+    return (value ?? 0).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+  } catch {
+    return '$0.00';
+  }
+};
+
+const OrderSummary = ({
+  subtotal = 0,
+  showModal = true,
+  buttonText = 'Proceed to Checkout',
+  onProceed, // Optional handler for custom actions (e.g., navigation)
+}) => {
   const { cartItems, clearCart } = useCartContext();
   const { user } = useAuth();
 
@@ -28,15 +38,17 @@ const OrderSummary = ({ subtotal, showModal = true, buttonText = 'Proceed to Che
     clearCart,
   });
 
-  const discount = 0;
-  const tax = 0;
+  const discount = 0; // Replace with actual discount calculation logic if needed
+  const tax = 0; // Replace with actual tax calculation logic if needed
   const total = subtotal - discount + tax;
 
-  const formatCurrency = (value) =>
-    value.toLocaleString('en-US', {
-      style: 'currency',
-      currency: 'USD',
-    });
+  const handleClick = () => {
+    if (onProceed) {
+      onProceed(); // External handler like navigation
+    } else {
+      placeOrder(); // Default order placement
+    }
+  };
 
   return (
     <>
@@ -52,7 +64,7 @@ const OrderSummary = ({ subtotal, showModal = true, buttonText = 'Proceed to Che
 
         <div className="p-6">
           <button
-            onClick={placeOrder}
+            onClick={handleClick}
             disabled={isLoading}
             className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-lg text-sm font-semibold disabled:opacity-70"
           >
