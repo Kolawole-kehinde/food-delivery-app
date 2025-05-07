@@ -20,7 +20,7 @@ const NavMenu = ({ isMobile = false }) => {
   const baseClass = 'flex items-center space-x-1 px-2 py-1 cursor-pointer';
   const activeClass = 'text-primary border-b-2 border-primary rounded-b-md bg-[#e6f0fa]';
   const getMenuClass = (path) =>
-    `${baseClass} ${pathname === path ? activeClass : 'hover:text-primary'}`;
+    `${baseClass} ${pathname === path ? activeClass : ''}`;
 
   const menuItems = [
     { to: '/help', label: 'Help', icon: <TbHelpSquare fontSize={20} /> },

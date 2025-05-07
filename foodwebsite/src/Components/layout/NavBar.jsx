@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import Logo from "./Logo";
-import SearchBar from "../SearchButton";
+import SearchBar from "./SearchButton";
 import NavMenu from "./NavMenu";
 import AuthButton from "./AuthButton";
 

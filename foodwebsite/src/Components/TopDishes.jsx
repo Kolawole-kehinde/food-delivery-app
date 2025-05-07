@@ -3,12 +3,21 @@ import FoodItems from "./FoodItems";
 import { AppContext } from "../context/ContextApi";
 import { Link } from "react-router-dom";
 
-const TopDishes = ({ category = "All", title = "Top Dishes", start = 0, end = 8, showMoreButton = true }) => {
+const TopDishes = ({
+  category = "All",
+  title = "Top Dishes",
+  start = 0,
+  end = 8,
+  showMoreButton = true,
+  searchTerm = "", // 🔍 Add searchTerm prop
+}) => {
   const { products } = useContext(AppContext);
 
-  const filteredList = category === "All"
-    ? products
-    : products.filter(item => item.category === category);
+  const filteredList = products.filter((item) => {
+    const matchesCategory = category === "All" || item.category === category;
+    const matchesSearch = item.name.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
 
   return (
     <div className="wrapper px-4 lg:px-0 py-6">
@@ -35,4 +44,5 @@ const TopDishes = ({ category = "All", title = "Top Dishes", start = 0, end = 8,
     </div>
   );
 };
+
 export default TopDishes;

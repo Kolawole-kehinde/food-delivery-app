@@ -12,8 +12,8 @@ const Sidebar = React.memo(({ currentUser, onSelectUser }) => {
     const loadUsers = async () => {
       try {
         const { data, error } = await supabase
-          .from('profiles') // Changed from 'users' to 'profiles' (Supabase standard)
-          .select('id, username, avatar_url') // Added avatar_url for better UI
+          .from('profiles') 
+          .select('id, username, avatar_url') 
           .neq('id', currentUser.id)
           .order('username', { ascending: true });
 
