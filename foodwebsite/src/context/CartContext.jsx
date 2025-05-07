@@ -20,11 +20,16 @@ export const CartProvider = ({ children }) => {
     if (storedFavorites) setFavorites(storedFavorites);
   }, []);
 
+  // Save cart items to localStorage whenever cartItems state changes
   useEffect(() => {
-    LocalStorageService.setItem("cart", cartItems);
+    if (cartItems.length > 0) {
+      LocalStorageService.setItem("cart", cartItems);
+    } else {
+      LocalStorageService.removeItem("cart");
+    }
   }, [cartItems]);
 
-
+  // Save buyNow item to localStorage whenever buyNowItem state changes
   useEffect(() => {
     if (buyNowItem) {
       LocalStorageService.setItem("buyNow", buyNowItem);
@@ -33,9 +38,13 @@ export const CartProvider = ({ children }) => {
     }
   }, [buyNowItem]);
 
-
+  // Save favorites to localStorage whenever favorites state changes
   useEffect(() => {
-    LocalStorageService.setItem("favorites", favorites);
+    if (favorites.length > 0) {
+      LocalStorageService.setItem("favorites", favorites);
+    } else {
+      LocalStorageService.removeItem("favorites");
+    }
   }, [favorites]);
 
   // Cart Functions
@@ -69,7 +78,6 @@ export const CartProvider = ({ children }) => {
 
   const clearCart = () => {
     setCartItems([]);
-    LocalStorageService.removeItem("cart");
   };
 
   const getTotalPrice = () =>

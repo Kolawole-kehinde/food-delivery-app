@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FiUser } from 'react-icons/fi';
-import AuthMenu from './AuthMenu'; // Import the AuthMenu
+import AuthMenu from './AuthMenu'; 
 import { useAuth } from '../../hooks/useAuth';
 
 const AuthButton = () => {
@@ -10,25 +10,25 @@ const AuthButton = () => {
  
   useEffect(() => {
     if (user) {
-      setIsMenuOpen(false);  // Close the menu if the user logs in
+      setIsMenuOpen(false); 
     } else {
-      setIsMenuOpen(false);  // Also ensure it's closed if logged out
+      setIsMenuOpen(false); 
     }
-  }, [user]); // This will trigger every time the user changes (log in or out)
+  }, [user]); 
 
-  // Toggle menu visibility when the button is clicked
+  
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   return (
     <div className="relative">
-      {/* User Icon */}
+ 
       <button onClick={toggleMenu} className="cursor-pointer">
         <FiUser fontSize={20} />
       </button>
 
-      {/* Dropdown Menu */}
+    
       {isMenuOpen && <AuthMenu  />}
     </div>
   );
