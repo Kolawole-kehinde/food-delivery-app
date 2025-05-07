@@ -6,6 +6,7 @@ import { IoCartOutline } from 'react-icons/io5';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { useCartContext } from '../../context/CartContext';
+import { TbHelpSquare } from "react-icons/tb";
 
 
 const NavMenu = ({ isMobile = false }) => {
@@ -24,9 +25,13 @@ const NavMenu = ({ isMobile = false }) => {
         <MdKeyboardArrowDown fontSize={20} className="bg-[#E6E8E6] rounded-md" />
       </div>
 
+      <Link to="/help" className={wrapperClass}>
+      <TbHelpSquare fontSize={20}/>
+        <span>Help</span>
+      </Link>
       <Link to="/messages" className={wrapperClass}>
         <LuMessageSquareText fontSize={20} />
-        <span>My Messages</span>
+        <span>Messages</span>
       </Link>
 
       <div className={wrapperClass}>

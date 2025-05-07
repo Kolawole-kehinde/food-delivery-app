@@ -7,7 +7,7 @@ const SuccessModal = ({ isOpen, onClose, orderId }) => {
   const navigate = useNavigate();
 
   const handleCheckOrder = () => {
-    navigate(`/orders/${orderId}`);
+    navigate(`/order/${orderId}`);
   };
 
   return (

@@ -40,7 +40,9 @@ const App = () => {
           <Route path='all-dishes' element={<AllDishes />} />
           <Route path='related-product' element={<RelatedProducts />} />
           <Route path="product-details/:id" element={<ProductDetails />} />
-          <Route path="/orders/:orderId" element={<OrderDetails />} />
+          <Route path="/order/:orderId" element={<OrderDetails />} />
+
+
         
 
           <Route path='auth'>
