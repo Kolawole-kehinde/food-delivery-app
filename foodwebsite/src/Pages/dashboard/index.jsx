@@ -1,11 +1,11 @@
-import React from "react";
-import { FaHome, FaUtensils, FaHeart, FaCog, FaSignOutAlt, FaBell } from "react-icons/fa";
+import React, { useState } from "react";
+import { FaBell } from "react-icons/fa";
 import { useAuth } from "../../hooks/useAuth";
 import Sidebar from "../../Components/features/dashboard/SideBar";
 
 const Dashboard = () => {
   // Dashboard data
-  const {user} = useAuth();
+  const { user } = useAuth();
   const stats = [
     { label: "Total Orders", value: 120 },
     { label: "Pending", value: 5 },
@@ -17,15 +17,14 @@ const Dashboard = () => {
     { id: "#1235", food: "Spaghetti", status: "Pending", time: "5 mins ago" },
   ];
 
-  const favorites = [
-    { name: "Burger", img: "https://source.unsplash.com/80x80/?burger" },
-    { name: "Sushi", img: "https://source.unsplash.com/80x80/?sushi" },
-  ];
+  const [favorites, setFavorites] = useState(() => {
+    return JSON.parse(localStorage.getItem("favorites")) || [];
+  });
 
   return (
     <div className="flex min-h-screen bg-gray-100">
       {/* Sidebar */}
-      <Sidebar/>
+      <Sidebar />
 
       {/* Main Content */}
       <div className="flex-1">
@@ -77,13 +76,21 @@ const Dashboard = () => {
           {/* Favorites */}
           <div className="bg-white p-6 rounded-xl shadow-md">
             <h3 className="text-lg font-semibold mb-4 text-gray-700">Your Favorites</h3>
-            <div className="flex gap-4">
-              {favorites.map((item, i) => (
-                <div key={i} className="flex flex-col items-center text-sm text-gray-600">
-                  <img src={item.img} alt={item.name} className="w-16 h-16 rounded-full object-cover" />
-                  <span>{item.name}</span>
-                </div>
-              ))}
+            <div className="flex gap-4 overflow-x-auto">
+              {favorites.length > 0 ? (
+                favorites.map((item, i) => (
+                  <div key={i} className="flex flex-col items-center text-sm text-gray-600">
+                    <img
+                      src={item.image_url}
+                      alt={item.name}
+                      className="w-16 h-16 rounded-full object-cover"
+                    />
+                    <span>{item.name}</span>
+                  </div>
+                ))
+              ) : (
+                <p>No favorite items yet</p>
+              )}
             </div>
           </div>
         </main>

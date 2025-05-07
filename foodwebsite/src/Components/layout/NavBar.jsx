@@ -4,7 +4,7 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import Logo from "./Logo";
 import SearchBar from "../SearchButton";
 import NavMenu from "./NavMenu";
-import AuthButton from "./AuthButton"; // Import AuthButton
+import AuthButton from "./AuthButton";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -24,12 +24,12 @@ const Navbar = () => {
           </div>
 
           {/* Desktop Icons */}
-          <div className="hidden md:flex items-center space-x-4 text-gray-700 text-sm">
+          <div className="hidden md:flex items-center space-x-6 text-gray-700 text-sm">
             {/* Actions */}
             <NavMenu />
 
             {/* Profile Button */}
-            <AuthButton />
+            <AuthButton /> 
           </div>
 
           {/* Hamburger Icon */}

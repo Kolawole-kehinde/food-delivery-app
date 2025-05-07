@@ -36,7 +36,7 @@ const NavMenu = ({ isMobile = false }) => {
 
       <div className={wrapperClass}>
         <HiOutlineShoppingBag fontSize={20} />
-        <span>My Orders</span>
+        <span>Orders</span>
       </div>
 
       <Link to="/cart" className={wrapperClass}>

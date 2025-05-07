@@ -10,7 +10,7 @@ const FAQItem = ({ category, index, faq, openIndex, toggle }) => {
         className="w-full flex justify-between items-center py-4 text-left"
       >
         <span className="text-base font-medium text-gray-800">{faq.question}</span>
-        {isOpen ? <FaMinus /> : <FaPlus />}
+        {isOpen ? <FaMinus  /> : <FaPlus />}
       </button>
       {isOpen && faq.answer && (
         <div className="text-sm text-gray-600 pb-4">{faq.answer}</div>

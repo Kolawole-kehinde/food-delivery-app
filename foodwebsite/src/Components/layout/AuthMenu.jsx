@@ -24,6 +24,7 @@ const AuthMenu = () => {
       <Link onClick={toggleMenu} to="/profile" className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-primary">
         <FaUser  /> Profile
       </Link>
+      
       <Link onClick={toggleMenu} to="/dashboard" className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-primary">
       <FaHome/> Dashboard
       </Link>
