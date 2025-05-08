@@ -24,7 +24,7 @@ const Navbar = () => {
           </div>
 
           {/* Desktop Icons */}
-          <div className="hidden md:flex items-center space-x-6 text-gray-700 text-sm">
+          <div className="hidden md:flex items-center space-x-3 text-gray-700 text-sm">
             {/* Actions */}
             <NavMenu />
 

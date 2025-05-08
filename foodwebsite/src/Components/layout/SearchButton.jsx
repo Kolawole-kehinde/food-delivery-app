@@ -61,7 +61,7 @@ const SearchBar = () => {
         onBlur={handleBlur}
         onChange={handleSearchChange}
         placeholder="What would you love to buy today?"
-        className="w-full px-4 py-2 pl-10 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="w-full px-4 py-2 pl-10 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500"
       />
       <FaSearch className="absolute top-1/2 right-3 transform -translate-y-1/2 text-gray-400" />
 

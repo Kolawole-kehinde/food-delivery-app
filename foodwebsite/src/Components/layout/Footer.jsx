@@ -2,6 +2,7 @@ import React from 'react'
 import { FaFacebookSquare, FaInstagram, FaLinkedin } from 'react-icons/fa'
 import { FiArrowRight } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
+import SuggestionInput from '../SuggestionInput'
 
 const Footer = () => {
   return (
@@ -72,19 +73,7 @@ const Footer = () => {
 
 
           {/* Suggestion Input */}
-          <div className="flex flex-col items-start  gap-3 w-full lg:w-auto">
-            <p className="font-semibold">What feature would you love to have?</p>
-            <div className="flex w-full sm:w-auto">
-              <input
-                type="text"
-                placeholder="Kindly drop your suggestions"
-                className="px-4 py-2 rounded-l-full w-full sm:w-96 text-black"
-              />
-              <button className="bg-primary text-white px-4 rounded-r-full hover:bg-green-600 flex items-center justify-center">
-                <FiArrowRight size={20} />
-              </button>
-            </div>
-          </div>
+          <SuggestionInput/>
         </div>
       </div>
 

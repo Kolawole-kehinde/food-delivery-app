@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaUtensils, FaArrowRight } from 'react-icons/fa';
 import MotionWrapper from './Animation/MotionWrapper';
+import { Link } from 'react-router-dom';
 
 
 const Banner = () => {
@@ -19,12 +20,16 @@ const Banner = () => {
             </p>
           </MotionWrapper>
           <MotionWrapper type="fadeInRight">
+            <Link to="/all-dishes">
             <button className="flex items-center gap-2 bg-[#FF3D00] hover:bg-orange-700 text-white px-5 py-3 rounded-full text-sm font-semibold transition duration-200">
               <FaUtensils />
               Order Now
               <FaArrowRight />
             </button>
+            </Link>
+                
           </MotionWrapper>
+        
         </div>
 
         <MotionWrapper type="zoomIn">
