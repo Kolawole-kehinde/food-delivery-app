@@ -5,6 +5,8 @@ import { useAuth } from "../hooks/useAuth";
 import { toast } from "react-hot-toast";
 import CustomInput from "../Components/CustomInput";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { changePasswordSchema } from "../Shchema/Schema";
 
 const ChangePassword = () => {
   const { user } = useAuth(); 
@@ -16,8 +18,9 @@ const ChangePassword = () => {
     register,
     handleSubmit,
     formState: { errors },
-
-  } = useForm();
+} = useForm({
+    resolver: zodResolver(changePasswordSchema)
+  });
 
 
   const onSubmit = async (data) => {
