@@ -24,12 +24,15 @@ const Navbar = () => {
           </div>
 
           {/* Desktop Icons */}
-          <div className="hidden md:flex items-center space-x-3 text-gray-700 text-sm">
+          <div className="hidden lg:flex items-center space-x-3 text-gray-700 text-sm">
             {/* Actions */}
             <NavMenu />
 
-            {/* Profile Button */}
-            <AuthButton /> 
+          
+          </div>
+          <div className="hidden md:flex items-center ">
+              {/* Profile Button */}
+              <AuthButton /> 
           </div>
 
           {/* Hamburger Icon */}

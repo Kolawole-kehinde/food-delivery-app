@@ -21,7 +21,6 @@ function SuggestionInput() {
       .insert([{ message: suggestion }]);
   
     if (error) {
-      console.error('Supabase Error:', error.message);
       toast.error('Failed to submit. Please try again.');
     } else {
       toast.success('Thank you for your suggestion!');

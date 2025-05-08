@@ -7,7 +7,7 @@ import { FaUser, FaQuestionCircle, FaSignOutAlt, FaSignInAlt, FaUserPlus, FaUten
 
 
 
-const AuthMenu = () => {
+const AuthMenu = ({orderId}) => {
   const { user, loading, handleLogout} = useAuth();
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -28,7 +28,7 @@ const AuthMenu = () => {
       <Link onClick={toggleMenu} to="/dashboard" className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-primary">
       <FaHome/> Dashboard
       </Link>
-      <Link onClick={toggleMenu} to="/settings" className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-primary">
+      <Link onClick={toggleMenu} to={`/order/${orderId}`} className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-primary">
         <FaUtensils /> Orders
       </Link>
       <Link onClick={toggleMenu} to="/help" className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-primary">

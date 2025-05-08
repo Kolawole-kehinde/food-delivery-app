@@ -11,7 +11,6 @@ import ForgotPasswordPage from './Pages/auth/ForgotPassword'
 import ResetPasswordPage from './Pages/auth/ResetPassword'
 import PasswordSuccessPage from './Pages/auth/PasswordSuccess'
 import Dashboard from './Pages/dashboard'
-import AccountSettings from './Pages/AccountSettings'
 import AllDishes from './Pages/AllDishes'
 import ProductDetails from './Pages/ProductDetails'
 import Banner from './Components/Banner'
@@ -20,6 +19,7 @@ import CartPage from './Pages/Cart'
 import OrderDetails from './Pages/OrderDetails'
 import CheckOutPage from './Pages/CheckOutPage'
 import FAQPage from './Pages/Help'
+import AccountSettings from './Pages/AccountSettings'
 
 
 
