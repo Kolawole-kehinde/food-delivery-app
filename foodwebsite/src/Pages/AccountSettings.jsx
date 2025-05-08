@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 
 const AccountSettings = () => {
   return (
@@ -15,9 +17,11 @@ const AccountSettings = () => {
                 <p className="font-medium text-gray-800">Change Password</p>
                 <p className="text-sm text-gray-500">Update your login password</p>
               </div>
-              <button className="px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 text-sm">
+             <Link to="/auth/change-password">
+             <button className="px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 text-sm">
                 Change
               </button>
+             </Link>
             </div>
 
             <div className="flex justify-between items-center">

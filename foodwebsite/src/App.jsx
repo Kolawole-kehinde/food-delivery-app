@@ -20,6 +20,8 @@ import OrderDetails from './Pages/OrderDetails'
 import CheckOutPage from './Pages/CheckOutPage'
 import FAQPage from './Pages/Help'
 import AccountSettings from './Pages/AccountSettings'
+import ChangePassword from './Pages/ChangePassword'
+
 
 
 
@@ -52,6 +54,7 @@ const App = () => {
             <Route path='forget-password' element={<ForgotPasswordPage />} />
             <Route path='reset-password' element={<ResetPasswordPage />} />
             <Route path='password-success' element={<PasswordSuccessPage />} />
+            <Route path='change-password' element={<ChangePassword />} />
           </Route>
         </Route>
       </Routes>
