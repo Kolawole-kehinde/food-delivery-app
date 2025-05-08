@@ -7,21 +7,21 @@ import CustomInput from "../Components/CustomInput";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { changePasswordSchema } from "../Shchema/Schema";
+import { changePasswordFields } from "../constant/auth";
+import CustomButton from "../Components/CustomButton";
 
 const ChangePassword = () => {
-  const { user } = useAuth(); 
-  const navigate = useNavigate(); 
-  const [loading, setLoading] = useState(false); 
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
- 
   const {
     register,
     handleSubmit,
     formState: { errors },
-} = useForm({
-    resolver: zodResolver(changePasswordSchema)
+  } = useForm({
+    resolver: zodResolver(changePasswordSchema),
   });
-
 
   const onSubmit = async (data) => {
     const { currentPassword, newPassword, confirmPassword } = data;
@@ -71,51 +71,31 @@ const ChangePassword = () => {
     }
   };
 
- 
   return (
     <main className="min-h-screen bg-gray-100 p-6 md:p-10">
       <section className="max-w-md mx-auto bg-white rounded-2xl shadow-lg p-8 space-y-6">
         <h2 className="text-2xl font-bold text-gray-800">Change Password</h2>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          <CustomInput
-            label="Current Password"
-            name="currentPassword"
-            type="password"
-            placeholder="Enter current password"
-            register={register}
-            error={errors.currentPassword}
-            className="w-full p-2 border border-gray-300 rounded"
-          />
+          {changePasswordFields.map(({ type, name, label, placeholder }) => (
+            <CustomInput
+              key={name}
+              type={type}
+              name={name}
+              label={label}
+              placeholder={placeholder}
+              register={register}
+              error={errors[name]}
+            />
+          ))}
 
-          <CustomInput
-            label="New Password"
-            name="newPassword"
-            type="password"
-            placeholder="Enter new password"
-            register={register}
-            error={errors.newPassword}
-            className="w-full p-2 border border-gray-300 rounded"
-          />
-
-          <CustomInput
-            label="Confirm New Password"
-            name="confirmPassword"
-            type="password"
-            placeholder="Re-enter new password"
-            register={register}
-            error={errors.confirmPassword}
-            className="w-full p-2 border border-gray-300 rounded"
-          />
-
-          {/* Step 6.2: Submit Button */}
-          <button
+          <CustomButton
             type="submit"
             disabled={loading}
             className="w-full bg-primary text-white py-2 rounded-md hover:bg-opacity-90 transition"
           >
             {loading ? "Updating..." : "Update Password"}
-          </button>
+          </CustomButton>
         </form>
       </section>
     </main>

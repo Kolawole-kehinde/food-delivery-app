@@ -42,3 +42,26 @@ export const LoginLists = [
         placeholder: "Password"
     },
 ];
+
+
+export const changePasswordFields = [
+    {
+      type: "password",
+      name: "currentPassword",
+      placeholder: "Current Password",
+      label: "Current Password",
+    },
+    {
+      type: "password",
+      name: "newPassword",
+      placeholder: "New Password",
+      label: "New Password",
+    },
+    {
+      type: "password",
+      name: "confirmPassword",
+      placeholder: "Confirm New Password",
+      label: "Confirm New Password",
+    },
+  ];
+  
