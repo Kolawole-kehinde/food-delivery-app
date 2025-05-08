@@ -1,10 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { FaArrowAltCircleLeft } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
 
 
 const AccountSettings = () => {
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-gray-100 p-6 md:p-10">
+       <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-sm font-medium ml-8">
+              <FaArrowAltCircleLeft fontSize={20} />Back
+              </button>
       <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg p-8 space-y-10">
         <h2 className="text-2xl font-bold text-gray-800">Account Settings</h2>
 
@@ -17,7 +22,7 @@ const AccountSettings = () => {
                 <p className="font-medium text-gray-800">Change Password</p>
                 <p className="text-sm text-gray-500">Update your login password</p>
               </div>
-             <Link to="/auth/change-password">
+              <Link to="/change-password">
              <button className="px-4 py-2 bg-primary text-white rounded-md hover:bg-opacity-90 text-sm">
                 Change
               </button>
