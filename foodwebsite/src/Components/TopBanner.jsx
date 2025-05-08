@@ -26,39 +26,25 @@ const TopBanner = () => {
       {/* Heading Animation */}
       <motion.h2
         className="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-10"
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
         Why Choose Us?
       </motion.h2>
 
       <div className="grid grid-cols-1 md:grid-cols-3 place-items-center gap-8">
-        {/* Feature Cards Animation */}
+        {/* Features List with Animation */}
         {features.map((feature, idx) => (
           <motion.div
             key={idx}
             className="flex items-start gap-4"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{
-              duration: 0.6,
-              delay: idx * 0.4, // Staggered animation for each feature
-            }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: idx * 0.2 }} // Staggered delay for each feature
           >
             <div className="bg-orange-50 p-3 rounded-full">
-              {/* Icon Rotation Animation */}
-              <motion.div
-                initial={{ rotate: -90 }}
-                animate={{ rotate: 0 }}
-                transition={{
-                  duration: 0.5,
-                  type: "spring",
-                  stiffness: 120,
-                }}
-              >
-                {feature.icon}
-              </motion.div>
+              {feature.icon}
             </div>
             <div>
               <motion.h3
