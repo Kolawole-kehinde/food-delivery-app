@@ -17,7 +17,7 @@ import AccountSettings from "./Pages/AccountSettings";
 import OrderDetails from "./Pages/OrderDetails";
 import Navbar from "./Components/layout/NavBar";
 import Footer from "./Components/layout/Footer";
-import Banner from "./Components/Banner";
+import Banner from "./Components/Banner/Banner";
 import FAQItem from "./Components/faq/FAQItem";
 import ChangePassword from "./Pages/ChangePassword";
 

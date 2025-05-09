@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaUtensils, FaArrowRight } from 'react-icons/fa';
-import MotionWrapper from './Animation/MotionWrapper';
+import MotionWrapper from '../Animation/MotionWrapper';
 import { Link } from 'react-router-dom';
 
 
@@ -36,7 +36,7 @@ const Banner = () => {
           <img
             src="/images/food_22.png"
             alt="Delicious food"
-            className="w-60 md:w-100 h-auto object-cover rounded-lg shadow-lg"
+            className="w-full md:w-100 h-auto object-cover rounded-lg shadow-lg"
           />
         </MotionWrapper>
       </MotionWrapper>

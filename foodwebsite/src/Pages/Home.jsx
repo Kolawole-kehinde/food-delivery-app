@@ -4,7 +4,7 @@ import Showcase from '../Components/Showcase';
 import ExploreMenu from '../Components/Explore';
 import TopDishes from '../Components/TopDishes';
 import { RecommendedDishes } from '../Components/RecommendedDishes';
-import TopBanner from '../Components/TopBanner';
+import TopBanner from '../Components/Banner/TopBanner';
 
 
 

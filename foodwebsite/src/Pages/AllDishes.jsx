@@ -1,6 +1,6 @@
 import React from 'react';
 import TopDishes from '../Components/TopDishes';
-import Banner from '../Components/Banner';
+import Banner from '../Components/Banner/Banner';
 
 
 const AllDishes = () => {
