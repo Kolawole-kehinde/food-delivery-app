@@ -21,6 +21,7 @@ import Banner from "./Components/Banner/Banner";
 import FAQItem from "./Components/faq/FAQItem";
 import ChangePassword from "./Pages/ChangePassword";
 import EditProfile from "./Pages/EditProfile";
+import FAQPage from "./Pages/Help";
 
 
 const App = () => {
@@ -31,7 +32,7 @@ const App = () => {
         <Route path="/">
           <Route index element={<HomePage />} />
           <Route path="all-dishes" element={<AllDishes />} />
-          <Route path="help" element={<FAQItem/>} />
+          <Route path="help" element={<FAQPage/>} />
           <Route path="related-product" element={<RelatedProducts />} />
           <Route path="product-details/:id" element={<ProductDetails />} />
 

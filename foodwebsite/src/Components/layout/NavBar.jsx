@@ -1,4 +1,3 @@
-// Navbar.js
 import React, { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import Logo from "./Logo";
@@ -15,31 +14,36 @@ const Navbar = () => {
     <header>
       <nav className="bg-[#e5ebf1] py-6 mb-8 md:mb-16 px-4 lg:px-0">
         <div className="wrapper flex items-center justify-between">
-          {/* Logo */}
-          <Logo />
+          {/* Hamburger Icon (mobile only) */}
+          <div className="md:hidden">
+            <button onClick={toggleMenu} className="text-2xl">
+              {isMenuOpen ? <FaTimes /> : <FaBars />}
+            </button>
+          </div>
+
+          {/* Logo (only shown md and up) */}
+          <div className="hidden md:block">
+            <Logo />
+          </div>
 
           {/* Desktop Search Bar */}
           <div className="flex-1 mx-6 hidden md:flex">
             <SearchBar />
           </div>
 
-          {/* Desktop Icons */}
+          {/* Desktop NavMenu */}
           <div className="hidden lg:flex items-center space-x-3 text-gray-700 text-sm">
-            {/* Actions */}
             <NavMenu />
-
-          
-          </div>
-          <div className="hidden md:flex items-center ">
-              {/* Profile Button */}
-              <AuthButton /> 
           </div>
 
-          {/* Hamburger Icon */}
-          <div className="md:hidden">
-            <button onClick={toggleMenu} className="text-2xl">
-              {isMenuOpen ? <FaTimes /> : <FaBars />}
-            </button>
+          {/* AuthButton (both mobile & desktop) */}
+          <div className="relative hidden md:flex items-center">
+            <AuthButton toggleMenu={toggleMenu} />
+          </div>
+
+          {/* Mobile AuthButton (right side) */}
+          <div className="relative md:hidden">
+            <AuthButton toggleMenu={toggleMenu} />
           </div>
         </div>
 
@@ -49,21 +53,15 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="md:hidden flex flex-col mt-4 space-y-4 text-gray-700 text-sm bg-[#e5ebf1] p-4 rounded-md shadow-md">
-            {/* Actions */}
+        <div
+          className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+            isMenuOpen ? "w-full h-[350px] opacity-100 mt-4" : "max-h-0 opacity-0"
+          }`}
+        >
+          <div className="flex flex-col space-y-4 text-gray-700 text-lg bg-[#e5ebf1]  p-4 rounded-md shadow-md">
             <NavMenu isMobile={true} />
-
-            {/* Profile */}
-            <div className="flex items-center space-x-2 cursor-pointer">
-            <AuthButton toggleMenu={toggleMenu} />
-              <span>Profile</span>
-              
-            </div>
-
-           
           </div>
-        )}
+        </div>
       </nav>
     </header>
   );

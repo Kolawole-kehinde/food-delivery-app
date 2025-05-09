@@ -23,6 +23,7 @@ const NavMenu = ({ isMobile = false }) => {
     `${baseClass} ${pathname === path ? activeClass : ''}`;
 
   const menuItems = [
+    { to: '/language', label: 'EN', icon: <MdKeyboardArrowDown fontSize={20} /> },
     { to: '/help', label: 'Help', icon: <TbHelpSquare fontSize={20} /> },
     { to: '/messages', label: 'Messages', icon: <LuMessageSquareText fontSize={20} /> },
     { to: '/cart', label: 'Cart',icon: (
@@ -36,28 +37,20 @@ const NavMenu = ({ isMobile = false }) => {
         </div>
       ),
     },
+    { to: '/order', label: 'Orders', icon: <HiOutlineShoppingBag fontSize={20} /> },
+    { to: '/notification', label: '', icon: <IoIosNotificationsOutline fontSize={20} /> },
   ];
 
   return (
     <>
-      <div className={baseClass}>
-        <span>EN</span>
-        <MdKeyboardArrowDown fontSize={20} className="bg-[#E6E8E6] rounded-md" />
-      </div>
       {menuItems.map(({ to, label, icon }) => (
         <Link to={to} className={getMenuClass(to)} key={to}>
           {icon}
           <span>{label}</span>
         </Link>
       ))}
-      <div className={baseClass}>
-        <HiOutlineShoppingBag fontSize={20} />
-        <span>Orders</span>
-      </div>
-      <div className={baseClass}>
-        <IoIosNotificationsOutline fontSize={20} />
-        {isMobile && <span>Notifications</span>}
-      </div>
+   
+    
     </>
   );
 };

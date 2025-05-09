@@ -7,29 +7,25 @@ const AuthButton = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user } = useAuth(); 
 
- 
   useEffect(() => {
-    if (user) {
-      setIsMenuOpen(false); 
-    } else {
-      setIsMenuOpen(false); 
-    }
+    setIsMenuOpen(false); // Close on user change
   }, [user]); 
 
-  
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
     <div className="relative">
- 
       <button onClick={toggleMenu} className="cursor-pointer">
         <FiUser fontSize={20} />
       </button>
 
-    
-      {isMenuOpen && <AuthMenu  />}
+      {isMenuOpen && <AuthMenu closeMenu={closeMenu} />}
     </div>
   );
 };
