@@ -8,7 +8,7 @@ const AuthButton = () => {
   const { user } = useAuth(); 
 
   useEffect(() => {
-    setIsMenuOpen(false); // Close on user change
+    setIsMenuOpen(false); 
   }, [user]); 
 
   const toggleMenu = () => {

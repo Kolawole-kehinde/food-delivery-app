@@ -32,7 +32,7 @@ const Navbar = () => {
           </div>
 
           {/* Desktop NavMenu */}
-          <div className="hidden lg:flex items-center space-x-3 text-gray-700 text-sm">
+          <div className="hidden lg:flex items-center space-x-2 text-gray-700 text-sm">
             <NavMenu />
           </div>
 

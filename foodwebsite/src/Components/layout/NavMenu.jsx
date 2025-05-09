@@ -18,7 +18,7 @@ const NavMenu = ({ isMobile = false }) => {
   );
 
   const baseClass = 'flex items-center space-x-1 px-2 py-1 cursor-pointer';
-  const activeClass = 'text-primary border-b-2 border-primary rounded-b-md bg-[#e6f0fa]';
+  const activeClass = 'w-[150px] md:w-auto text-primary border-b-2 border-primary rounded-b-md bg-[#e6f0fa]';
   const getMenuClass = (path) =>
     `${baseClass} ${pathname === path ? activeClass : ''}`;
 
@@ -38,7 +38,7 @@ const NavMenu = ({ isMobile = false }) => {
       ),
     },
     { to: '/order', label: 'Orders', icon: <HiOutlineShoppingBag fontSize={20} /> },
-    { to: '/notification', label: '', icon: <IoIosNotificationsOutline fontSize={20} /> },
+    { to: '/notification', label: 'Notification', icon: <IoIosNotificationsOutline fontSize={20} /> },
   ];
 
   return (
