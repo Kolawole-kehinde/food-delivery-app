@@ -8,7 +8,7 @@ import { MdKeyboardArrowDown } from 'react-icons/md';
 import { TbHelpSquare } from 'react-icons/tb';
 import { useCartContext } from '../../context/CartContext';
 
-const NavMenu = ({ isMobile = false }) => {
+const NavMenu = () => {
   const { cartItems } = useCartContext();
   const { pathname } = useLocation();
 

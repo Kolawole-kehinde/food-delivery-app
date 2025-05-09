@@ -57,6 +57,7 @@ const Navbar = () => {
           className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
             isMenuOpen ? "w-full h-[350px] opacity-100 mt-4" : "max-h-0 opacity-0"
           }`}
+          onClick={toggleMenu}
         >
           <div className="flex flex-col space-y-4 text-gray-700 text-lg bg-[#e5ebf1]  p-4 rounded-md shadow-md">
             <NavMenu isMobile={true} />
