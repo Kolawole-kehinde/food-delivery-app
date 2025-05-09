@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const ExploreMenu = ({ category, setCategory }) => {
   return (
-    <div className="wrapper px-4 lg:px-0 py-10 text-left">
+    <div className="wrapper px-4 lg:px-0 py-10 text-left overflow-hidden">
       {/* Heading with animation */}
       <motion.h1
         className="text-2xl md:text-3xl text-[#262626] font-medium"
@@ -26,9 +26,9 @@ const ExploreMenu = ({ category, setCategory }) => {
         1500s, when an unknown printer.
       </motion.p>
 
-      {/* Scrollable Menu List with animation */}
+      {/* Scrollable Menu List with scrollbar hidden */}
       <motion.div
-        className="flex gap-6 md:gap-8 text-center my-5 overflow-x-auto no-scrollbar px-4 md:px-0"
+        className="flex gap-6 md:gap-8 text-center my-5 overflow-x-auto hide-scrollbar px-4 md:px-0"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
@@ -50,7 +50,7 @@ const ExploreMenu = ({ category, setCategory }) => {
             <motion.img
               src={item.menu_image}
               alt={item.menu_name}
-              className={`w-[80px] md:w-[100px] min-w-[70px] md:min-w-[80px] cursor-pointer rounded-full transition duration-200 ${
+              className={`w-[80px] md:w-[100px] min-w-[70px] md:min-w-[80px] object-contain rounded-full transition duration-200 ${
                 category === item.menu_name
                   ? "border-2 border-[#FF3D00] p-1"
                   : ""

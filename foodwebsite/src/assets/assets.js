@@ -107,6 +107,19 @@ export const menu_list = [
         menu_name: "Noodles",
         menu_image: menu_8
     },
+    {
+        menu_name: "Sandwich",
+        menu_image: menu_4
+    },
+    {
+        menu_name: "Rolls",
+        menu_image: menu_2
+    },
+    {
+        menu_name: "Cake",
+        menu_image: menu_5
+    },
+    
    ]
 
 export const food_list = [

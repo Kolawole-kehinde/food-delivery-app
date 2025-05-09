@@ -1,7 +1,6 @@
 import React from "react";
-import { FaUserEdit, FaEnvelope, FaPhoneAlt } from "react-icons/fa";
+import { FaUserEdit, FaEnvelope, FaPhoneAlt, FaArrowAltCircleLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-
 
 const ProfilePage = () => {
   const user = {
@@ -17,6 +16,9 @@ const ProfilePage = () => {
 
   return (
     <main className="min-h-screen bg-gray-100 p-6 md:p-10">
+       <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-sm font-medium md:ml-8 mb-4">
+              <FaArrowAltCircleLeft fontSize={20} />Back
+              </button>
       <div className="max-w-5xl mx-auto bg-white shadow-lg rounded-2xl overflow-hidden">
         {/* Header */}
         <div className="flex flex-col md:flex-row items-center md:items-start gap-6 p-8 bg-primary text-white">
@@ -30,13 +32,13 @@ const ProfilePage = () => {
             <p className="text-sm">{user.location}</p>
             <p className="text-sm">Joined {user.joined}</p>
           </div>
-          <div className="ml-auto mt-4 md:mt-0">
-          <button
-  onClick={() => navigate("/edit-profile")}
-  className="flex items-center gap-2 px-4 py-2 bg-white text-primary border border-white rounded-md hover:bg-opacity-90 text-sm font-medium"
->
-  <FaUserEdit /> Edit Profile
-</button>
+          <div className="md:ml-auto mt-2 md:mt-0">
+            <button
+              onClick={() => navigate("/edit-profile")}
+              className="flex items-center gap-2 px-4 py-2 bg-white text-primary border border-white rounded-md hover:bg-opacity-90 text-sm font-medium"
+            >
+              <FaUserEdit /> Edit Profile
+            </button>
           </div>
         </div>
 
@@ -50,7 +52,9 @@ const ProfilePage = () => {
 
           {/* Contact Info */}
           <section>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Contact Information</h3>
+            <h3 className="text-lg font-semibold text-gray-800 mb-4">
+              Contact Information
+            </h3>
             <div className="grid sm:grid-cols-2 gap-4">
               <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-md border">
                 <FaEnvelope className="text-primary" />

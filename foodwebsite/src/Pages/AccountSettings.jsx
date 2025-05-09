@@ -7,7 +7,7 @@ const AccountSettings = () => {
   const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-gray-100 p-6 md:p-10">
-       <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-sm font-medium ml-8">
+       <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-sm font-medium md:ml-8 mb-4">
               <FaArrowAltCircleLeft fontSize={20} />Back
               </button>
       <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg p-8 space-y-10">

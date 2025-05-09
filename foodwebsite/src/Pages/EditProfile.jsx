@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomInput from "../Components/CustomInput";
 import CustomButton from "../Components/CustomButton";
-
+import { FaArrowAltCircleLeft } from "react-icons/fa";
 
 const EditProfile = () => {
   const navigate = useNavigate();
@@ -37,6 +37,13 @@ const EditProfile = () => {
 
   return (
     <main className="min-h-screen bg-gray-100 p-6 md:p-10">
+      <button
+        onClick={() => navigate(-1)}
+        className="flex items-center gap-2 text-sm font-medium md:ml-8 mb-4"
+      >
+        <FaArrowAltCircleLeft fontSize={20} />
+        Back
+      </button>
       <div className="max-w-xl mx-auto bg-white rounded-2xl shadow-lg p-8 space-y-6">
         <h2 className="text-2xl font-bold text-gray-800">Edit Profile</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
