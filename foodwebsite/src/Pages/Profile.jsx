@@ -1,5 +1,7 @@
 import React from "react";
 import { FaUserEdit, FaEnvelope, FaPhoneAlt } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+
 
 const ProfilePage = () => {
   const user = {
@@ -11,6 +13,7 @@ const ProfilePage = () => {
     location: "Lagos, Nigeria",
     joined: "March 2023",
   };
+  const navigate = useNavigate();
 
   return (
     <main className="min-h-screen bg-gray-100 p-6 md:p-10">
@@ -28,9 +31,12 @@ const ProfilePage = () => {
             <p className="text-sm">Joined {user.joined}</p>
           </div>
           <div className="ml-auto mt-4 md:mt-0">
-            <button className="flex items-center gap-2 px-4 py-2 bg-white text-primary border border-white rounded-md hover:bg-opacity-90 text-sm font-medium">
-              <FaUserEdit /> Edit Profile
-            </button>
+          <button
+  onClick={() => navigate("/edit-profile")}
+  className="flex items-center gap-2 px-4 py-2 bg-white text-primary border border-white rounded-md hover:bg-opacity-90 text-sm font-medium"
+>
+  <FaUserEdit /> Edit Profile
+</button>
           </div>
         </div>
 

@@ -20,6 +20,7 @@ import Footer from "./Components/layout/Footer";
 import Banner from "./Components/Banner/Banner";
 import FAQItem from "./Components/faq/FAQItem";
 import ChangePassword from "./Pages/ChangePassword";
+import EditProfile from "./Pages/EditProfile";
 
 
 const App = () => {
@@ -46,6 +47,7 @@ const App = () => {
           {/* Protected Routes */}
           <Route element={<ProtectedRoute />}>
             <Route path="profile" element={<ProfilePage />} />
+            <Route path="edit-profile" element={<EditProfile />} />
             <Route path="cart" element={<CartPage />} />
             <Route path="checkout" element={<CheckOutPage />} />
             <Route path="dashboard" element={<Dashboard />} />
