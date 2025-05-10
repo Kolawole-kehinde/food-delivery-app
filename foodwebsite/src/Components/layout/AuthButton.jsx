@@ -21,7 +21,7 @@ const AuthButton = () => {
 
   return (
     <div className="relative">
-      <button onClick={toggleMenu} className="cursor-pointer">
+      <button onClick={toggleMenu} className="cursor-pointer hover:text-primary">
         <FiUser fontSize={20} />
       </button>
 

@@ -11,7 +11,7 @@ import {
   FaHome
 } from 'react-icons/fa';
 
-const AuthMenu = ({ closeMenu }) => {
+const AuthMenu = ({ closeMenu, orderId }) => {
   const { user, loading, handleLogout } = useAuth();
 
   return (
@@ -27,7 +27,7 @@ const AuthMenu = ({ closeMenu }) => {
           <Link to="/dashboard" onClick={closeMenu} className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-primary">
             <FaHome /> Dashboard
           </Link>
-          <Link to="/settings" onClick={closeMenu} className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-primary">
+          <Link to={`/order/${orderId}`}  onClick={closeMenu} className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-primary">
             <FaUtensils /> Orders
           </Link>
           <Link to="/help" onClick={closeMenu} className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-primary">

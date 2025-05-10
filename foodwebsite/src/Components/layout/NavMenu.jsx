@@ -17,7 +17,7 @@ const NavMenu = () => {
     [cartItems]
   );
 
-  const baseClass = 'flex items-center space-x-1 px-2 py-1 cursor-pointer';
+  const baseClass = 'flex items-center space-x-1 px-2 py-1 cursor-pointer hover:text-primary';
   const activeClass = 'w-[150px] md:w-auto text-primary border-b-2 border-primary rounded-b-md bg-[#e6f0fa]';
   const getMenuClass = (path) =>
     `${baseClass} ${pathname === path ? activeClass : ''}`;
