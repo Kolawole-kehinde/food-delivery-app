@@ -2,12 +2,28 @@ import React, { forwardRef, useState } from "react";
 import { FaRegEye, FaEyeSlash } from "react-icons/fa";
 
 const CustomInput = forwardRef(
-  ({ label, type = "text", name, placeholder, register, error, options = [], className = "w-full p-2 border rounded", ...props }, ref) => {
+  (
+    {
+      label,
+      type = "text",
+      name,
+      placeholder,
+      register,
+      error,
+      options = [],
+      className = "w-full p-2 border rounded",
+      ...props
+    },
+    ref
+  ) => {
     const [openPassword, setOpenPassword] = useState(false);
 
     const togglePassword = () => {
       setOpenPassword((prevState) => !prevState);
     };
+
+    const registerProps =
+      register && typeof register === "function" ? register(name) : {};
 
     return (
       <div className="space-y-3">
@@ -15,7 +31,13 @@ const CustomInput = forwardRef(
 
         <div className="relative">
           {type === "select" ? (
-            <select id={name} className={className} ref={ref} {...props} {...register(name)}>
+            <select
+              id={name}
+              className={className}
+              ref={ref}
+              {...props}
+              {...registerProps}
+            >
               <option value="">{placeholder || "Select"}</option>
               {options.map((option) => (
                 <option key={option.value} value={option.value}>
@@ -32,7 +54,7 @@ const CustomInput = forwardRef(
                 className={`${className} pr-10`}
                 ref={ref}
                 {...props}
-                {...register(name)}
+                {...registerProps}
               />
               {type === "password" && (
                 <div
