@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { supabase } from "../libs/supabase";
 import CustomButton from "../Components/CustomButton";
-import { toast } from "react-hot-toast"; // assuming you're using this
+import { toast } from "react-hot-toast";
 import { FaSave } from "react-icons/fa";
 
 const EditProfile = () => {
@@ -150,13 +150,13 @@ const EditProfile = () => {
             />
           </div>
 
-          {/* Single "Update Profile" Button */}
+     
           <CustomButton
             type="submit"
             disabled={loading}
             className="w-full bg-primary text-white py-2 rounded-md hover:bg-opacity-90 transition"
           >
-            {loading ? "Saving..." : <><FaSave /> Update Profile</>}
+            {loading ? "Saving..." : "Update Profile"}
           </CustomButton>
         </form>
       </div>

@@ -71,7 +71,11 @@ const ProfilePage = () => {
           <div className="text-center md:text-left space-y-1">
             <h2 className="text-2xl font-bold">{user.name}</h2>
             <p className="text-sm">{user.location || "No location added"}</p>
-            <p className="text-sm">Joined {new Date(user.created_at).toLocaleDateString()}</p>
+            <p className="text-sm">
+  Joined {user.created_at ? new Date(user.created_at).toLocaleDateString() : "Date unavailable"}
+</p>
+
+
           </div>
           <div className="md:ml-auto mt-2 md:mt-0">
             <button
