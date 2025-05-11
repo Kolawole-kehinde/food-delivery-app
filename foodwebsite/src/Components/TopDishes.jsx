@@ -8,6 +8,7 @@ import SkeletonCard from "./SkeletonCard";
 const TopDishes = ({
   category = "All",
   title = "Top Dishes",
+  subTitle = "See All",
   start = 0,
   end = 8,
   showMoreButton = true,
@@ -23,7 +24,10 @@ const TopDishes = ({
 
   return (
     <div className="wrapper px-4 lg:px-0 py-6">
-      <h2 className="text-2xl font-bold mb-6 text-start">{title}</h2>
+       <div className="flex items-center justify-between">
+       <h2 className="text-2xl font-bold mb-6 text-start">{title}</h2>
+       <Link to="/all-dishes" className="text-primary">{subTitle}</Link>
+       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {isLoading
           ? Array.from({ length: end - start }).map((_, i) => (
