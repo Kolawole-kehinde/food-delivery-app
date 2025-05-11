@@ -73,11 +73,11 @@ const ChangePassword = () => {
   };
 
   return (
-    <main className="min-h-screen bg-gray-100 p-6 md:p-10">
+    <main className="h-auto bg-gray-100 p-6 md:p-10">
         <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-sm font-medium md:ml-8 mb-4">
         <FaArrowAltCircleLeft fontSize={20} />Back
         </button>
-      <section className="max-w-md mx-auto bg-white rounded-2xl shadow-lg p-8 space-y-6">
+      <section className="max-w-xl mx-auto bg-white rounded-2xl shadow-lg p-8 space-y-6">
         <h2 className="text-2xl font-bold text-gray-800">Change Password</h2>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">

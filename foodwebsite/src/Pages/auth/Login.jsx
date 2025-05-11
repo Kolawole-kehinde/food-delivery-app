@@ -46,7 +46,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-white font-Primary px-4 lg:px-0">
+    <div className="flex items-center justify-center h-auto mb-10 bg-white font-Primary px-4 lg:px-0">
       <div className="bg-white p-8 rounded-lg shadow-md w-[500px] space-y-5">
         <h1 className="text-2xl font-semibold">Login Page</h1>
 

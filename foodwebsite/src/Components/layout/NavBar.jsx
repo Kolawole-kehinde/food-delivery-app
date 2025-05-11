@@ -15,14 +15,14 @@ const Navbar = () => {
       <nav className="bg-[#e5ebf1] py-6 mb-8 md:mb-16 px-4 lg:px-0">
         <div className="wrapper flex items-center justify-between">
           {/* Hamburger Icon (mobile only) */}
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <button onClick={toggleMenu} className="text-2xl">
               {isMenuOpen ? <FaTimes /> : <FaBars />}
             </button>
           </div>
 
           {/* Logo (only shown md and up) */}
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <Logo />
           </div>
 
@@ -54,7 +54,7 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         <div
-          className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+          className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
             isMenuOpen ? "w-full h-[350px] opacity-100 mt-4" : "max-h-0 opacity-0"
           }`}
           onClick={toggleMenu}

@@ -1,4 +1,6 @@
 import React from 'react';
+import { FaArrowAltCircleLeft } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 const orderData = {
   orderId: '#0002345',
@@ -46,8 +48,16 @@ const orderData = {
 };
 
 const OrderDetails = () => {
+  const navigate = useNavigate();
   return (
-    <div className="max-w-6xl mx-auto p-6">
+    <div className="wrapper p-6">
+          <button
+                onClick={() => navigate(-1)}
+                className="flex items-center gap-2 text-sm font-medium lg:ml-8 mb-4"
+              >
+                <FaArrowAltCircleLeft fontSize={20} />
+                Back
+              </button>
       <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="text-2xl font-semibold">Order Details</h1>
@@ -55,7 +65,7 @@ const OrderDetails = () => {
             {orderData.orderId} &middot; {orderData.orderDate} &middot; {orderData.items.length} items
           </p>
         </div>
-        <button className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+        <button className="bg-primary text-white px-4 py-2 rounded hover:bg-orange-600">
           Reorder All Items
         </button>
       </div>
@@ -68,7 +78,7 @@ const OrderDetails = () => {
             <div className="flex-1">
               <div className="flex justify-between items-center">
                 <h2 className="text-lg font-medium">{item.name}</h2>
-                <p className="text-green-600 font-semibold">${item.price.toLocaleString()}</p>
+                <p className="text-primary font-semibold">${item.price.toLocaleString()}</p>
               </div>
               <div className="text-sm text-gray-600 mt-2 space-x-2">
                 <span>Quantity: {item.quantity}</span>
@@ -76,8 +86,8 @@ const OrderDetails = () => {
                 <span>Packaging: {item.packaging}</span>
               </div>
               <div className="flex justify-between items-center mt-2">
-                <p className="text-sm text-green-600">Delivered • {item.date}</p>
-                <button className="text-green-700 hover:underline text-sm">Reorder Item</button>
+                <p className="text-sm text-primary">Delivered • {item.date}</p>
+                <button className="text-primary hover:underline text-sm">Reorder Item</button>
               </div>
             </div>
           </div>

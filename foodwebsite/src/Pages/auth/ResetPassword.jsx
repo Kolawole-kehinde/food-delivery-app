@@ -50,7 +50,7 @@ const ResetPasswordPage = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-20 p-6 bg-white shadow-lg rounded-lg space-y-4">
+    <div className="max-w-md mx-auto my-20 p-6 bg-white shadow-lg rounded-lg space-y-4">
       <h2 className="text-xl font-semibold text-center">Reset Password</h2>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">

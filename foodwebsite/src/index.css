@@ -7,6 +7,10 @@
 .wrapper{
     @apply container w-full max-w-[1376px] mx-auto
   }
+
+  body {
+    @apply font-Primary;
+  }
   
   html, body {
     overflow-x: hidden;

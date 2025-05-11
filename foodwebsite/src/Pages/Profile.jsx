@@ -21,7 +21,7 @@ const ProfilePage = () => {
     <main className="min-h-screen bg-gray-100 p-6 md:p-10">
       <button
         onClick={() => navigate(-1)}
-        className="flex items-center gap-2 text-sm font-medium md:ml-8 mb-4"
+        className="flex items-center gap-2 text-sm font-medium lg:ml-8 mb-4"
       >
         <FaArrowAltCircleLeft fontSize={20} />
         Back

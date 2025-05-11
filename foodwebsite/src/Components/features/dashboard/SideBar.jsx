@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Sidebar = ({ orderId }) => {
   return (
-    <aside className="w-64 bg-white shadow-md hidden md:block">
+    <aside className="w-64 h-auto bg-white shadow-md hidden md:block">
       <Link to="/" className="px-3 font-bold text-lg text-primary">🍽️ FoodieApp</Link>
       <nav className="flex flex-col gap-4 p-4 text-gray-700">
         <Link to="/" className="flex items-center gap-2 hover:text-primary">

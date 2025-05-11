@@ -50,7 +50,7 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-white font-Primary px-4 lg:px-0">
+    <div className="flex items-center justify-center h-auto mb-10 bg-white font-Primary px-4 lg:px-0">
       <div className=" py-6 px-8 rounded-lg shadow-md w-[500px] space-y-5">
         <h1 className="text-2xl font-semibold text-center">Create an Account</h1>
 
