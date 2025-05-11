@@ -2,9 +2,14 @@ import React, { useEffect, useState } from "react";
 import { supabase } from "../libs/supabase";
 import CustomButton from "../Components/CustomButton";
 import { toast } from "react-hot-toast";
-import { FaSave } from "react-icons/fa";
+import { editProfileInputs } from "../constant/editProfileInputs";
+import CustomInput from "../Components/CustomInput";
+import { useNavigate } from "react-router-dom";
+import { FaArrowAltCircleLeft } from "react-icons/fa";
+
 
 const EditProfile = () => {
+    const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -17,7 +22,9 @@ const EditProfile = () => {
   // Fetch current user data
   useEffect(() => {
     const fetchData = async () => {
-      const { data: { user: authUser } } = await supabase.auth.getUser();
+      const {
+        data: { user: authUser },
+      } = await supabase.auth.getUser();
       if (!authUser) return;
 
       const { data, error } = await supabase
@@ -57,7 +64,9 @@ const EditProfile = () => {
     setLoading(true);
 
     try {
-      const { data: { user: authUser } } = await supabase.auth.getUser();
+      const {
+        data: { user: authUser },
+      } = await supabase.auth.getUser();
       if (!authUser) throw new Error("Authentication error");
 
       const { error } = await supabase
@@ -80,77 +89,49 @@ const EditProfile = () => {
 
   return (
     <main className="min-h-screen bg-gray-100 p-6 md:p-10">
+          <button
+                onClick={() => navigate(-1)}
+                className="flex items-center gap-2 text-sm font-medium md:ml-8 mb-4"
+              >
+                <FaArrowAltCircleLeft fontSize={20} />
+                Back
+              </button>
       <div className="max-w-xl mx-auto bg-white rounded-2xl shadow-lg p-8 space-y-6">
         <h2 className="text-2xl font-bold text-gray-800">Edit Profile</h2>
 
         <form onSubmit={handleUpdate} className="space-y-4">
-          {/* Full Name */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Username</label>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              placeholder="Enter your Username"
-              className="w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-primary"
-            />
-          </div>
+        
+        {editProfileInputs?.map(({ label, name, type, placeholder, disabled }) =>
+            type === "textarea" ? (
+              <div key={name}>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  {label}
+                </label>
+                <textarea
+                  name={name}
+                  value={formData[name] || ""}
+                  onChange={handleChange}
+                  rows={4}
+                  className="w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-primary"
+                  placeholder={placeholder}
+                />
+              </div>
+            ) : (
+              <CustomInput
+                key={name}
+                label={label}
+                name={name}
+                type={type}
+                value={formData[name] || ""}
+                onChange={handleChange}
+                placeholder={placeholder}
+                disabled={disabled}
+              />
+            )
+          )}
 
-          {/* Email */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Enter your email"
-              disabled
-              className="w-full border rounded-md p-2 bg-gray-100 cursor-not-allowed"
-            />
-          </div>
+         
 
-          {/* Phone Number */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
-            <input
-              type="text"
-              name="phone"
-              value={formData.phone}
-              onChange={handleChange}
-              placeholder="Enter your phone number"
-              className="w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-primary"
-            />
-          </div>
-
-          {/* Bio */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Bio</label>
-            <textarea
-              name="bio"
-              value={formData.bio}
-              onChange={handleChange}
-              rows={4}
-              placeholder="Tell us something about you..."
-              className="w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-primary"
-            />
-          </div>
-
-          {/* Location */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Location</label>
-            <input
-              type="text"
-              name="location"
-              value={formData.location}
-              onChange={handleChange}
-              placeholder="Enter your location"
-              className="w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-primary"
-            />
-          </div>
-
-     
           <CustomButton
             type="submit"
             disabled={loading}
