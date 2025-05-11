@@ -41,7 +41,7 @@ const TopDishes = ({
       {showMoreButton && !isLoading && (
         <div className="text-center mt-6">
           <Link to="/all-dishes">
-            <button className="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600">
+            <button className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-orange-600">
               More Dishes
             </button>
           </Link>

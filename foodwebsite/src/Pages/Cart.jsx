@@ -58,14 +58,13 @@ const CartPage = () => {
       </div>
 
       {/* Recommended Section */}
-      <div className="max-w-7xl mx-auto mt-10">
-        <div className="flex justify-between items-center mb-4">
-          <h3 className="text-xl font-semibold">Recommended For You</h3>
-          {/* <Link to="/all-dishes" className="text-green-600 hover:underline"></Link> */}
-        </div>
-        <TopDishes showMoreButton = {false} />
-        <RecommendedDishes />
-      </div>
+      {cartItems.length === 0 && (
+  <div className="max-w-7xl mx-auto mt-10">
+    <TopDishes showMoreButton={false} />
+    <RecommendedDishes />
+  </div>
+)}
+
     </div>
   );
 };
