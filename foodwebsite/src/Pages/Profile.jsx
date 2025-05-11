@@ -9,7 +9,6 @@ import {
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../context/ContextApi";
 import useAvatarUpload from "../hooks/useAvatarUpload";
-import { toast } from "react-hot-toast"; 
 
 const ProfilePage = () => {
   const { user, setUser } = useContext(AppContext); 
@@ -20,11 +19,6 @@ const ProfilePage = () => {
   if (!user) {
     return <div className="p-10 text-center text-red-500">User not found.</div>;
   }
-
-
-  const handleAvatarUpdateSuccess = () => {
-    toast.success("Profile picture updated successfully!");
-  };
 
   return (
     <main className="min-h-screen bg-gray-100 p-6 md:p-10">
@@ -51,7 +45,6 @@ const ProfilePage = () => {
                 accept="image/*"
                 onChange={(e) => {
                   handleFileChange(e);
-                  handleAvatarUpdateSuccess();
                 }}
                 className="hidden"
               />

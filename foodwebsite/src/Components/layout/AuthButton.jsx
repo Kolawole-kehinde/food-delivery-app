@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FiUser } from 'react-icons/fi';
-import AuthMenu from './AuthMenu'; 
+import AuthMenu from './AuthMenu';
 import { useAuth } from '../../hooks/useAuth';
 
 const AuthButton = () => {
@@ -8,8 +8,8 @@ const AuthButton = () => {
   const { user } = useAuth(); 
 
   useEffect(() => {
-    setIsMenuOpen(false); 
-  }, [user]); 
+    setIsMenuOpen(false);
+  }, [user]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -22,7 +22,15 @@ const AuthButton = () => {
   return (
     <div className="relative">
       <button onClick={toggleMenu} className="cursor-pointer hover:text-primary">
-        <FiUser fontSize={20} />
+        {user?.avatar ? (
+          <img
+            src={user.avatar}
+            alt="Profile"
+            className="w-8 h-8 rounded-full object-cover border border-gray-300"
+          />
+        ) : (
+          <FiUser fontSize={20} />
+        )}
       </button>
 
       {isMenuOpen && <AuthMenu closeMenu={closeMenu} />}
