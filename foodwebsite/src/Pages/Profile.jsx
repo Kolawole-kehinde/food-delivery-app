@@ -6,19 +6,25 @@ import {
   FaArrowAltCircleLeft,
   FaCamera,
 } from "react-icons/fa";
-import { useAuth } from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import { AppContext } from "../context/ContextApi";
 import useAvatarUpload from "../hooks/useAvatarUpload";
+import { toast } from "react-hot-toast"; 
 
 const ProfilePage = () => {
-  const { user, setUser } = useAuth(); 
+  const { user, setUser } = useContext(AppContext); 
   const navigate = useNavigate();
 
-  const { preview, uploading, error, handleFileChange } = useAvatarUpload(user?.id, setUser);
+  const { preview, uploading, error, handleFileChange } = useAvatarUpload(user?.id, setUser); 
 
   if (!user) {
     return <div className="p-10 text-center text-red-500">User not found.</div>;
   }
+
+
+  const handleAvatarUpdateSuccess = () => {
+    toast.success("Profile picture updated successfully!");
+  };
 
   return (
     <main className="min-h-screen bg-gray-100 p-6 md:p-10">
@@ -43,7 +49,10 @@ const ProfilePage = () => {
               <input
                 type="file"
                 accept="image/*"
-                onChange={handleFileChange}
+                onChange={(e) => {
+                  handleFileChange(e);
+                  handleAvatarUpdateSuccess();
+                }}
                 className="hidden"
               />
             </label>
@@ -57,6 +66,8 @@ const ProfilePage = () => {
                 ? new Date(user.created_at).toLocaleDateString()
                 : "Date unavailable"}
             </p>
+          
+            <p className="text-sm">{user.gender || "Gender not set"}</p>
           </div>
           <div className="md:ml-auto mt-2 md:mt-0">
             <button
@@ -97,8 +108,7 @@ const ProfilePage = () => {
               </div>
             </div>
           </section>
-
-          {uploading && <p className="text-sm text-gray-500">Uploading avatar...</p>}
+          {uploading && <p className="text-sm text-gray-500">Uploading profile picture...</p>}
           {error && <p className="text-sm text-red-500">{error}</p>}
         </div>
       </div>

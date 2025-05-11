@@ -1,16 +1,17 @@
 export const editProfileInputs = [
     {
-      label: "Full Name",
+      label: "Username",
       name: "name",
       type: "text",
       placeholder: "Enter your full name",
+      disabled: true,
     },
     {
       label: "Email",
       name: "email",
       type: "email",
       placeholder: "Enter your email",
-      disabled: true,
+      // disabled: true,
     },
     {
       label: "Phone Number",
