@@ -53,7 +53,8 @@ const SearchBar = () => {
   }, [searchTerm]);
 
   return (
-    <div className="relative w-full max-w-2xl mx-auto mt-4 px-4 sm:px-2 md:px-4">
+    <div className="relative w-full max-w-2xl mx-auto mt-0 md:mt-4 px-0 sm:px-2 md:px-4">
+
   <input
     type="text"
     value={searchTerm}
