@@ -4,14 +4,17 @@ import {
   FaEnvelope,
   FaPhoneAlt,
   FaArrowAltCircleLeft,
+  FaCamera,
 } from "react-icons/fa";
+import { useAuth } from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
-import { AppContext } from "../context/ContextApi";
-
+import useAvatarUpload from "../hooks/useAvatarUpload";
 
 const ProfilePage = () => {
-  const { user } = useContext(AppContext);
+  const { user, setUser } = useAuth(); 
   const navigate = useNavigate();
+
+  const { preview, uploading, error, handleFileChange } = useAvatarUpload(user?.id, setUser);
 
   if (!user) {
     return <div className="p-10 text-center text-red-500">User not found.</div>;
@@ -28,13 +31,23 @@ const ProfilePage = () => {
       </button>
 
       <div className="max-w-5xl mx-auto bg-white shadow-lg rounded-2xl overflow-hidden">
-        {/* Header */}
-        <div className="flex flex-col md:flex-row items-center md:items-start gap-6 p-8 bg-primary text-white">
-          <img
-            src={user.avatar || `https://ui-avatars.com/api/?name=${user.name}`}
-            alt="Profile"
-            className="w-28 h-28 rounded-full object-cover border-4 border-white shadow-md"
-          />
+        <div className="flex flex-col md:flex-row items-center md:items-start gap-6 p-8 bg-primary text-white relative">
+          <div className="relative">
+            <img
+              src={preview || user.avatar || `https://ui-avatars.com/api/?name=${user.name}`}
+              alt="Profile"
+              className="w-28 h-28 rounded-full object-cover border-4 border-white shadow-md"
+            />
+            <label className="absolute bottom-0 right-0 bg-white text-primary p-1 rounded-full cursor-pointer">
+              <FaCamera />
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleFileChange}
+                className="hidden"
+              />
+            </label>
+          </div>
           <div className="text-center md:text-left space-y-1">
             <h2 className="text-2xl font-bold">{user.name}</h2>
             <p className="text-sm">{user.location || "No location added"}</p>
@@ -55,15 +68,12 @@ const ProfilePage = () => {
           </div>
         </div>
 
-        {/* Main Content */}
         <div className="p-6 md:p-8 space-y-8">
-          {/* About */}
           <section>
             <h3 className="text-lg font-semibold text-gray-800 mb-2">About</h3>
             <p className="text-gray-600 text-sm">{user.bio || "No bio yet."}</p>
           </section>
 
-          {/* Contact Info */}
           <section>
             <h3 className="text-lg font-semibold text-gray-800 mb-4">
               Contact Information
@@ -87,6 +97,9 @@ const ProfilePage = () => {
               </div>
             </div>
           </section>
+
+          {uploading && <p className="text-sm text-gray-500">Uploading avatar...</p>}
+          {error && <p className="text-sm text-red-500">{error}</p>}
         </div>
       </div>
     </main>

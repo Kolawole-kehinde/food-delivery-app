@@ -1,10 +1,9 @@
 import { useState } from 'react';
-import { supabase } from '../libs/supabase';
 import { uploadToCloudinary } from '../services/uploadToCloudinary';
+import { supabase } from '../libs/supabase';
 
 
-
-const useAvatarUpload = (userId) => {
+const useAvatarUpload = (userId, setUser) => {
   const [preview, setPreview] = useState(null);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState(null);
@@ -22,21 +21,24 @@ const useAvatarUpload = (userId) => {
     setError(null);
 
     try {
-      // Upload to Cloudinary
       const imageUrl = await uploadToCloudinary(file);
 
-      // Update avatar in Supabase
-      const { error: dbError } = await supabase
+      const { data, error: dbError } = await supabase
         .from('users')
         .update({ avatar: imageUrl })
-        .eq('id', userId);
+        .eq('id', userId)
+        .select()
+        .single();
 
-      if (dbError) {
-        throw dbError;
+      if (dbError) throw dbError;
+
+      // Update user in global context
+      if (setUser && data) {
+        setUser((prev) => ({ ...prev, avatar: data.avatar }));
       }
 
     } catch (err) {
-      console.error('Error uploading and saving avatar:', err);
+      console.error('Upload failed:', err);
       setError('Failed to upload image.');
     } finally {
       setUploading(false);
