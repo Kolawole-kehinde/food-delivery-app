@@ -16,14 +16,11 @@ const HomePage = () => {
 
   return (
     <div>
-        <Showcase/>
+      <Showcase/>
       <ExploreMenu category={category} setCategory={setCategory}/>
       <TopDishes category={category}/>
       <RecommendedDishes/>
       <TopBanner/>
-    
-    
-     
     </div>
   )
 }
