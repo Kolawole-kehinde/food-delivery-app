@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useCartContext } from '../context/CartContext';
 import OrderSummary from '../Components/Cart/OrderSummary';
-
-
+import { shippingFields } from '../constant/shippingFields';
 
 const CheckOutPage = () => {
   const { cartItems, buyNowItem, clearCart } = useCartContext();
 
+  const [orderId, setOrderId] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const itemsToCheckout = buyNowItem ? [buyNowItem] : cartItems;
   const subtotal = itemsToCheckout.reduce(
@@ -28,19 +29,48 @@ const CheckOutPage = () => {
           <div className="bg-white p-6 rounded-2xl shadow-md">
             <h2 className="text-xl font-bold mb-4">Shipping Information</h2>
             <form className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input type="text" placeholder="First Name" className="border p-3 rounded-lg w-full" />
-                <input type="text" placeholder="Last Name" className="border p-3 rounded-lg w-full" />
-              </div>
-              <input type="email" placeholder="Email Address" className="border p-3 rounded-lg w-full" />
-              <input type="text" placeholder="Phone Number" className="border p-3 rounded-lg w-full" />
-              <input type="text" placeholder="Street Address" className="border p-3 rounded-lg w-full" />
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <input type="text" placeholder="City" className="border p-3 rounded-lg w-full" />
-                <input type="text" placeholder="State" className="border p-3 rounded-lg w-full" />
-                <input type="text" placeholder="Zip Code" className="border p-3 rounded-lg w-full" />
-              </div>
-            </form>
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    {shippingFields.slice(0, 2).map(({ name, placeholder, type = 'text', colSpan }) => (
+      <input
+        key={name}
+        type={type}
+        name={name}
+        placeholder={placeholder}
+        className={`border p-3 rounded-lg w-full ${colSpan || ''}`}
+      />
+    ))}
+  </div>
+
+  {shippingFields.slice(2, 4).map(({ name, placeholder, type = 'text' }) => (
+    <input
+      key={name}
+      type={type}
+      name={name}
+      placeholder={placeholder}
+      className="border p-3 rounded-lg w-full"
+    />
+  ))}
+
+  <input
+    type="text"
+    name="address"
+    placeholder="Street Address"
+    className="border p-3 rounded-lg w-full"
+  />
+
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+    {shippingFields.slice(5).map(({ name, placeholder, type = 'text', colSpan }) => (
+      <input
+        key={name}
+        type={type}
+        name={name}
+        placeholder={placeholder}
+        className={`border p-3 rounded-lg w-full ${colSpan || ''}`}
+      />
+    ))}
+  </div>
+</form>
+
           </div>
 
           <div className="bg-white p-6 rounded-2xl shadow-md">
@@ -72,8 +102,6 @@ const CheckOutPage = () => {
           />
         </section>
       </div>
-
-   
     </main>
   );
 };

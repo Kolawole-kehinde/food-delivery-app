@@ -4,7 +4,7 @@ import { useAuth } from '../../hooks/useAuth';
 import SuccessModal from './SuccessModal';
 import { usePlaceOrder } from '../../hooks/usePlaceOrder';
 
-
+// Summary row component
 const SummaryRow = ({ label, value, isTotal = false }) => (
   <div
     className={`flex justify-between p-6 border-b-2 border-gray-200 ${isTotal ? 'font-semibold text-lg' : ''}`}
@@ -14,6 +14,7 @@ const SummaryRow = ({ label, value, isTotal = false }) => (
   </div>
 );
 
+// Format value as currency
 const formatCurrency = (value) => {
   try {
     return (value ?? 0).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
@@ -34,9 +35,12 @@ const OrderSummary = ({
     (sum, item) => sum + item.price * item.quantity,
     0
   );
-  const discount = 0; 
-  const tax = 0;
-  const total = subtotal - discount + tax;
+  const totalQuantity = cartItems.reduce(
+    (sum, item) => sum + item.quantity,
+    0
+  );
+  const discount = 0;
+  const total = subtotal - discount;
 
   const { placeOrder, isLoading, isSuccess, orderId } = usePlaceOrder({
     user,
@@ -59,9 +63,9 @@ const OrderSummary = ({
         <h2 className="text-lg font-semibold p-6 mb-4 border-b-2 border-gray-200">Order Summary</h2>
 
         <div className="text-base font-medium">
+          <SummaryRow label="Quantity" value={totalQuantity} />
           <SummaryRow label="Subtotal" value={formatCurrency(subtotal)} />
           <SummaryRow label="Discount" value={formatCurrency(discount)} />
-          <SummaryRow label="Tax" value={formatCurrency(tax)} />
           <SummaryRow label="Total" value={formatCurrency(total)} isTotal />
         </div>
 
@@ -82,6 +86,5 @@ const OrderSummary = ({
     </>
   );
 };
-
 
 export default OrderSummary;

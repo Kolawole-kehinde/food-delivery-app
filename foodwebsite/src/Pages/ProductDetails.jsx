@@ -11,22 +11,22 @@ const ProductDetails = () => {
   const { data: product, isLoading, isError, error } = useProduct(id);
   const [quantity, setQuantity] = useState(1);
   const navigate = useNavigate();
-  const { addToCart, buyNow, buyNowItem } = useCartContext();
+  const { addToCart, buyNow } = useCartContext();
 
   const handleQuantityChange = (val) => {
     setQuantity((prev) => Math.max(1, prev + val));
   };
 
   const handleBuyNow = () => {
-    buyNow(product, quantity); // This sets the buyNowItem
-    navigate('/checkout'); // Redirects to the checkout page immediately
+    buyNow(product, quantity); 
+    navigate('/checkout'); 
   };
 
   if (isLoading) return <div className="p-6 text-center">Loading product...</div>;
   if (isError) return <div className="p-6 text-center text-red-600">Error: {error.message}</div>;
 
   return (
-    <section className="">
+    <section>
       <div className="wrapper px-4 lg:px-0">
         <div className="flex justify-between items-center mb-6 md:mb-16">
           <div className="flex items-center gap-2 text-gray-700 font-medium">
