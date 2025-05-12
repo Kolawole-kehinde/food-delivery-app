@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import LocalStorageService from "../utils/HandleLocalStorage"; // make sure this file has getItem, setItem, removeItem
+import LocalStorageService from "../utils/HandleLocalStorage";
+
 
 const CartContext = createContext();
 
@@ -78,6 +79,7 @@ export const CartProvider = ({ children }) => {
 
   const clearCart = () => {
     setCartItems([]);
+    LocalStorageService.removeItem("cart");
   };
 
   const getTotalPrice = () =>
@@ -90,6 +92,7 @@ export const CartProvider = ({ children }) => {
 
   const clearBuyNow = () => {
     setBuyNowItem(null);
+    LocalStorageService.removeItem("buyNow");
   };
 
   // Favorites Functions

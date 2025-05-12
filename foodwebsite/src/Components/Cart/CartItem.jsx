@@ -36,13 +36,13 @@ const CartItem = ({ id, name, seller, price, quantity, image_url, onRemove, onIn
             </div>
 
             <div className="flex justify-between items-center mt-4">
-              <button onClick={onRemove} className="text-primary mr-6">Remove</button>
+              <button onClick={() => onRemove(id)} className="text-primary mr-6">Remove</button>
               <div className="flex items-center rounded w-48 h-auto">
-                <button onClick={onDecrease} className="border border-primary rounded px-4 py-2">-</button>
+                <button onClick={() => onDecrease(id)} className="border border-primary rounded px-4 py-2">-</button>
                 <div className="border-b border-t py-2 flex-1 justify-center flex items-center">
                   <span className="mx-2">{quantity}</span>
                 </div>
-                <button onClick={onIncrease} className="border border-primary rounded px-4 py-2">+</button>
+                <button onClick={() => onIncrease(id)} className="border border-primary rounded px-4 py-2">+</button>
               </div>
             </div>
           </div>

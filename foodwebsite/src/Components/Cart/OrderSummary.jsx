@@ -4,6 +4,7 @@ import { useAuth } from '../../hooks/useAuth';
 import SuccessModal from './SuccessModal';
 import { usePlaceOrder } from '../../hooks/usePlaceOrder';
 
+
 const SummaryRow = ({ label, value, isTotal = false }) => (
   <div
     className={`flex justify-between p-6 border-b-2 border-gray-200 ${isTotal ? 'font-semibold text-lg' : ''}`}

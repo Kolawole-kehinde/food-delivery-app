@@ -35,6 +35,8 @@ const placeOrderRequest = async (user, subtotal, cartItems) => {
     product_id: item.id,
     quantity: item.quantity,
     price: item.price,
+    total_price: item.price * item.quantity,
+
   }));
 
   const { error: itemsError } = await supabase.from('order_items').insert(orderItems);
