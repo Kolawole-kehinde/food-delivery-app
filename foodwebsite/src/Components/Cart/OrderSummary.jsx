@@ -23,7 +23,6 @@ const formatCurrency = (value) => {
 };
 
 const OrderSummary = ({
-  subtotal = 0,
   showModal = true,
   buttonText = 'Proceed to Checkout',
   onProceed,
@@ -31,16 +30,20 @@ const OrderSummary = ({
   const { cartItems, clearCart } = useCartContext();
   const { user } = useAuth();
 
+  const subtotal = cartItems.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
+  const discount = 0; 
+  const tax = 0;
+  const total = subtotal - discount + tax;
+
   const { placeOrder, isLoading, isSuccess, orderId } = usePlaceOrder({
     user,
     subtotal,
     cartItems,
     clearCart,
   });
-
-  const discount = 0; 
-  const tax = 0;
-  const total = subtotal - discount + tax;
 
   const handleClick = () => {
     if (onProceed) {
@@ -74,10 +77,11 @@ const OrderSummary = ({
       </div>
 
       {showModal && isSuccess && (
-  <SuccessModal isOpen={true} onClose={() => {}} orderId={orderId} />
-)}
+        <SuccessModal isOpen={true} onClose={() => {}} orderId={orderId} />
+      )}
     </>
   );
 };
+
 
 export default OrderSummary;
