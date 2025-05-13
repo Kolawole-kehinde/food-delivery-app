@@ -1,129 +1,88 @@
-import React from 'react';
-import { FaArrowAltCircleLeft } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
-
-const orderData = {
-  orderId: '#0002345',
-  orderDate: '05 April 2024',
-  items: [
-    {
-      name: 'Malaninno Pepper',
-      price: 89600.2,
-      quantity: 500,
-      paymentOption: 'COD',
-      packaging: 'Cheap Pallet',
-      date: '06 April 2024',
-      image: 'https://via.placeholder.com/80', // Replace with actual image URL
-    },
-    {
-      name: 'Apples Australian Fuji Size',
-      price: 50600.4,
-      quantity: 500,
-      paymentOption: 'COP',
-      packaging: 'Plain Pallet',
-      date: '06 April 2024',
-      image: 'https://via.placeholder.com/80',
-    },
-    {
-      name: 'Apples Australian Fuji Size',
-      price: 90890.6,
-      quantity: 500,
-      paymentOption: 'Account',
-      packaging: 'Looseram Pallet',
-      date: '06 April 2024',
-      image: 'https://via.placeholder.com/80',
-    },
-  ],
-  shipping: {
-    name: 'Sam Victor',
-    address: '150-2345 Tokyo-To, Shibuya-Ku, Hommachi 2 Choume, 4-7, Sunny Mansion 203.',
-    phone: '09567728927655',
-  },
-  summary: {
-    subtotal: 23.4,
-    discount: 0,
-    tax: 23,
-    total: 46.4,
-  },
-};
+import React, { useEffect, useState } from 'react';
+import { useAuth } from '../hooks/useAuth';
+import { supabase } from '../libs/supabase';
 
 const OrderDetails = () => {
-  const navigate = useNavigate();
-  return (
-    <div className="wrapper p-6">
-          <button
-                onClick={() => navigate(-1)}
-                className="flex items-center gap-2 text-sm font-medium lg:ml-8 mb-4"
-              >
-                <FaArrowAltCircleLeft fontSize={20} />
-                Back
-              </button>
-      <div className="flex items-center justify-between mb-6">
-        <div>
-          <h1 className="text-2xl font-semibold">Order Details</h1>
-          <p className="text-sm text-gray-500">
-            {orderData.orderId} &middot; {orderData.orderDate} &middot; {orderData.items.length} items
-          </p>
-        </div>
-        <button className="bg-primary text-white px-4 py-2 rounded hover:bg-orange-600">
-          Reorder All Items
-        </button>
-      </div>
+  const { user } = useAuth();
+  const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-      {/* Order Items */}
-      <div className="space-y-4 mb-8">
-        {orderData.items.map((item, index) => (
-          <div key={index} className="flex border rounded-lg p-4 bg-white shadow-sm">
-            <img src={item.image} alt={item.name} className="w-24 h-24 rounded object-cover mr-4" />
-            <div className="flex-1">
-              <div className="flex justify-between items-center">
-                <h2 className="text-lg font-medium">{item.name}</h2>
-                <p className="text-primary font-semibold">${item.price.toLocaleString()}</p>
-              </div>
-              <div className="text-sm text-gray-600 mt-2 space-x-2">
-                <span>Quantity: {item.quantity}</span>
-                <span>Payment Option: {item.paymentOption}</span>
-                <span>Packaging: {item.packaging}</span>
-              </div>
-              <div className="flex justify-between items-center mt-2">
-                <p className="text-sm text-primary">Delivered • {item.date}</p>
-                <button className="text-primary hover:underline text-sm">Reorder Item</button>
-              </div>
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        setLoading(true);
+        const { data, error } = await supabase
+          .from('orders')
+          .select(`
+            id,
+            created_at,
+            order_status,
+            order_items (
+              id,
+              quantity,
+              product_id,
+              product:fk_order_items_product (
+                name,
+                price,
+                image_url
+              )
+            )
+          `)
+          .eq('user_id', user.id);
+
+        if (error) throw error;
+        setOrders(data);
+      } catch (err) {
+        setError('Error fetching orders');
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (user) {
+      fetchOrders();
+    }
+  }, [user]);
+
+  if (loading) return <div className="text-center text-gray-500 py-10">Loading your orders...</div>;
+  if (error) return <div className="text-center text-red-500 py-10">{error}</div>;
+  if (!orders || orders.length === 0) return <div className="text-center text-gray-600 py-10">You haven't placed any orders yet.</div>;
+
+  return (
+    <div className="max-w-5xl mx-auto px-4 py-10">
+      <h1 className="text-3xl font-bold text-center text-gray-800 mb-10">Your Orders</h1>
+      <div className="space-y-8">
+        {orders.map((order) => (
+          <div key={order.id} className="bg-white shadow-md rounded-xl p-6 border border-gray-100">
+            <div className="mb-4">
+              <h2 className="text-lg font-semibold text-gray-700">Order ID: <span className="text-gray-900">{order.id}</span></h2>
+              <p className="text-sm text-gray-500">Status: {order.order_status}</p>
+              <p className="text-sm text-gray-500">Placed on: {new Date(order.created_at).toLocaleDateString()}</p>
+            </div>
+
+            <div className="space-y-4">
+              {order.order_items.map((item) => (
+                <div key={item.id} className="flex items-center gap-4 border-t pt-4">
+                  <img
+                    src={item.product.image_url}
+                    alt={item.product.name}
+                    className="w-20 h-20 object-cover rounded-md border"
+                  />
+                  <div>
+                    <h3 className="text-md font-medium text-gray-800">{item.product.name}</h3>
+                    <p className="text-sm text-gray-600">Quantity: {item.quantity}</p>
+                    <p className="text-sm text-gray-600">Price: ${item.product.price.toFixed(2)}</p>
+                    <p className="text-sm font-semibold text-gray-700">
+                      Total: ${(item.quantity * item.product.price).toFixed(2)}
+                    </p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         ))}
-      </div>
-
-      {/* Delivery & Summary */}
-      <div className="grid md:grid-cols-2 gap-6">
-        {/* Delivery Info */}
-        <div className="border p-4 rounded-md bg-white">
-          <h3 className="font-semibold text-gray-800 mb-2">Delivery Information</h3>
-          <p className="text-sm text-gray-700">{orderData.shipping.name}</p>
-          <p className="text-sm text-gray-700">{orderData.shipping.address}</p>
-          <p className="text-sm text-gray-700">{orderData.shipping.phone}</p>
-        </div>
-
-        {/* Order Summary */}
-        <div className="border p-4 rounded-md bg-white">
-          <h3 className="font-semibold text-gray-800 mb-2">Order Summary</h3>
-          <div className="flex justify-between text-sm text-gray-700 mb-1">
-            <span>Sub total</span>
-            <span>${orderData.summary.subtotal.toFixed(2)}</span>
-          </div>
-          <div className="flex justify-between text-sm text-gray-700 mb-1">
-            <span>Discount</span>
-            <span>${orderData.summary.discount.toFixed(2)}</span>
-          </div>
-          <div className="flex justify-between text-sm text-gray-700 mb-1">
-            <span>Tax</span>
-            <span>${orderData.summary.tax.toFixed(2)}</span>
-          </div>
-          <div className="flex justify-between font-semibold text-lg mt-2">
-            <span>Total</span>
-            <span>${orderData.summary.total.toFixed(2)}</span>
-          </div>
-        </div>
       </div>
     </div>
   );
