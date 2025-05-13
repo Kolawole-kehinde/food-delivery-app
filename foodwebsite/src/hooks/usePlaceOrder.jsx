@@ -1,13 +1,10 @@
-import { useNavigate } from "react-router-dom";
-import { supabase } from "../libs/supabase";
-import toast from "react-hot-toast";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation } from '@tanstack/react-query';
+import { supabase } from '../libs/supabase';
+import toast from 'react-hot-toast';
 
-
-const placeOrderRequest = async (user, subtotal, cartItems) => {
+const placeOrderRequest = async ({ user, subtotal, cartItems, shippingInfo, paymentMethod }) => {
   if (!user) throw new Error('User not logged in');
 
-  // Create an order record
   const { data: order, error: orderError } = await supabase
     .from('orders')
     .insert([
@@ -15,13 +12,8 @@ const placeOrderRequest = async (user, subtotal, cartItems) => {
         user_id: user.id,
         total_price: subtotal,
         order_status: 'pending',
-        payment_method: 'card',
-        shipping_info: JSON.stringify({
-          address: '123 Main St',
-          city: 'New York',
-          state: 'NY',
-          zip_code: '10001',
-        }),
+        payment_method: paymentMethod,
+        shipping_info: JSON.stringify(shippingInfo),
       },
     ])
     .select()
@@ -29,14 +21,12 @@ const placeOrderRequest = async (user, subtotal, cartItems) => {
 
   if (orderError) throw new Error(`Failed to create order: ${orderError.message}`);
 
-  // Insert order items
   const orderItems = cartItems.map((item) => ({
     order_id: order.id,
     product_id: item.id,
     quantity: item.quantity,
     price: item.price,
     total_price: item.price * item.quantity,
-
   }));
 
   const { error: itemsError } = await supabase.from('order_items').insert(orderItems);
@@ -47,11 +37,14 @@ const placeOrderRequest = async (user, subtotal, cartItems) => {
 
 export const usePlaceOrder = ({ user, subtotal, cartItems, clearCart }) => {
   const mutation = useMutation({
-    mutationFn: () => placeOrderRequest(user, subtotal, cartItems),
+    mutationFn: ({ shippingInfo, paymentMethod }) =>
+      placeOrderRequest({ user, subtotal, cartItems, shippingInfo, paymentMethod }),
+
     onSuccess: (orderId) => {
-    //   toast.success('Order placed successfully!');
       clearCart();
+      // toast.success('Order placed successfully!');
     },
+
     onError: (error) => {
       console.error(error);
       toast.error(`Failed to place order: ${error.message}`);
@@ -62,6 +55,6 @@ export const usePlaceOrder = ({ user, subtotal, cartItems, clearCart }) => {
     placeOrder: mutation.mutate,
     isLoading: mutation.isLoading,
     isSuccess: mutation.isSuccess,
-    orderId: mutation.data, 
+    orderId: mutation.data,
   };
 };

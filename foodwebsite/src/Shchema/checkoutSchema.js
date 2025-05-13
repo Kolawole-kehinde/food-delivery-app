@@ -10,6 +10,7 @@ export const checkoutSchema = z.object({
   state: z.string().min(1, 'State is required'),
   zip: z.string().min(4, 'Zip code is too short'),
   payment: z.enum(['card', 'paypal', 'cod'], {
-    errorMap: () => ({ message: 'Select a payment method' }),
+    required_error: 'Select a payment method',
   }),
+  
 });

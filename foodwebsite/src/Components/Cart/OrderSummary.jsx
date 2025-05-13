@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import { useCartContext } from '../../context/CartContext';
 import { useAuth } from '../../hooks/useAuth';
 import SuccessModal from './SuccessModal';
@@ -28,6 +29,9 @@ const OrderSummary = ({
   buttonText = 'Proceed to Checkout',
   onProceed,
 }) => {
+  const { pathname } = useLocation();
+  const isCheckoutPage = pathname.includes('/checkout');
+
   const { cartItems, clearCart } = useCartContext();
   const { user } = useAuth();
 
@@ -59,7 +63,7 @@ const OrderSummary = ({
 
   return (
     <>
-      <div className="bg-white rounded-xl shadow-md w-full h-[500px] md:w-80 text-roboto">
+      <div className="bg-white rounded-xl shadow-md w-full  md:w-80 text-roboto">
         <h2 className="text-lg font-semibold p-6 mb-4 border-b-2 border-gray-200">Order Summary</h2>
 
         <div className="text-base font-medium">
@@ -69,15 +73,17 @@ const OrderSummary = ({
           <SummaryRow label="Total" value={formatCurrency(total)} isTotal />
         </div>
 
-        <div className="p-6">
-          <button
-            onClick={handleClick}
-            disabled={isLoading}
-            className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-lg text-sm font-semibold disabled:opacity-70"
-          >
-            {isLoading ? 'Placing Order...' : buttonText}
-          </button>
-        </div>
+        {!isCheckoutPage && (
+          <div className="p-6">
+            <button
+              onClick={handleClick}
+              disabled={isLoading}
+              className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-lg text-sm font-semibold disabled:opacity-70"
+            >
+              {isLoading ? 'Placing Order...' : buttonText}
+            </button>
+          </div>
+        )}
       </div>
 
       {showModal && isSuccess && (
