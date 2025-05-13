@@ -1,72 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { useAuth } from '../hooks/useAuth';
-import { supabase } from '../libs/supabase';
+import { useOrders } from '../hooks/useOrders';
 import ConfirmModal from '../Components/modal/OrderConfirmModal';
 
 
 const OrderDetails = () => {
   const { user } = useAuth();
-  const [orders, setOrders] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const { orders, loading, error, cancelOrder } = useOrders(user?.id);
   const [showCancelled, setShowCancelled] = useState(false);
   const [cancelModal, setCancelModal] = useState({ visible: false, orderId: null });
 
-  useEffect(() => {
-    const fetchOrders = async () => {
-      setLoading(true);
-      const { data, error } = await supabase
-        .from('orders')
-        .select(`
-          id,
-          created_at,
-          order_status,
-          order_items (
-            id,
-            quantity,
-            product_id,
-            product:fk_order_items_product (
-              name,
-              price,
-              image_url
-            )
-          )
-        `)
-        .eq('user_id', user.id);
-
-      if (error) setError('Error fetching orders');
-      else setOrders(data || []);
-
-      setLoading(false);
-    };
-
-    if (user) fetchOrders();
-  }, [user]);
-
-  const confirmCancel = (orderId) => {
-    setCancelModal({ visible: true, orderId });
-  };
-
-  const handleCancelOrder = async () => {
-    const orderId = cancelModal.orderId;
-    setCancelModal({ visible: false, orderId: null });
-
-    const { error } = await supabase
-      .from('orders')
-      .update({ order_status: 'cancelled' })
-      .eq('id', orderId);
-
-    if (error) {
-      toast.error('❌ Failed to cancel order');
-      console.error(error);
-    } else {
-      setOrders((prev) =>
-        prev.map((order) =>
-          order.id === orderId ? { ...order, order_status: 'cancelled' } : order
-        )
-      );
-      toast.success('✅ Order cancelled. You can view it in your order history.');
+  const handleCancel = async () => {
+    const success = await cancelOrder(cancelModal.orderId);
+    if (success) {
+      setCancelModal({ visible: false, orderId: null });
     }
   };
 
@@ -86,7 +34,7 @@ const OrderDetails = () => {
       <div className="text-right mb-6">
         <button
           onClick={() => setShowCancelled(!showCancelled)}
-          className="text-sm text-primary"
+          className="text-sm text-blue-600 hover:underline"
         >
           {showCancelled ? 'Hide cancelled orders' : 'View cancelled orders'}
         </button>
@@ -100,10 +48,9 @@ const OrderDetails = () => {
                 <h2 className="text-lg font-semibold text-gray-700">
                   Order ID: <span className="text-gray-900">{order.id}</span>
                 </h2>
-
                 {['pending', 'processing'].includes(order.order_status) && (
                   <button
-                    onClick={() => confirmCancel(order.id)}
+                    onClick={() => setCancelModal({ visible: true, orderId: order.id })}
                     className="text-sm bg-red-500 hover:bg-red-600 text-white px-4 py-1 rounded transition"
                   >
                     Cancel Order
@@ -111,7 +58,9 @@ const OrderDetails = () => {
                 )}
               </div>
               <p className="text-sm text-gray-500">Status: {order.order_status}</p>
-              <p className="text-sm text-gray-500">Placed on: {new Date(order.created_at).toLocaleDateString()}</p>
+              <p className="text-sm text-gray-500">
+                Placed on: {new Date(order.created_at).toLocaleDateString()}
+              </p>
             </div>
 
             <div className="space-y-4">
@@ -125,7 +74,9 @@ const OrderDetails = () => {
                   <div>
                     <h3 className="text-md font-medium text-gray-800">{item.product.name}</h3>
                     <p className="text-sm text-gray-600">Quantity: {item.quantity}</p>
-                    <p className="text-sm text-gray-600">Price: ${item.product.price.toFixed(2)}</p>
+                    <p className="text-sm text-gray-600">
+                      Price: ${item.product.price.toFixed(2)}
+                    </p>
                     <p className="text-sm font-semibold text-gray-700">
                       Total: ${(item.quantity * item.product.price).toFixed(2)}
                     </p>
@@ -140,11 +91,9 @@ const OrderDetails = () => {
       <ConfirmModal
         isOpen={cancelModal.visible}
         title="Cancel Order"
-        description="Are you sure you want to cancel this order? This cannot be undone."
-        confirmText="Yes, Cancel"
-        cancelText="No, Go Back"
-        onConfirm={handleCancelOrder}
-        onClose={() => setCancelModal({ visible: false, orderId: null })}
+        message="Are you sure you want to cancel this order?"
+        onConfirm={handleCancel}
+        onCancel={() => setCancelModal({ visible: false, orderId: null })}
       />
     </div>
   );
