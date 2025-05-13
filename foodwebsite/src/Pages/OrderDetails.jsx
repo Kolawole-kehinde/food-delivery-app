@@ -2,14 +2,16 @@ import React, { useEffect, useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { useAuth } from '../hooks/useAuth';
 import { supabase } from '../libs/supabase';
+import ConfirmModal from '../Components/modal/OrderConfirmModal';
+
 
 const OrderDetails = () => {
   const { user } = useAuth();
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [cancelingOrderId, setCancelingOrderId] = useState(null);
   const [showCancelled, setShowCancelled] = useState(false);
+  const [cancelModal, setCancelModal] = useState({ visible: false, orderId: null });
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -42,8 +44,14 @@ const OrderDetails = () => {
     if (user) fetchOrders();
   }, [user]);
 
-  const handleCancelOrder = async (orderId) => {
-    setCancelingOrderId(orderId);
+  const confirmCancel = (orderId) => {
+    setCancelModal({ visible: true, orderId });
+  };
+
+  const handleCancelOrder = async () => {
+    const orderId = cancelModal.orderId;
+    setCancelModal({ visible: false, orderId: null });
+
     const { error } = await supabase
       .from('orders')
       .update({ order_status: 'cancelled' })
@@ -60,8 +68,6 @@ const OrderDetails = () => {
       );
       toast.success('✅ Order cancelled. You can view it in your order history.');
     }
-
-    setCancelingOrderId(null);
   };
 
   const filteredOrders = showCancelled
@@ -97,11 +103,10 @@ const OrderDetails = () => {
 
                 {['pending', 'processing'].includes(order.order_status) && (
                   <button
-                    onClick={() => handleCancelOrder(order.id)}
-                    disabled={cancelingOrderId === order.id}
+                    onClick={() => confirmCancel(order.id)}
                     className="text-sm bg-red-500 hover:bg-red-600 text-white px-4 py-1 rounded transition"
                   >
-                    {cancelingOrderId === order.id ? 'Cancelling...' : 'Cancel Order'}
+                    Cancel Order
                   </button>
                 )}
               </div>
@@ -131,6 +136,16 @@ const OrderDetails = () => {
           </div>
         ))}
       </div>
+
+      <ConfirmModal
+        isOpen={cancelModal.visible}
+        title="Cancel Order"
+        description="Are you sure you want to cancel this order? This cannot be undone."
+        confirmText="Yes, Cancel"
+        cancelText="No, Go Back"
+        onConfirm={handleCancelOrder}
+        onClose={() => setCancelModal({ visible: false, orderId: null })}
+      />
     </div>
   );
 };
