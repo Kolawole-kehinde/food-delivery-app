@@ -29,12 +29,12 @@ const OrderDetails = () => {
   return (
     <div className="max-w-5xl mx-auto px-4 py-10">
       <Toaster position="top-center" />
-      <h1 className="text-3xl font-bold text-center mb-6">Your Orders</h1>
+      <h1 className="text-3xl font-bold text-start mb-6">Your Orders</h1>
 
       <div className="text-right mb-6">
         <button
           onClick={() => setShowCancelled(!showCancelled)}
-          className="text-sm text-blue-600 hover:underline"
+          className="text-sm text-primary"
         >
           {showCancelled ? 'Hide cancelled orders' : 'View cancelled orders'}
         </button>
@@ -63,9 +63,9 @@ const OrderDetails = () => {
               </p>
             </div>
 
-            <div className="space-y-4">
+            <div className="">
               {order.order_items.map((item) => (
-                <div key={item.id} className="flex items-center gap-4 border-t pt-4">
+                <div key={item.id} className="flex items-center justify-between border-t pt-4">
                   <img
                     src={item.product.image_url}
                     alt={item.product.name}

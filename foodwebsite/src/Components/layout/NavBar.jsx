@@ -13,14 +13,12 @@ const Navbar = () => {
   return (
     <header className="bg-[#e5ebf1] py-6 mb-8 md:mb-16 px-4 lg:px-0">
       <nav className="wrapper w-full">
-        <div className="flex items-center w-full lg:hidden gap-1">
+        <div className="flex items-center justify-between w-full lg:hidden gap-1">
           <button onClick={toggleMenu} className="text-2xl">
             {isMenuOpen ? <FaTimes /> : <FaBars />}
           </button>
 
-          <div className="flex-1">
-            <SearchBar />
-          </div>
+          
 
           {/* Auth Button */}
           <div className="ml-2">

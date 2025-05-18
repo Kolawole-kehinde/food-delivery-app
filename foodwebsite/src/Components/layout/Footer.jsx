@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <footer className="bg-black text-white text-sm lg:px-16 mt-10">
       {/* Top Section */}
-      <div className="container mx-auto px-4 flex items-start justify-between py-8 flex-col sm:flex-row gap-8">
+      <div className="wrapper px-4 flex items-start justify-between py-8 flex-col sm:flex-row gap-8">
         {/* Left Section */}
         <div className='w-full max-w-[507px]'>
           <h2 className="text-2xl font-bold mb-3">FD<span className="text-primary">A</span></h2>

@@ -3,12 +3,12 @@ import {
   FaUserEdit,
   FaEnvelope,
   FaPhoneAlt,
-  FaArrowAltCircleLeft,
   FaCamera,
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../context/ContextApi";
 import useAvatarUpload from "../hooks/useAvatarUpload";
+import { FaArrowLeftLong } from "react-icons/fa6";
 
 const ProfilePage = () => {
   const { user, setUser } = useContext(AppContext); 
@@ -26,8 +26,8 @@ const ProfilePage = () => {
         onClick={() => navigate(-1)}
         className="flex items-center gap-2 text-sm font-medium lg:ml-8 mb-4"
       >
-        <FaArrowAltCircleLeft fontSize={20} />
-        Back
+      
+        <FaArrowLeftLong  fontSize={20} />
       </button>
 
       <div className="max-w-5xl mx-auto bg-white shadow-lg rounded-2xl overflow-hidden">

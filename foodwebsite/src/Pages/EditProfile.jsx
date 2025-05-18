@@ -6,6 +6,7 @@ import { editProfileInputs } from "../constant/editProfileInputs";
 import CustomInput from "../Components/CustomInput";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../context/ContextApi";
+import { FaArrowLeftLong } from "react-icons/fa6";
 
 
 const EditProfile = () => {
@@ -72,6 +73,13 @@ const EditProfile = () => {
 
   return (
     <main className="min-h-screen bg-gray-100 p-6 md:p-10">
+      <button
+              onClick={() => navigate(-1)}
+              className="flex items-center gap-2 text-sm font-medium lg:ml-8 mb-4"
+            >
+            
+              <FaArrowLeftLong  fontSize={20} />
+            </button>
 
       <div className="max-w-xl mx-auto bg-white rounded-2xl shadow-lg p-8 space-y-6">
         <h2 className="text-2xl font-bold text-gray-800">Edit Profile</h2>

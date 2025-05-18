@@ -4,6 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 .wrapper{
     @apply container w-full max-w-[1376px] mx-auto
   }

@@ -8,7 +8,7 @@ import { MdKeyboardArrowDown } from 'react-icons/md';
 import { TbHelpSquare } from 'react-icons/tb';
 import { useCartContext } from '../../context/CartContext';
 
-const NavMenu = () => {
+const NavMenu = ({orderId}) => {
   const { cartItems } = useCartContext();
   const { pathname } = useLocation();
 
@@ -37,7 +37,7 @@ const NavMenu = () => {
         </div>
       ),
     },
-    { to: '/order', label: 'Orders', icon: <HiOutlineShoppingBag fontSize={20} /> },
+    { to: `/order/${orderId}`, label: 'Orders', icon: <HiOutlineShoppingBag fontSize={20} /> },
     { to: '/notification', label: 'Notification', icon: <IoIosNotificationsOutline fontSize={20} /> },
   ];
 
