@@ -12,10 +12,9 @@ export default {
       fontFamily: {
         Primary: ["Roboto", "sans-serif"],
       },
-     
       backgroundImage: {
-        'ShowcaseImg': "url('/images/header_img.png')",
-      }
+        ShowcaseImg: "url('/images/header_img.png')",
+      },
     },
   },
   plugins: [],
