@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useProduct } from '../hooks/useProduct';
 import { FaStar, FaComments, FaCheck, FaArrowAltCircleLeft } from 'react-icons/fa';
-import ProductTabs from '../components/ProductTabs';
 import RelatedProducts from '../Components/RelatedProducts';
 import { useCartContext } from '../context/CartContext';
+import ProductTabs from '../Components/ProductTabs';
 
 const ProductDetails = () => {
   const { id } = useParams();
