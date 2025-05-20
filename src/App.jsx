@@ -20,7 +20,8 @@ import Banner from "./Components/Banner/Banner";
 import ChangePassword from "./Pages/ChangePassword";
 import EditProfile from "./Pages/EditProfile";
 import FAQPage from "./Pages/Help";
-import ProductDetails from "./Pages/productDetails";
+import ProductDetails from "./Pages/ProductDetails";
+
 
 
 const App = () => {
