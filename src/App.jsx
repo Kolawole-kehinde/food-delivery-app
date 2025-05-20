@@ -24,6 +24,7 @@ import ProductDetails from "./Pages/ProductDetails";
 
 
 
+
 const App = () => {
   return (
     <div>
@@ -35,6 +36,7 @@ const App = () => {
           <Route path="help" element={<FAQPage/>} />
           <Route path="related-product" element={<RelatedProducts />} />
           <Route path="product-details/:id" element={<ProductDetails />} />
+
 
           {/* Public Auth Routes */}
           <Route path="auth">
