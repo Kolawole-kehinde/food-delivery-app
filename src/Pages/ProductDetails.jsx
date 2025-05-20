@@ -15,12 +15,7 @@ const ProductDetails = () => {
 
   const handleQuantityChange = (val) => {
     setQuantity((prev) => Math.max(1, prev + val));
-    {
-    "rewrites": [
-      { "source": "/(.*)", "destination": "/index.html" }
-    ]
-  }
- 
+  
   };
 
   const handleBuyNow = () => {
