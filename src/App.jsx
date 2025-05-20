@@ -3,7 +3,6 @@ import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute";
 import HomePage from "./Pages/Home";
 import AllDishes from "./Pages/AllDishes";
 import RelatedProducts from "./Components/RelatedProducts";
-import ProductDetails from "./Pages/ProductDetails";
 import LoginPage from "./Pages/auth/Login";
 import RegisterPage from "./Pages/auth/Register";
 import ForgotPasswordPage from "./Pages/auth/ForgotPassword";
@@ -18,10 +17,10 @@ import OrderDetails from "./Pages/OrderDetails";
 import Navbar from "./Components/layout/NavBar";
 import Footer from "./Components/layout/Footer";
 import Banner from "./Components/Banner/Banner";
-import FAQItem from "./Components/faq/FAQItem";
 import ChangePassword from "./Pages/ChangePassword";
 import EditProfile from "./Pages/EditProfile";
 import FAQPage from "./Pages/Help";
+import ProductDetails from "./Pages/productDetails";
 
 
 const App = () => {
