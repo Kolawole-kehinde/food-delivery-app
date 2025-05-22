@@ -6,9 +6,10 @@ import { IoIosNotificationsOutline } from 'react-icons/io';
 import { IoCartOutline } from 'react-icons/io5';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 import { TbHelpSquare } from 'react-icons/tb';
+import { AiOutlineHome } from 'react-icons/ai'; 
 import { useCartContext } from '../../context/CartContext';
 
-const NavMenu = ({orderId}) => {
+const NavMenu = ({ orderId }) => {
   const { cartItems } = useCartContext();
   const { pathname } = useLocation();
 
@@ -26,7 +27,8 @@ const NavMenu = ({orderId}) => {
     { to: '/language', label: 'EN', icon: <MdKeyboardArrowDown fontSize={20} /> },
     { to: '/help', label: 'Help', icon: <TbHelpSquare fontSize={20} /> },
     { to: '/messages', label: 'Messages', icon: <LuMessageSquareText fontSize={20} /> },
-    { to: '/cart', label: 'Cart',icon: (
+    {
+      to: '/cart', label: 'Cart', icon: (
         <div className="relative">
           <IoCartOutline fontSize={24} />
           {cartCount > 0 && (
@@ -43,14 +45,20 @@ const NavMenu = ({orderId}) => {
 
   return (
     <>
+      {/* Home icon only on mobile */}
+      <div className="md:hidden">
+        <Link to="/" className={getMenuClass('/')}>
+          <AiOutlineHome fontSize={20} />
+          <span>Home</span>
+        </Link>
+      </div>
+
       {menuItems.map(({ to, label, icon }) => (
         <Link to={to} className={getMenuClass(to)} key={to}>
           {icon}
           <span>{label}</span>
         </Link>
       ))}
-   
-    
     </>
   );
 };

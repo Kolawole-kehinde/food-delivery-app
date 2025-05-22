@@ -10,7 +10,7 @@ const Banner = () => {
       <MotionWrapper type="zoomIn" className="wrapper rounded-xl py-6 md:py-10 flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="max-w-xl">
           <MotionWrapper type="fadeInLeft">
-            <h2 className="text-xl md:text-4xl font-bold text-gray-900 mb-2">
+            <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">
               Delicious Meals Delivered to You
             </h2>
           </MotionWrapper>

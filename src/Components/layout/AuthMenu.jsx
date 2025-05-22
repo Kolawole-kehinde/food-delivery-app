@@ -8,7 +8,8 @@ import {
   FaSignInAlt,
   FaUserPlus,
   FaUtensils,
-  FaHome
+  FaHome,
+  FaCog
 } from 'react-icons/fa';
 
 const AuthMenu = ({ closeMenu, orderId }) => {
@@ -33,6 +34,9 @@ const AuthMenu = ({ closeMenu, orderId }) => {
           <Link to="/help" onClick={closeMenu} className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-primary">
             <FaQuestionCircle /> Help Center
           </Link>
+          <Link to="/settings"  onClick={closeMenu} className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-primary">
+          <FaCog /> Settings
+        </Link>
           <button
             onClick={() => {
               closeMenu();

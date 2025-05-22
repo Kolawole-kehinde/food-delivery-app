@@ -19,7 +19,9 @@ const Navbar = () => {
           </button>
 
           
-
+               <div className="flex-1">
+            <SearchBar />
+          </div>
           {/* Auth Button */}
           <div className="ml-2">
             <AuthButton toggleMenu={toggleMenu} />
