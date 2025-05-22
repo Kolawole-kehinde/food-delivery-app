@@ -3,14 +3,14 @@ import React from 'react';
 const CartItem = ({ id, name, seller, price, quantity, image_url, onRemove, onIncrease, onDecrease }) => {
   return (
     <section className="border-b">
-      <div className="flex gap-4 py-4 px-6 border-b shadow-lg">
-        <img src={image_url} alt={name} className="w-40 h-48 object-cover rounded" />
+      <div className="flex flex-col md:flex-row gap-4 py-4 px-6 border-b shadow-lg">
+        <img src={image_url} alt={name} className="w-full md:w-40 h-48 object-cover rounded" />
 
         <div className="flex-1 shadow-md px-4 rounded-xl">
           <div className="flex justify-between items-center">
             <div className="flex flex-col gap-5">
               <h3 className="text-lg font-semibold">{name}</h3>
-              <p className="text-sm text-gray-500">Sold by <span className="text-orange-600">{seller}</span></p>
+              {/* <p className="text-sm text-gray-500">Sold by <span className="text-orange-600">{seller}</span></p> */}
             </div>
             <div className="text-right">
               <p className="font-bold text-lg">${price}</p>
@@ -19,7 +19,7 @@ const CartItem = ({ id, name, seller, price, quantity, image_url, onRemove, onIn
           </div>
 
           <div className="flex flex-col md:flex-row justify-between items-center my-4">
-            <div className="mt-4 w-[200px]">
+            <div className="mt-4 w-full md:w-[200px]">
               <select id={`payment-${id}`} className="w-full border-2 p-2 rounded mt-2 text-base font-medium">
                 <option value="">Payment Option</option>
                 <option value="credit-card">Credit Card</option>

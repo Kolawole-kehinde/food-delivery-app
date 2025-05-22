@@ -4,7 +4,6 @@ import { LuMessageSquareText } from 'react-icons/lu';
 import { HiOutlineShoppingBag } from 'react-icons/hi';
 import { IoIosNotificationsOutline } from 'react-icons/io';
 import { IoCartOutline } from 'react-icons/io5';
-import { MdKeyboardArrowDown } from 'react-icons/md';
 import { TbHelpSquare } from 'react-icons/tb';
 import { AiOutlineHome } from 'react-icons/ai'; 
 import { useCartContext } from '../../context/CartContext';
@@ -24,7 +23,7 @@ const NavMenu = ({ orderId }) => {
     `${baseClass} ${pathname === path ? activeClass : ''}`;
 
   const menuItems = [
-    { to: '/language', label: 'EN', icon: <MdKeyboardArrowDown fontSize={20} /> },
+    // { to: '/language', label: 'EN', icon: <MdKeyboardArrowDown fontSize={20} /> },
     { to: '/help', label: 'Help', icon: <TbHelpSquare fontSize={20} /> },
     { to: '/messages', label: 'Messages', icon: <LuMessageSquareText fontSize={20} /> },
     {
