@@ -1,4 +1,3 @@
-
 const LocalStorageService = {
   getItem: (key) => {
     const item = localStorage.getItem(key);
@@ -9,6 +8,9 @@ const LocalStorageService = {
   },
   removeItem: (key) => {
     localStorage.removeItem(key);
+  },
+  clear: () => {
+    localStorage.clear();
   },
 };
 
