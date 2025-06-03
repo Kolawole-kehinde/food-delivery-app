@@ -5,9 +5,9 @@ import { checkoutSchema } from '../Shchema/checkoutSchema';
 import { useCartContext } from '../context/CartContext';
 import { usePlaceOrder } from '../hooks/usePlaceOrder';
 import OrderSummary from '../Components/Cart/OrderSummary';
-import SuccessModal from '../Components/modal/SuccessModal';
 import { useAuth } from '../hooks/useAuth';
 import CheckoutForm from '../Components/Checkout/CheckoutForm';
+import SuccessModal from '../Components/ui/SuccessModal';
 
 const CheckOutPage = () => {
   const { user } = useAuth();
