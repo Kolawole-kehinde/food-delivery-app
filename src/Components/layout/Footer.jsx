@@ -2,8 +2,12 @@ import React from 'react';
 import { FaFacebookSquare, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import SuggestionInput from '../SuggestionInput';
+import { useAuth } from '../../hooks/useAuth';
 
-const Footer = () => {
+const Footer = ({orderId}) => {
+   const {loading, handleLogout } = useAuth();
+    // Logic for logging out the user
+  
   return (
     <footer className="bg-black text-white text-sm lg:px-16 mt-10">
       {/* Top Section */}
@@ -20,23 +24,23 @@ const Footer = () => {
         </div>
 
         {/* Company */}
-        <div>
+        {/* <div>
           <h3 className="font-semibold mb-4">Company</h3>
           <ul className="space-y-6">
             <li><Link to="/about" className="hover:underline">About</Link></li>
             <li><Link to="/partnership" className="hover:underline">Partnership</Link></li>
             <li><Link to="/contact" className="hover:underline">Contact us</Link></li>
           </ul>
-        </div>
+        </div> */}
 
         {/* Help & Support */}
         <div>
           <h3 className="font-semibold mb-4">Help & Support</h3>
           <ul className="space-y-6">
-            <li><Link to="/faqs" className="hover:underline">FAQs</Link></li>
+            <li><Link to="/help" className="hover:underline">FAQs</Link></li>
             <li><Link to="/support" className="hover:underline">Talk to Support</Link></li>
             <li><Link to="/live-chat" className="hover:underline">Live Chat</Link></li>
-            <li><Link to="/language" className="hover:underline">Language</Link></li>
+            <li><Link to="/settings" className="hover:underline">Settings</Link></li>
           </ul>
         </div>
 
@@ -45,9 +49,15 @@ const Footer = () => {
           <h3 className="font-semibold mb-4">Account</h3>
           <ul className="space-y-6">
             <li><Link to="/profile" className="hover:underline">Profile</Link></li>
-            <li><Link to="/orders" className="hover:underline">Orders</Link></li>
+            <li><Link to={`/order/${orderId}`} className="hover:underline">Orders</Link></li>
             <li><Link to="/cart" className="hover:underline">Cart</Link></li>
-            <li><Link to="/logout" className="hover:underline">LogOut</Link></li>
+           <button
+            onClick={() => {
+              handleLogout();
+            }}
+           >
+            {loading ? 'Logging out...' : 'Logout'}
+           </button>
           </ul>
         </div>
       </div>
