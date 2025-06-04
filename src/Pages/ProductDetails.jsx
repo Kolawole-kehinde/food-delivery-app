@@ -5,6 +5,7 @@ import { FaStar, FaComments, FaCheck, FaArrowAltCircleLeft } from 'react-icons/f
 import RelatedProducts from '../Components/RelatedProducts';
 import { useCartContext } from '../context/CartContext';
 import ProductTabs from '../Components/ProductTabs';
+import ProductDetailsSkeleton from '../Components/Skeleton/ProductDetailsSkeleton';
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -15,23 +16,22 @@ const ProductDetails = () => {
 
   const handleQuantityChange = (val) => {
     setQuantity((prev) => Math.max(1, prev + val));
-  
   };
 
   const handleBuyNow = () => {
-    buyNow(product, quantity); 
-    navigate('/checkout'); 
+    buyNow(product, quantity);
+    navigate('/checkout');
   };
 
-  if (isLoading) return <div className="p-6 text-center">Loading product...</div>;
+  if (isLoading) return <ProductDetailsSkeleton />;
   if (isError) return <div className="p-6 text-center text-red-600">Error: {error.message}</div>;
 
   return (
     <section>
-      <div className="wrapper px-4 lg:px-0">
+      <div className="wrapper px-4 lg:px-0 max-w-7xl mx-auto">
         <div className="flex justify-between items-center mb-6 md:mb-16">
-          <div className="flex items-center gap-2 text-gray-700 font-medium">
-            <FaArrowAltCircleLeft onClick={() => navigate(-1)} className="w-4 h-4" />
+          <div className="flex items-center gap-2 text-gray-700 font-medium cursor-pointer" onClick={() => navigate(-1)}>
+            <FaArrowAltCircleLeft className="w-4 h-4" />
             <h2 className="text-base">Back</h2>
           </div>
           <button className="border border-gray-300 text-sm px-4 py-1 rounded-md flex items-center gap-2 hover:bg-gray-100">
@@ -45,11 +45,11 @@ const ProductDetails = () => {
             <img
               src={product.image_url || '/images/placeholder.png'}
               alt={product.name}
-              className="w-[500px] h-auto rounded-2xl shadow-md object-contain"
+              className="w-full max-w-[500px] h-auto rounded-2xl shadow-md object-contain"
             />
           </div>
 
-          <div className="flex flex-col justify-between space-y-6">
+          <div className="flex flex-col justify-between space-y-6 flex-1 w-full max-w-xl">
             <div>
               <h1 className="text-3xl font-bold text-gray-900">{product.name}</h1>
               <p className="text-2xl font-semibold text-[#FF3D00] mb-4">${product.price}</p>
@@ -76,12 +76,22 @@ const ProductDetails = () => {
             </div>
 
             <div>
-              <div className="flex items-center gap-4 mb-2">
-                <span className="text-gray-600">Quantity:</span>
+              <div className="flex items-center gap-4 mb-2 text-gray-600 text-sm">
+                <span>Quantity:</span>
                 <div className="flex items-center border border-gray-300 rounded-lg">
-                  <button onClick={() => handleQuantityChange(-1)} className="px-3 py-1 text-lg font-bold text-gray-600 hover:bg-gray-100">−</button>
+                  <button
+                    onClick={() => handleQuantityChange(-1)}
+                    className="px-3 py-1 text-lg font-bold text-gray-600 hover:bg-gray-100"
+                  >
+                    −
+                  </button>
                   <span className="px-4 py-1">{quantity}</span>
-                  <button onClick={() => handleQuantityChange(1)} className="px-3 py-1 text-lg font-bold text-gray-600 hover:bg-gray-100">+</button>
+                  <button
+                    onClick={() => handleQuantityChange(1)}
+                    className="px-3 py-1 text-lg font-bold text-gray-600 hover:bg-gray-100"
+                  >
+                    +
+                  </button>
                 </div>
               </div>
 

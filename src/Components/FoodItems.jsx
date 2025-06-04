@@ -25,6 +25,16 @@ const FoodItems = ({ id, name, price, image_url, description }) => {
     }
   };
 
+  const handleAddToCart = () => {
+    addToCart(product);
+    toast.success(`${name} added to cart.`);
+  };
+
+  const handleRemoveFromCart = () => {
+    removeFromCart(id);
+    toast.success(`${name} removed from cart.`);
+  };
+
   return (
     <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition">
       <div className="relative">
@@ -39,27 +49,29 @@ const FoodItems = ({ id, name, price, image_url, description }) => {
         <div className="absolute bottom-4 left-4 right-4 flex justify-between items-center px-2">
           <FaHeart
             onClick={handleToggleFavorite}
-            className={`text-xl cursor-pointer ${isFavorite(id) ? 'text-red-600' : 'text-white'} hover:text-red-600 transition`}
+            className={`text-xl cursor-pointer ${
+              isFavorite(id) ? 'text-red-600' : 'text-white'
+            } hover:text-red-600 transition`}
             title={isFavorite(id) ? "Remove from favorites" : "Add to favorites"}
           />
 
           {quantityInCart === 0 ? (
             <FaPlus
-              onClick={() => addToCart(product)}
+              onClick={handleAddToCart}
               className="text-primary text-xl cursor-pointer bg-white rounded-full p-1 hover:scale-110 transition"
               title="Add to cart"
             />
           ) : (
             <div className="flex items-center gap-2 bg-white p-2 rounded-full shadow-md">
               <img
-                onClick={() => removeFromCart(id)}
+                onClick={handleRemoveFromCart}
                 src="/images/remove_icon_red.png"
                 alt="Remove item"
                 className="w-7 cursor-pointer"
               />
               <p className="text-sm font-medium">{quantityInCart}</p>
               <img
-                onClick={() => addToCart(product)}
+                onClick={handleAddToCart}
                 src="/images/add_icon_green.png"
                 alt="Add item"
                 className="w-7 cursor-pointer"

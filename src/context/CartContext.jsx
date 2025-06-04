@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
 import LocalStorageService from '../utils/HandleLocalStorage';
+import toast from 'react-hot-toast';
 
 const CartContext = createContext();
 
@@ -51,6 +52,7 @@ export const CartProvider = ({ children }) => {
     setCartItems((prevItems) => {
       const existing = prevItems.find((item) => item.id === product.id);
       if (existing) {
+        toast.success(`Updated quantity of ${product.name} in cart.`);
         return prevItems.map((item) =>
           item.id === product.id
             ? { ...item, quantity: item.quantity + quantity }

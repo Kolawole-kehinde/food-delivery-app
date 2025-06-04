@@ -2,7 +2,7 @@ import { useContext } from "react";
 import FoodItems from "./FoodItems";
 import { AppContext } from "../context/ContextApi";
 import { Link } from "react-router-dom";
-import SkeletonCard from "./SkeletonCard";
+import SkeletonCard from "./Skeleton/SkeletonCard";
 
 
 const TopDishes = ({
