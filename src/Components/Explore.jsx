@@ -1,4 +1,4 @@
-import React from "react";
+/* eslint-disable react/prop-types */
 import { menu_list } from "../assets/assets";
 import { motion } from "framer-motion";
 
@@ -22,7 +22,7 @@ const ExploreMenu = ({ category, setCategory }) => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
-        Lorem Ipsum has been the industry's standard dummy text ever since the
+        Lorem Ipsum has been the industry&apos;s standard dummy text ever since the
         1500s, when an unknown printer.
       </motion.p>
 

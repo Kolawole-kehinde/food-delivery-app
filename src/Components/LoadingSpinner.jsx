@@ -1,5 +1,4 @@
-import React from 'react';
-
+/* eslint-disable react/prop-types */
 const LoadingSpinner = ({ size = 'medium', color = 'blue' }) => {
   const sizeClasses = {
     small: 'w-4 h-4 border-2',

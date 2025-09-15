@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useContext } from "react";
 import FoodItems from "./FoodItems";
 import { AppContext } from "../context/ContextApi";

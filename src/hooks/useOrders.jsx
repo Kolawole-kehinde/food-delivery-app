@@ -62,7 +62,7 @@ export const useOrders = (userId) => {
           order.id === orderId ? { ...order, order_status: 'cancelled' } : order
         )
       );
-      toast.success('✅ Order cancelled.');
+      toast.success('Order cancelled.');
       return true;
     }
   };

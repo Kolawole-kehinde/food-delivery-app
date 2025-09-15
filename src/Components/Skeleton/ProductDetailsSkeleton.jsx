@@ -1,6 +1,4 @@
 
-import React from 'react';
-
 const ProductDetailsSkeleton = () => {
   return (
     <section className="px-4 lg:px-0 max-w-7xl mx-auto">

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FiArrowRight } from 'react-icons/fi';
 import { supabase } from '../libs/supabase';
 import toast from 'react-hot-toast';

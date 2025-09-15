@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/display-name */
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../libs/supabase';
 

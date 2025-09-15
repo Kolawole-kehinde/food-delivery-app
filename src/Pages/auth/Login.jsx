@@ -69,11 +69,13 @@ const LoginPage = () => {
       </p>
 
           {/* Submit Button */}
-          <CustomButton>Login</CustomButton>
+          <CustomButton disabled={loading}>
+            {loading ? "Logging in..." : "Login"}
+          </CustomButton>
         </form>
 
         <p className="text-center mt-4 text-sm">
-          Don't have an account?{" "}
+          Don&#39;t have an account?{" "}
           <Link to="/auth/register" className="text-primary">
             Register
           </Link>

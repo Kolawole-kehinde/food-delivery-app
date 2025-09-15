@@ -1,7 +1,5 @@
-import React from 'react';
+
 import TopDishes from './TopDishes';
-
-
 export const RecommendedDishes = () => {
   return (
     <section>

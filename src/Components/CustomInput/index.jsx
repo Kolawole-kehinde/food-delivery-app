@@ -1,4 +1,5 @@
-import React, { forwardRef, useState } from "react";
+import { forwardRef, useState } from "react";
+import PropTypes from "prop-types";
 import { FaRegEye, FaEyeSlash } from "react-icons/fa";
 
 const CustomInput = forwardRef(
@@ -73,5 +74,26 @@ const CustomInput = forwardRef(
     );
   }
 );
+
+CustomInput.displayName = "CustomInput";
+
+CustomInput.propTypes = {
+  label: PropTypes.string,
+  type: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
+  register: PropTypes.func,
+  error: PropTypes.shape({
+    message: PropTypes.string
+  }),
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+        .isRequired,
+      label: PropTypes.string.isRequired
+    })
+  ),
+  className: PropTypes.string
+};
 
 export default CustomInput;

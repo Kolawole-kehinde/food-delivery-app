@@ -5,7 +5,7 @@ import {
   FaPhoneAlt,
   FaCamera,
 } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"
 import { AppContext } from "../context/ContextApi";
 import useAvatarUpload from "../hooks/useAvatarUpload";
 import { FaArrowLeftLong } from "react-icons/fa6";

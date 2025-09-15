@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { FiUser, FiChevronDown } from 'react-icons/fi';
 import AuthMenu from './AuthMenu';
 import { useAuth } from '../../hooks/useAuth';

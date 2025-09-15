@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+// eslint-disable-next-line react/prop-types
 const ProductTabs = ({ description }) => {
   const tabs = ['Description', 'Delivery and Payment Terms', 'Packaging option'];
   const [activeTab, setActiveTab] = useState('Description');
@@ -14,7 +14,7 @@ const ProductTabs = ({ description }) => {
             onClick={() => setActiveTab(tab)}
             className={`pb-2 text-sm font-medium transition-all duration-150 ${
               activeTab === tab
-                ? 'border-b-2 border-[#FF3D00] text-[#FF3D00]'
+                ? 'border-b-2 border-primary text-primary'
                 : 'text-gray-500 hover:text-[#FF3D00]'
             }`}
           >

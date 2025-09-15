@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { LuMessageSquareText } from 'react-icons/lu';
 import { HiOutlineShoppingBag } from 'react-icons/hi';

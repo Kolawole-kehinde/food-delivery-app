@@ -1,4 +1,5 @@
-import React from "react";
+/* eslint-disable react/prop-types */
+
 import { FaHeart, FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useCartContext } from "../context/CartContext";
