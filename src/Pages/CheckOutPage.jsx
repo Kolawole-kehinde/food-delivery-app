@@ -7,7 +7,7 @@ import { usePlaceOrder } from '../hooks/usePlaceOrder';
 import OrderSummary from '../Components/Cart/OrderSummary';
 import { useAuth } from '../hooks/useAuth';
 import CheckoutForm from '../Components/Checkout/CheckoutForm';
-import SuccessModal from '../Components/ui/SuccessModal';
+import SuccessModal from '../Components/SuccessModal';
 
 const CheckOutPage = () => {
   const { user } = useAuth();

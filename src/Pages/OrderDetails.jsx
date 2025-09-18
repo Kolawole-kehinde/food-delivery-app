@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
-import ConfirmModal from "../Components/ui/OrderConfirmModal";
+import ConfirmModal from "../Components/OrderConfirmModal";
 import { useState } from "react";
 import { Toaster } from "react-hot-toast";
 import { useOrderDetails } from "../hooks/useOrdersDetails";

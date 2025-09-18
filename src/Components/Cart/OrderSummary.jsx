@@ -2,7 +2,7 @@
 import { useLocation } from 'react-router-dom';
 import { useCartContext } from '../../context/CartContext';
 import { useAuth } from '../../hooks/useAuth';
-import SuccessModal from '../ui/SuccessModal';
+import SuccessModal from '../SuccessModal';
 import { usePlaceOrder } from '../../hooks/usePlaceOrder';
 
 // Summary row component
