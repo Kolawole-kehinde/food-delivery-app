@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import toast, { Toaster } from 'react-hot-toast';
+import { useState } from 'react';
+import { Toaster } from 'react-hot-toast';
 import { useAuth } from '../hooks/useAuth';
 import { useOrders } from '../hooks/useOrders';
 import ConfirmModal from '../Components/ui/OrderConfirmModal';
