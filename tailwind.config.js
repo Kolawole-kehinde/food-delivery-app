@@ -7,6 +7,9 @@ export default {
   ],
   theme: {
     extend: {
+ colors: {
+        primary: "#f96927",
+      },
       fontFamily: {
         Primary: ["Roboto", "sans-serif"],
       },
