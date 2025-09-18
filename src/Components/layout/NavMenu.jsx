@@ -8,7 +8,7 @@ import { TbHelpSquare } from 'react-icons/tb';
 import { AiOutlineHome } from 'react-icons/ai'; 
 import { useCartContext } from '../../context/CartContext';
 
-const NavMenu = ({ orderId }) => {
+const NavMenu = () => {
   const { cartItems } = useCartContext();
   const { pathname } = useLocation();
 

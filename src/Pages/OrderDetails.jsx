@@ -1,14 +1,15 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import ConfirmModal from "../Components/ui/OrderConfirmModal";
 import { useState } from "react";
 import { Toaster } from "react-hot-toast";
 import { useOrderDetails } from "../hooks/useOrdersDetails";
-
+import { FaArrowLeft } from "react-icons/fa"; // react-icons
 
 const OrderDetails = () => {
   const { user } = useAuth();
   const { orderId } = useParams();
+  const navigate = useNavigate();
 
   const { order, loading, error, cancelOrder, cancelling } = useOrderDetails(
     user?.id,
@@ -27,6 +28,16 @@ const OrderDetails = () => {
   return (
     <div className="max-w-5xl mx-auto px-4 py-10">
       <Toaster position="top-center" />
+
+      {/* Back button */}
+      <button
+        onClick={() => navigate("/orders")}
+        className="flex items-center mb-6"
+      >
+        <FaArrowLeft className="mr-2" />
+        Back to Orders
+      </button>
+
       <h1 className="text-3xl font-bold mb-6">Order Details</h1>
 
       <div className="bg-white shadow rounded-xl p-6 border">

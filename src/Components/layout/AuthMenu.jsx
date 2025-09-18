@@ -11,7 +11,7 @@ import {
   FaCog,
 } from "react-icons/fa";
 
-const AuthMenu = ({ closeMenu, orderId }) => {
+const AuthMenu = ({ closeMenu}) => {
   const { user, loading, handleLogout } = useAuth();
 
   return (

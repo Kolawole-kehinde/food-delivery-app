@@ -20,7 +20,7 @@ const OrdersPage = () => {
               <span>Order ID: {order.id}</span>
               <Link
                 to={`/order/${order.id}`}
-                className="text-blue-600 hover:underline"
+                className="bg-orange-500 py-1 px-2 rounded text-white"
               >
                 View Details
               </Link>
