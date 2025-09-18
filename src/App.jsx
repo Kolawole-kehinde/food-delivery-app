@@ -19,6 +19,7 @@ import EditProfile from "./Pages/EditProfile";
 import FAQPage from "./Pages/Help";
 import Layout from "./Components/layout/Layout";
 import ProductDetails from "./Pages/ProductDetails";
+import OrdersPage from "./Pages/OrdersPage";
 
 const App = () => {
   return (
@@ -48,6 +49,7 @@ const App = () => {
           <Route path="checkout" element={<CheckOutPage />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="settings" element={<AccountSettings />} />
+          <Route path="orders" element={<OrdersPage />} />
           <Route path="order/:orderId" element={<OrderDetails />} />
           <Route path="change-password" element={<ChangePassword />} />
         </Route>

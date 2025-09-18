@@ -1,5 +1,5 @@
-import { useAuth } from '../../hooks/useAuth';
-import { Link } from 'react-router-dom';
+import { useAuth } from "../../hooks/useAuth";
+import { Link } from "react-router-dom";
 import {
   FaUser,
   FaQuestionCircle,
@@ -8,8 +8,8 @@ import {
   FaUserPlus,
   FaUtensils,
   FaHome,
-  FaCog
-} from 'react-icons/fa';
+  FaCog,
+} from "react-icons/fa";
 
 const AuthMenu = ({ closeMenu, orderId }) => {
   const { user, loading, handleLogout } = useAuth();
@@ -19,23 +19,44 @@ const AuthMenu = ({ closeMenu, orderId }) => {
       {user ? (
         <>
           <div className="px-4 py-2 text-gray-700 font-semibold">
-            Hello, {user.name || 'User'}!
+            Hello, {user.name || "User"}!
           </div>
-          <Link to="/profile" onClick={closeMenu} className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-primary">
+          <Link
+            to="/profile"
+            onClick={closeMenu}
+            className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-primary"
+          >
             <FaUser /> Profile
           </Link>
-          <Link to="/dashboard" onClick={closeMenu} className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-primary">
+          <Link
+            to="/dashboard"
+            onClick={closeMenu}
+            className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-primary"
+          >
             <FaHome /> Dashboard
           </Link>
-          <Link to={`/order/${orderId}`}  onClick={closeMenu} className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-primary">
+          <Link
+            to="/orders"
+            onClick={closeMenu}
+            className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-primary"
+          >
             <FaUtensils /> Orders
           </Link>
-          <Link to="/help" onClick={closeMenu} className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-primary">
+
+          <Link
+            to="/help"
+            onClick={closeMenu}
+            className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-primary"
+          >
             <FaQuestionCircle /> Help Center
           </Link>
-          <Link to="/settings"  onClick={closeMenu} className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-primary">
-          <FaCog /> Settings
-        </Link>
+          <Link
+            to="/settings"
+            onClick={closeMenu}
+            className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-primary"
+          >
+            <FaCog /> Settings
+          </Link>
           <button
             onClick={() => {
               closeMenu();
@@ -44,15 +65,23 @@ const AuthMenu = ({ closeMenu, orderId }) => {
             className="flex items-center gap-2 w-full text-left px-4 py-2 text-gray-700 hover:text-primary"
           >
             <FaSignOutAlt />
-            {loading ? 'Logging out...' : 'Logout'}
+            {loading ? "Logging out..." : "Logout"}
           </button>
         </>
       ) : (
         <>
-          <Link to="/auth/login" onClick={closeMenu} className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-primary">
+          <Link
+            to="/auth/login"
+            onClick={closeMenu}
+            className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-primary"
+          >
             <FaSignInAlt /> Login
           </Link>
-          <Link to="/auth/register" onClick={closeMenu} className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-primary">
+          <Link
+            to="/auth/register"
+            onClick={closeMenu}
+            className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-primary"
+          >
             <FaUserPlus /> Register
           </Link>
         </>

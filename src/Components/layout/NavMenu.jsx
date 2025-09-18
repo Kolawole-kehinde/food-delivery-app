@@ -38,7 +38,7 @@ const NavMenu = ({ orderId }) => {
         </div>
       ),
     },
-    { to: `/order/${orderId}`, label: 'Orders', icon: <HiOutlineShoppingBag fontSize={20} /> },
+    { to: '/orders', label: 'Orders', icon: <HiOutlineShoppingBag fontSize={20} /> },
     { to: '/notification', label: 'Notification', icon: <IoIosNotificationsOutline fontSize={20} /> },
   ];
 
